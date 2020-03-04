@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Yuhong Zhang">
   <meta name="keywords" content="Visual Analytics, Front End">
-  <title>Yuhong&#39;s blog</title>
+  <title>算法复杂度分析 ~ Yuhong&#39;s blog</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 100vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -106,8 +106,8 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/vis.jpg')no-repeat center center;
+    <div class="view intro-2" id="background" false
+         style="background: url('/img/default.png')no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask rgba-black-light flex-center">
@@ -117,12 +117,43 @@
             </span>
 
             
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期六, 二月 29日 2020, 6:18 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    602 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      2 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="fas fa-angle-down scroll-down-arrow"></i>
-            </div>
           
         </div>
       </div>
@@ -131,117 +162,90 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本科时学习的数据结构与算法的知识日渐淡忘，恰逢春招面试需要复习，要命的是我又是个如果对什么记忆模糊就会啥也说不出来的人，毕竟没有把握的事情，没有办法信誓旦旦的说个123，因此重新温习一遍在极客时间上买的王争的课程，梳理知识体系，也为以后更轻松的复习。</p>
+<h3 id="why-为什么要复杂度分析"><a href="#why-为什么要复杂度分析" class="headerlink" title="why- 为什么要复杂度分析"></a>why- 为什么要复杂度分析</h3><p>计算机资源是宝贵的，虽然可以用事后统计法来计算精确的时间，但是缺点有：</p>
+<ul>
+<li>依赖硬件条件，硬件条件有优劣</li>
+<li>结果受数据规模影响</li>
+</ul>
+<p>复杂度分析：</p>
+<ul>
+<li>和性能测试相比，复杂度分析有不依赖执行环境、成本低、效率高、易操作、指导性强的特点。</li>
+<li>掌握复杂度分析，将能编写出性能更优的代码，有利于降低系统开发和维护成本。</li>
+</ul>
+<h3 id="what-什么是复杂度分析"><a href="#what-什么是复杂度分析" class="headerlink" title="what- 什么是复杂度分析"></a>what- 什么是复杂度分析</h3><ul>
+<li>数据结构与算法帮助计算机使用更快的时间、更省空间来解决问题</li>
+<li>时间复杂度和空间复杂度分别从两个方面来估计消耗，实质是时间/空间消耗随着数据规模增长的变化趋势</li>
+</ul>
+<h3 id="how-怎么做复杂度分析"><a href="#how-怎么做复杂度分析" class="headerlink" title="how- 怎么做复杂度分析"></a>how- 怎么做复杂度分析</h3><h4 id="1-大O表示法"><a href="#1-大O表示法" class="headerlink" title="1.大O表示法"></a>1.大O表示法</h4><p>O()不是表示真实的代码执行时间，而是表示代码执行时间随数据规模增长的变化趋势，也称<strong>渐进时间复杂度</strong>，简称<strong>时间复杂度</strong>。</p>
+<p>####2.分析的三个方法</p>
+<ul>
+<li>只关注循环执行次数最多的一段代码</li>
+<li>加法：几段代码组合中取最高量级的复杂度</li>
+<li>乘法：嵌套代码的复杂度等于嵌套内外代码复杂度的乘积</li>
+</ul>
+<h4 id="3-常见的复杂度"><a href="#3-常见的复杂度" class="headerlink" title="3.常见的复杂度"></a>3.常见的复杂度</h4><ul>
+<li>多项式阶，呈多项式比例增长: o(1), o(logn), o(n), o(nlogn), o(n^x)</li>
+<li>非多项式阶，随数据暴增，性能极差：o(2^n)，o(n!)</li>
+<li>常见的空间复杂度：O(1)、O(n)、O(n2)。</li>
+</ul>
+<h4 id="4-最好、最差和平均复杂度"><a href="#4-最好、最差和平均复杂度" class="headerlink" title="4.最好、最差和平均复杂度"></a>4.最好、最差和平均复杂度</h4><ul>
+<li>最好最差顾名思义</li>
+<li>平均复杂度可用加权平均数求量级，也可以使用均摊的方式快速求。如一次o(n)的操作紧跟着n-1次o(1)操作，平均还是o(1)。</li>
+</ul>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
                 
-
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/02/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/">
-        <p class="h4 index-header">算法复杂度分析</p>
-      </a>
-
-      <a href="/2020/02/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">前言本科时学习的数据结构与算法的知识日渐淡忘，恰逢春招面试需要复习，要命的是我又是个如果对什么记忆模糊就会啥也说不出来的人，毕竟没有把握的事情，没有办法信誓旦旦的说个123，因此重新温习一遍在极客时间上买的王争的课程，梳理知识体系，也为以后更轻松的复习。
-why- 为什么要复杂度分析计算机资源是宝贵的，虽然可以用事后统计法来计算精确的时间，但是缺点有：
-
-依赖硬件条件，硬件条件有优劣
-结果受数据规模影响
-
-复杂度分析：
-
-和性能测试相比，复杂度分析有不依赖执行环境、成本低、效率高、易操作、指导性强的特点。
-掌握复杂度分析，将能编写出性能更优的代码，有利于降低系统开发和维护成本。
-
-what- 什么是复杂度分析
-数据结构与算法帮助计算机使用更快的时间、更省空间来解决问题
-时间复杂度和空间复杂度分别从两个方面来估计消耗，实质是时间/空间消耗随着数据规模增长的变化趋势
-
-how- 怎么做复杂度分析1.大O表示法O()不是表示真实的代码执行时间，而是表示代码执行时间随数据规模增长的变化趋势，也称渐进时间复杂度，简称时间复杂度。
-####2.分析的三个方法
-
-只关注循环执行次数最多的一段代码
-加</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-02-29&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">数据结构与算法,  学习笔记</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/02/29/hello-world/">
-        <p class="h4 index-header">Hello World</p>
-      </a>
-
-      <a href="/2020/02/29/hello-world/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-
-More info: Writing
-Run server1$ hexo server
-
-More info: Server
-Generate static files1$ hexo generate
-
-More info: Generating
-Deploy to remote sites1$ hexo deploy
-
-More info: Deployment
-</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-02-29&nbsp;&nbsp;
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-              </div>
-            </div>
+                  <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">数据结构与算法,  学习笔记</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -320,6 +324,11 @@ More info: Deployment
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
@@ -360,7 +369,7 @@ More info: Deployment
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Visualization, Code and Life&nbsp;",
+        "算法复杂度分析&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
