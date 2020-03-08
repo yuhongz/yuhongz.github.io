@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="Yuhong Zhang">
+  <meta name="keywords" content="Visual Analytics, Front End">
+  <title>递归与排序 ~ Yuhong&#39;s blog</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Yuhong's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期六, 三月 7日 2020, 2:25 下午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    889 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      3 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h3 id="🌟递归"><a href="#🌟递归" class="headerlink" title="🌟递归"></a>🌟递归</h3><p>递归，是一种编程技巧，可以让代码更简洁。</p>
+<ul>
+<li>递归的三个条件：<ul>
+<li>一个问题可以分解成几个子问题的解</li>
+<li>问题与子问题除了数据规模不一样，求解思路完全一样</li>
+<li>存在递归终止条件</li>
+</ul>
+</li>
+</ul>
+<h3 id="🌟排序"><a href="#🌟排序" class="headerlink" title="🌟排序"></a>🌟排序</h3><p><img src="/2020/03/07/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/zhangyuhong/Desktop/blog/bloger/source/_posts/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/overview.jpg" srcset="/img/loading.gif" alt="overview"></p>
+<ul>
+<li><strong>稳定性</strong>：作用：在针对某一key进行排序的过程中，保证其他key有序</li>
+<li><strong>逆序度</strong>：<strong>满有序度 - 有序度</strong>。冒泡和插入的实际交换次数都是等于逆序度 。因此其平均时间复杂度为o(n2)</li>
+</ul>
+<hr>
+<h4 id="1-插入排序"><a href="#1-插入排序" class="headerlink" title="1.插入排序"></a>1.插入排序</h4><p>原地排序、稳定、最好时间复杂度o(n)，最差o(n2)，平均o(n2)。与数组的插入一致，有数据的搬移。插入排序的优化<strong>希尔排序</strong>。</p>
+<h4 id="2-冒泡排序"><a href="#2-冒泡排序" class="headerlink" title="2.冒泡排序"></a>2.冒泡排序</h4><p>原地排序、稳定、最好时间复杂度o(n)，最差o(n2)，平均o(n2)。<strong>比插入排序要差</strong>，虽然交换次数一致，但冒泡每次需要3个赋值语句。</p>
+<h4 id="3-选择排序"><a href="#3-选择排序" class="headerlink" title="3.选择排序"></a>3.选择排序</h4><p>原地排序、<strong>不稳定</strong>、最好时间复杂度o(n2)，最差o(n2)，平均o(n2)。</p>
+<hr>
+<p>//适合大规模的数据排序方法，快排和并归都用到了分治的思想，也用到了递归。<strong>分治是一种解决问题的处理思想，递归是一种编程技巧</strong>。</p>
+<h4 id="4-并归排序"><a href="#4-并归排序" class="headerlink" title="4.并归排序"></a>4.并归排序</h4><pre><code class="js">function mergeSort(A, n){
+    mergeSort_c(A, 0, n-1);
+}
+
+function mergeSort_c(A, i, j){
+    if(i &gt;= j) return;
+    var mid = Math.floor((i + j)/2);
+    mergeSort_c(A, i, mid);
+    mergeSort_c(A, mid+1, j);
+    merge(A, i, mid, j);
+}
+
+function merge(A, i, mid, j){
+    var temp = [];
+    var p = i,
+        q = mid+1;
+    while(p &lt;= mid &amp;&amp; q &lt;= j){
+        if(A[p] &gt; A[q]){
+            temp.push(A[p]);
+            p += 1;
+        }
+        if(A[p] &lt;= A[q]){
+            temp.push(A[q]);
+            q += 1;
+        }
+    }
+    if(p &gt; mid){
+        for(; q&lt;=j; q++) temp.push(A[q])
+    }
+    if(q &gt; j){
+        for(; p&lt;=mid; p++) temp.push(A[p])
+    }
+    for(var t = i; t &lt;= j; t ++){
+        A[t] = temp.shift();
+    }
+}</code></pre>
+<p><strong>优点：时间复杂度</strong>：最好，最坏，平均都是o(nlgn)。每次合并有序数组的平均时间复杂度为o(n)，所以可以<strong>利用递归的递推公式</strong>将时间复杂度也分解：</p>
+<pre><code>T(n) = 2*T(n/2) + n
+     = 2*(2*T(n/4) + n/2) + n = 4*T(n/4) + 2*n
+     = 4*(2*T(n/8) + n/4) + 2*n = 8*T(n/8) + 3*n
+     = 8*(2*T(n/16) + n/8) + 3*n = 16*T(n/16) + 4*n
+     ......
+     = 2^k * T(n/2^k) + k * n
+     ......</code></pre><p>当n/2^k=1时，T(n) = Cn+nlog2n。</p>
+<p>我理解的是，分层后每层的合并的时间复杂度为o(n)，分了logn层。</p>
+<p><strong>缺点：空间复杂度</strong>：o(n)，非o(nlogn)，空间会释放，cpu一次只执行一个函数，最大就是n。<strong>由于merge函数无法原地执行。</strong></p>
+<h4 id="5-快排"><a href="#5-快排" class="headerlink" title="5.快排"></a>5.快排</h4><ul>
+<li><strong>特点</strong>：不稳定，原地排序，最好和平均复杂度为o(nlogn)，<strong>递推公式与并归一致</strong>，大部分情况下能做到平均情况，<strong>极端情况下退化到</strong>o(n2)。</li>
+<li>原地排序实现：</li>
+</ul>
+<pre><code class="js">function quickSort(A, n){
+    quickSort_c(A, 0, n-1);
+}
+
+function quickSort_c(A, i, j){
+        if(i &gt;= j) return;
+        var p = partition(A, i, j);
+
+
+        quickSort_c(A, i, p-1);// p-1非p
+        quickSort_c(A, p+1, j);
+}
+
+function partition(A, i, j){
+    var pivot = A[j];
+    var q = i; //var q, p = i 这种写法是错误的。
+    var temp;
+    for(var p = i; p &lt;= j-1; p++){ 
+        if(A[p] &lt; pivot){
+            temp = A[p];
+            A[p] = A[q];
+            A[q] = temp;
+            q+=1;
+        }
+    }
+
+    A[j] = A[q];
+    A[q] = pivot;
+    return q;
+}</code></pre>
+<ul>
+<li>🌟<strong>快排应用：o(n)复杂度寻找数组內第k大的数据</strong>：每次划分找到pivot，判断pivot是否等于k+1，等于则返回找到，否则，继续在可能的区间划分。时间复杂度 n + n/2 + n/4+ … 1 = 2n -1 </li>
+<li></li>
+</ul>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">数据结构与算法, 学习笔记</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
+  
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "递归与排序&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

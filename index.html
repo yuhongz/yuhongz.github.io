@@ -144,6 +144,118 @@
     
     
     <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/07/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/">
+        <p class="h4 index-header">递归与排序</p>
+      </a>
+
+      <a href="/2020/03/07/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">🌟递归递归，是一种编程技巧，可以让代码更简洁。
+
+递归的三个条件：
+一个问题可以分解成几个子问题的解
+问题与子问题除了数据规模不一样，求解思路完全一样
+存在递归终止条件
+
+
+
+🌟排序
+
+稳定性：作用：在针对某一key进行排序的过程中，保证其他key有序
+逆序度：满有序度 - 有序度。冒泡和插入的实际交换次数都是等于逆序度 。因此其平均时间复杂度为o(n2)
+
+
+1.插入排序原地排序、稳定、最好时间复杂度o(n)，最差o(n2)，平均o(n2)。与数组的插入一致，有数据的搬移。插入排序的优化希尔排序。
+2.冒泡排序原地排序、稳定、最好时间复杂度o(n)，最差o(n2)，平均o(n2)。比插入排序要差，虽然交换次数一致，但冒泡每次需要3个赋值语句。
+3.选择排序原地排序、不稳定、最好时间复杂度o(n2)，最差o(n2)，平均o(n2)。
+
+//适合大规模的数据排序方法，快排和并归都用到了分治的思想，也用到了递归。分治是一种解决问题的处理思想，递归是一种编程技巧。
+4.并归排序function mergeSort(A, n){
+    mergeSort_c(A, 0, n-1);
+}
+</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-07&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">数据结构与算法, 学习笔记</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/05/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+        <p class="h4 index-header">线性表</p>
+      </a>
+
+      <a href="/2020/03/05/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">🌟基础线性表：数组
+特点
+连续内存空间
+随机访问（非随机查找），可根据寻址公式直接找到对应的内存空间。（a[i]_address = base_address + i * data_type_size，这个公式解释了为什么从0开始）
+申请只能固定的空间
+
+
+低效的插入和删除：插入和删除的平均时间复杂度为o(n），需迁移数据
+动态扩容：插入时，如超出数组长度时添加数据申请新的空间（如1.5倍长度），并进行数据迁移。使用平摊时间复杂度可以计算得平均时间复杂度o(1)。
+在c语言中警惕数组越界
+容器：高级编程语言中一般有高级的容器来表示数组，如js中的list，但其封装好了如动态扩容和一系列底层函数。但js中的list是连续的空间吗？
+
+🌟基础线性表：链表
+特点
+
+动态的空间分配
+不支持随机访问，需要遍历
+
+
+单链表：头节点、data+next、最后一个节点的next为null，其插入和删除的时间复杂度为o(1)，访问时间复杂度为o(n)
+
+循环链表：在单链表的基础上，最后一个极点的next也指向头节点。应用：约瑟夫问题。
+
+双向链表：头节点、pre+data+next。其插入和删除时间</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-05&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">数据结构与算法, 学习笔记</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
       <a href="/2020/02/29/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/">
         <p class="h4 index-header">算法复杂度分析</p>
       </a>
