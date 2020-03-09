@@ -130,7 +130,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    889 字
+                    1.4k 字
                   </span>&nbsp;
                 
 
@@ -138,7 +138,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      3 分钟
+                      5 分钟
                   </span>&nbsp;
                 
 
@@ -176,7 +176,7 @@
 <li>递归的三个条件：<ul>
 <li>一个问题可以分解成几个子问题的解</li>
 <li>问题与子问题除了数据规模不一样，求解思路完全一样</li>
-<li>存在递归终止条件</li>
+<li><strong>存在递归终止条件</strong>: 写函数时，先考虑这个</li>
 </ul>
 </li>
 </ul>
@@ -272,8 +272,34 @@ function partition(A, i, j){
     return q;
 }</code></pre>
 <ul>
-<li>🌟<strong>快排应用：o(n)复杂度寻找数组內第k大的数据</strong>：每次划分找到pivot，判断pivot是否等于k+1，等于则返回找到，否则，继续在可能的区间划分。时间复杂度 n + n/2 + n/4+ … 1 = 2n -1 </li>
-<li></li>
+<li><p>🌟<strong>快排应用：o(n)复杂度寻找数组內第k大的数据</strong>：每次划分找到pivot，判断pivot是否等于k+1，等于则返回找到，否则，继续在可能的区间划分。时间复杂度 n + n/2 + n/4+ … 1 = 2n -1 </p>
+</li>
+<li><p><strong>🌟快排优化</strong>：合理选择分区点pivot，避免最差情况。</p>
+<ul>
+<li>1）三数取中，在第一个、中点、最后一个选中间值作为pivot。</li>
+<li>2）随机法。</li>
+</ul>
+</li>
+<li><p>快排避免堆栈溢出：主要是递归的问题，可以手写堆栈，模拟入栈和出栈，摆脱系统栈的限制。或限制递归深度。</p>
+</li>
+</ul>
+<h4 id="6-线性排序"><a href="#6-线性排序" class="headerlink" title="6.线性排序"></a>6.线性排序</h4><ul>
+<li><strong>特点：o(n)</strong></li>
+<li><strong>桶排序bucket sort</strong>：将数据先放进桶里，在桶内再进行排序（一般是快排）。<ul>
+<li>条件：容易划分、桶天然有序、分布均匀</li>
+<li>时间复杂度：分成m个桶，每个桶k个，时间复杂度时m<em>(k\</em>logk) = n *logn/m = o(n)</li>
+<li><strong>🌟场景</strong>：比较适合在‘<strong>外部排序</strong>’中，也即数据存储在磁盘。内存百兆，排序几G的数据，可以先扫描一遍数据，获得最大值和最小值，然后划分成不同的区间的文件（桶），依次将数据存入对应的文件，再依次对每一文件中的数据使用快排。如单个文件內的数据不理想，仍过大，则可再此分桶。</li>
+</ul>
+</li>
+<li><strong>计数排序counting sort</strong>：一种特殊的桶排序，只是桶内无须再排。<strong>如年龄</strong>、<strong>成绩</strong>。</li>
+<li><strong>基数排序radix sort</strong>：基于其他稳定的排序算法，由后位向前位依次排序，我的理解是越前面的位数是拥有越高权重的key，先排序低权重key，再依次排序高权重的key。这样假如数据有10位，则只需排10遍稳定排序。场景有电话号码、字典等。</li>
+</ul>
+<h4 id="7-高级语言中的排序"><a href="#7-高级语言中的排序" class="headerlink" title="7.高级语言中的排序"></a>7.高级语言中的排序</h4><p>高级语言中的排序方法往往是综合使用了多种排序方法。</p>
+<ul>
+<li>小数据量优先使用归并排序</li>
+<li>数据量大则改用快速排序（三数取中）</li>
+<li>元素个数极小时，使用插入排序，此时O(n2) 时间复杂度的算法并不一定比 O(nlogn) 的算法执行时间长</li>
+<li>**</li>
 </ul>
 
             <hr>

@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Yuhong Zhang">
   <meta name="keywords" content="Visual Analytics, Front End">
-  <title>归档 ~ Yuhong&#39;s blog</title>
+  <title>js原型 ~ Yuhong&#39;s blog</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -106,7 +106,7 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="view intro-2" id="background" false
          style="background: url('/img/default.png')no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
@@ -116,6 +116,41 @@
               
             </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期一, 三月 9日 2020, 1:38 下午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    589 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      2 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -127,77 +162,179 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 9 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/03/09/js%E5%BC%82%E6%AD%A5%E5%8D%95%E7%BA%BF%E7%A8%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">异步单线程</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">js作用域</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/supoolvisor/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">supoolvisor</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E7%B1%BB%E5%9E%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">js类型</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E5%8E%9F%E5%9E%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">js原型</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/08/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">二分查找、跳表和哈希</span>
-      <span style="float: right;">03-08</span>
-    </a>
-  
-    
-    <a href="/2020/03/07/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">递归与排序</span>
-      <span style="float: right;">03-07</span>
-    </a>
-  
-    
-    <a href="/2020/03/05/%E7%BA%BF%E6%80%A7%E8%A1%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">线性表</span>
-      <span style="float: right;">03-05</span>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <p>本次笔记主要整理js的三座大山之一：<strong>原型和原型链</strong>。</p>
+<h3 id="🌟原型和原型链"><a href="#🌟原型和原型链" class="headerlink" title="🌟原型和原型链"></a>🌟原型和原型链</h3><ul>
+<li><p>构造函数、原型和实例的关系</p>
+<ul>
+<li><p><strong>构造函数</strong>可以是任何的首字母大写的函数，通过<strong>prototype​</strong>指针找到其<strong>原型对象</strong>。以构造函数新建的对象<strong>实例</strong>，共享原型对象里的内容，包括函数和变量，即使在实例声明后再修改原型也会同步更改，实例通过<strong>__proto__</strong>找到其原型对象。原型对象使用<strong>constructor</strong>指针找到对应构造函数。</p>
+<pre><code class="js">var a = new Array();
+a.__proto__ === Array.prototype;//true
+Array === a.__proto__.constructor;//true</code></pre>
+<pre><code class="javascript">//为数组添加sort方法，使用快排实现
+Array.prototype.sort = function(){ //插件的实现 修改原型
+    quickSort_s(this, 0, this.length - 1);
+}
 
-              </div>
-            </div>
+function quickSort_s(A, i, j){
+    if(i &gt;= j) return;
+    var p = partition_s(A, i, j);
+    quickSort_s(A, i, p-1);
+    quickSort_s(A, p+1, j)
+}
+
+function partition_s(A, i, j){
+    var pivot = A[j];
+    var p = i,
+        temp;
+    for(let q = i; q &lt; j; q++){
+        if(A[q] &lt; pivot){
+            temp = A[q];
+            A[q] = A[p];
+            A[p] = temp;
+            p +=1;
+        }
+    }
+    A[j] = A[p];
+    A[p] = pivot;
+    return p;
+}</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>原型链与instanceof</strong>：</p>
+<ul>
+<li>Student的原型是People的一个实例，People的原型是Object的一个实例，Object的prototype为null；</li>
+<li>使用对象属性和方法会现在本对象中找，找不到再去</li>
+</ul>
+<pre><code class="js">//instanceof 原理
+function newInstanceof(obj, Cons){
+    let p = obj.__proto__;
+    while(p){ //终止条件 null
+        if(Cons.prototype === p) return true;
+        p = p.__proto__;
+    }
+    return false;
+}</code></pre>
+</li>
+<li><p><strong>class继承</strong> 【ES6 v8引擎】语法糖</p>
+<pre><code class="js">class People{
+    constructor(name){
+        this.name = name;
+    }
+    eat(){
+        console.log(`${this.name} is eating`);
+    }
+}
+
+class Student extends People{
+    constructor(name, id){
+        super(name);
+        this.id = id;
+    } //无逗号
+    sayHi(){
+        console.log(`${this.name} ${this.id} is here`)
+    }
+}
+class Teacher extends People{
+    constructor(name, major){
+        super(name);
+        this.major = major;
+    }
+    teach(){
+        console.log(`${this.name} is teaching`)
+    }
+}
+Student.prototype.__proto__ === People.prototype;</code></pre>
+</li>
+<li><p><strong>ES5继承</strong>：</p>
+<pre><code class="js">//借用构造函数，缺点，parent1原型链上的东西并未被继承
+function Parent1(){
+    this.name = &#39;parent1&#39;
+}
+function Child1()){
+    Parent1.call(this)
+    this.type = &quot;child1&quot;
+}
+//借助原型链继承，缺点，两个child2实例会互相改变
+function Parent2(){
+    this.play = [1,2,3]
+    this.name = &#39;parent1&#39;
+}
+function Child2()){
+    this.type = &quot;child1&quot;
+}
+Child2.prototype = new Parent2();
+//组合继承,
+function Parent3(){
+    this.play = [1,2,3]
+    this.name = &#39;parent3&#39;
+}
+function Child3(){
+    Parent1.call(this)
+    this.type = &quot;child3&quot;
+}
+Child3.prototype = new Parent3();
+//组合优化1 不能知道父类类型
+Child.prototype = Parent.prototype；
+//组合优化2
+Child.prototype = Object.creat(Parent.prototype); //object.creat()使用现有对象来提供新创建对象的__proto__
+Child.prototype.constructor === Child;//为原型添加c指针
+</code></pre>
+</li>
+</ul>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20js,%20%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE,%20%E7%BB%A7%E6%89%BF">学习笔记, js, 原型和原型链, 继承</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -276,6 +413,11 @@
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
@@ -316,7 +458,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "js原型&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

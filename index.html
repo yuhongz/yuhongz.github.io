@@ -144,6 +144,336 @@
     
     
     <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/09/js%E5%BC%82%E6%AD%A5%E5%8D%95%E7%BA%BF%E7%A8%8B/">
+        <p class="h4 index-header">异步单线程</p>
+      </a>
+
+      <a href="/2020/03/09/js%E5%BC%82%E6%AD%A5%E5%8D%95%E7%BA%BF%E7%A8%8B/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">基本背景
+JS是单线程语言
+JS和dom渲染共用同一个线程，因为js可以修改dom结构。js和dom渲染会互相阻塞
+单线程的背景导致耗时的事情如网络请求必须异步
+同步异步区别：
+异步通过回调来实现callback，不阻塞当前代码
+同步会阻塞，如alert
+
+
+
+🌟应用场景
+网络请求：如ajax 图片加载
+定时任务：如setTimeout
+
+###🌟Promise
+
+promise的产生是为了应对callback hell：即多层回调。但他的本质也是使用了回调函数，只是把接口抛出，使得可以串联处理。
+
+
+
+
+优点：多个任务串联、管道式的编程
+
+手写promise加载图片
+function loadImg(src){
+    return new Promise((res, rej) =&gt; {
+        let img = document.createElement(&#39;img&#39;);
+        img.onload = () =&gt; { res(img);}
+        img.onerror = () =&gt; { rej(new Erro</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-09&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20js,%20%E5%BC%82%E6%AD%A5,%20%E5%8D%95%E7%BA%BF%E7%A8%8B,%20promise">学习笔记, js, 异步, 单线程, promise</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+        <p class="h4 index-header">js作用域</p>
+      </a>
+
+      <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">🌟作用域
+指变量的合法使用范围；
+
+
+全局作用域：变量没有收到函数的约束，全局使用，如window, document对象
+
+函数作用域：只能在当前函数内使用，如上图
+
+块级作用域：ES6新增，{}代码块如if语句
+
+自由变量：变量被使用，当前作用域没有被定义，则向上一级作用域去找，直到找到为止，如全局也没有，则报错:xx is not defined。
+
+
+🌟闭包
+定义：自由变量的查找，是在函数定义的地方，向上级作用域查找，不是在执行的地方。
+
+两个场景：
+
+函数作为参数被传递
+函数作为返回值被返回
+
+//example1
+function g(){
+    const a = 100;
+    return function(){
+        console.log(a);
+    }
+}
+const a = 200;
+let fn1 = g();
+fn1(); //100
+
+//example2
+const b = 100;
+function fn2(){
+   console.log(b); 
+}
+
+function fn3(fn){
+    const b = 200</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-09&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20js,%20%E4%BD%9C%E7%94%A8%E5%9F%9F,%20%E9%97%AD%E5%8C%85">学习笔记, js, 作用域, 闭包</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/09/supoolvisor/">
+        <p class="h4 index-header">supoolvisor</p>
+      </a>
+
+      <a href="/2020/03/09/supoolvisor/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1"></div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-09&nbsp;&nbsp;
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/09/js%E7%B1%BB%E5%9E%8B/">
+        <p class="h4 index-header">js类型</p>
+      </a>
+
+      <a href="/2020/03/09/js%E7%B1%BB%E5%9E%8B/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">数据类型：
+值类型：Number, String, Boolean, Undefined, symbol
+
+引用类型：Object, null,[ array, function]
+
+区别：值类型数据存在栈内存里，引用类型存在堆里（栈里只存了堆内存的地址），所以引用类型复制会共用同一块内存的对象。
+let a; //undefined 不可用const const必须初始化一个值
+const b = 100; //Number
+const c = &#39;100&#39;; //String
+const d = true; //bool
+const e = Symbol(&#39;100&#39;); //symbol es6中
+
+const f = {x:100};
+const g = null; // 特殊引用类型，指向一个空地址
+const h = [1,2,3,4];
+const i = function(){}//特殊引用类型，但不储存数据，所以没有拷贝一说。也可以不算引用类型单独算一类
+
+
+
+###🌟类型判断：
+
+typeof：识别所有的值类型，能识别函数，能判断是否是</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-09&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20js,%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B,%20%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">学习笔记, js, 数据类型, 类型转换</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/09/js%E5%8E%9F%E5%9E%8B/">
+        <p class="h4 index-header">js原型</p>
+      </a>
+
+      <a href="/2020/03/09/js%E5%8E%9F%E5%9E%8B/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">本次笔记主要整理js的三座大山之一：原型和原型链。
+🌟原型和原型链
+构造函数、原型和实例的关系
+
+构造函数可以是任何的首字母大写的函数，通过prototype​指针找到其原型对象。以构造函数新建的对象实例，共享原型对象里的内容，包括函数和变量，即使在实例声明后再修改原型也会同步更改，实例通过__proto__找到其原型对象。原型对象使用constructor指针找到对应构造函数。
+var a = new Array();
+a.__proto__ === Array.prototype;//true
+Array === a.__proto__.constructor;//true
+//为数组添加sort方法，使用快排实现
+Array.prototype.sort = function(){ //插件的实现 修改原型
+    quickSort_s(this, 0, this.length - 1);
+}
+
+function quickSort_s(A, i, j){
+    if(i &gt;= j) return;
+    var p = partition_s(A, i, j);
+</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-09&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20js,%20%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE,%20%E7%BB%A7%E6%89%BF">学习笔记, js, 原型和原型链, 继承</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/08/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/">
+        <p class="h4 index-header">二分查找、跳表和哈希</p>
+      </a>
+
+      <a href="/2020/03/08/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">1.二分查找
+优点：
+
+o(logn)复杂度的查找效率，非常恐怖
+节省内存，同样的查找工作虽然哈希和跳表也可以做，但他们需要额外空间
+
+
+限制：
+
+有序
+只能基于顺序表，即数组，因为要实现随机访问。
+数据量太大或太小都不合适，太小不如直接遍历，数据量大需要很多连续空间。
+
+
+代码
+
+非递归，不存在重复元素
+function binSearch(A, n, k){
+    var low = 0;
+    var high = n-1;
+    var mid;
+    while(low &lt;= high){
+        mid = Math.floor((high + low)/2);
+        if(A[mid] === k) return mid;
+        if(A[mid] &gt; k) high = mid - 1;
+        if(A[mid] &lt; k) low = mid + 1;
+    }
+    return -1;
+}
+
+以上代码三个要点：
+
+循环条件 low &lt;= high 不是&lt;
+high和low的更新，high</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-08&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%9C%BA%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE,%20%E8%B7%B3%E8%A1%A8,%20%E5%93%88%E5%B8%8C,%20hash">数据机构与算法, 学习笔记, 二分查找, 跳表, 哈希, hash</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
       <a href="/2020/03/07/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/">
         <p class="h4 index-header">递归与排序</p>
       </a>
@@ -159,7 +489,7 @@
 递归的三个条件：
 一个问题可以分解成几个子问题的解
 问题与子问题除了数据规模不一样，求解思路完全一样
-存在递归终止条件
+存在递归终止条件: 写函数时，先考虑这个
 
 
 
@@ -175,9 +505,7 @@
 
 //适合大规模的数据排序方法，快排和并归都用到了分治的思想，也用到了递归。分治是一种解决问题的处理思想，递归是一种编程技巧。
 4.并归排序function mergeSort(A, n){
-    mergeSort_c(A, 0, n-1);
-}
-</div>
+    mergeSort_c(A,</div>
         </div>
       </a>
 
@@ -245,7 +573,7 @@
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">数据结构与算法, 学习笔记</a>&nbsp;
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20%E6%95%B0%E7%BB%84,%20%E9%93%BE%E8%A1%A8,%20%E6%A0%88,%20%E9%98%9F%E5%88%97">数据结构与算法, 学习笔记, 数组, 链表, 栈, 队列</a>&nbsp;
           
         
       </div>
@@ -299,47 +627,6 @@ how- 怎么做复杂度分析1.大O表示法O()不是表示真实的代码执行
           
             <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">数据结构与算法,  学习笔记</a>&nbsp;
           
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/02/29/hello-world/">
-        <p class="h4 index-header">Hello World</p>
-      </a>
-
-      <a href="/2020/02/29/hello-world/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-
-More info: Writing
-Run server1$ hexo server
-
-More info: Server
-Generate static files1$ hexo generate
-
-More info: Generating
-Deploy to remote sites1$ hexo deploy
-
-More info: Deployment
-</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-02-29&nbsp;&nbsp;
-        
-        
         
       </div>
     </div>

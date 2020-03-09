@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Yuhong Zhang">
   <meta name="keywords" content="Visual Analytics, Front End">
-  <title>归档 ~ Yuhong&#39;s blog</title>
+  <title>js类型 ~ Yuhong&#39;s blog</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -106,7 +106,7 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="view intro-2" id="background" false
          style="background: url('/img/default.png')no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
@@ -116,6 +116,41 @@
               
             </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期一, 三月 9日 2020, 2:32 下午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    498 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      2 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -127,77 +162,145 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 9 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/03/09/js%E5%BC%82%E6%AD%A5%E5%8D%95%E7%BA%BF%E7%A8%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">异步单线程</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">js作用域</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/supoolvisor/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">supoolvisor</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E7%B1%BB%E5%9E%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">js类型</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E5%8E%9F%E5%9E%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">js原型</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/08/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">二分查找、跳表和哈希</span>
-      <span style="float: right;">03-08</span>
-    </a>
-  
-    
-    <a href="/2020/03/07/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">递归与排序</span>
-      <span style="float: right;">03-07</span>
-    </a>
-  
-    
-    <a href="/2020/03/05/%E7%BA%BF%E6%80%A7%E8%A1%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">线性表</span>
-      <span style="float: right;">03-05</span>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h3 id="数据类型："><a href="#数据类型：" class="headerlink" title="数据类型："></a>数据类型：</h3><ul>
+<li><p>值类型：Number, String, Boolean, <strong>Undefined</strong>, symbol</p>
+</li>
+<li><p>引用类型：Object, <strong>null</strong>,[ array, function]</p>
+</li>
+<li><p>区别：值类型数据存在栈内存里，引用类型存在堆里（栈里只存了堆内存的地址），所以引用类型复制会共用同一块内存的对象。</p>
+<pre><code class="js">let a; //undefined 不可用const const必须初始化一个值
+const b = 100; //Number
+const c = &#39;100&#39;; //String
+const d = true; //bool
+const e = Symbol(&#39;100&#39;); //symbol es6中
 
-              </div>
-            </div>
+const f = {x:100};
+const g = null; // 特殊引用类型，指向一个空地址
+const h = [1,2,3,4];
+const i = function(){}//特殊引用类型，但不储存数据，所以没有拷贝一说。也可以不算引用类型单独算一类
+</code></pre>
+</li>
+</ul>
+<p>###<strong>🌟类型判断</strong>：</p>
+<ul>
+<li><p><strong>typeof</strong>：识别所有的值类型，能识别函数，能判断是否是引用类型。也即不能区分object，array，null。</p>
+<ul>
+<li><p>深拷贝问题：仅需要拷贝object和array</p>
+<pre><code class="js">function deepClone(obj = {}){
+    if(typeof obj !== &#39;object&#39; || obj == null)
+        return obj;
+    let res;
+    if(obj instanceof Array) res = [];
+    else res = {};
+    for(let i in obj){
+        //判断是否是自己的属性，for in会拿到对象的原型里的属性
+        if(obj.hasOwnProperty(i)){
+            //递归
+            res[i] = deepClone(obj[i])
+        }
+    }
+    return res;
+}</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>🌟类型转换</strong>：</p>
+<ul>
+<li><p><strong>字符串拼接</strong></p>
+<pre><code class="js">100 + &#39;10&#39; = &#39;10010&#39;;
+100 + 10 = 110;
+true + &#39;10&#39; = &#39;true10&#39;</code></pre>
+</li>
+<li><p><strong>==</strong> 两等于 会强制类型转换尽量相等。<strong>除了null == undefined（jquery源码，可用于判断两种情况），其他最好都使用===</strong></p>
+<pre><code class="js">//双等的情况
+true == 1;
+true == &#39;1&#39;
+false == &#39;&#39;;
+false == &#39;0&#39;;
+false == 0;
+
+false != 2,3,4... or &#39;2&#39;;
+true != 2,3,4... or &#39;2&#39;;
+
+100 == &#39;100&#39;;
+0 == &#39;&#39;;
+</code></pre>
+</li>
+<li><p>truely变量和falsely变量：if语句基于此判断判断</p>
+<ul>
+<li>truely : !!a === true / falsely: !!a === false </li>
+</ul>
+<pre><code class="js">//所有的falsely变量：
+!!0 === false;
+!!NaN === false;
+!!&#39;&#39; === false;
+!!undefined === false;
+!!false === false;
+!!null === false;
+//与强制转换的区别:判断一个变量是否满足if，不是直接强制转换，而是判断其是否是truely变量
+&#39;0&#39; == false;
+!!&#39;0&#39; === true;</code></pre>
+<ul>
+<li>逻辑判断：</li>
+</ul>
+<pre><code class="js">console.log(10 &amp;&amp; 0)  //0
+console.log(&#39;&#39; || &#39;abc&#39;) //abc</code></pre>
+</li>
+</ul>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20js,%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B,%20%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">学习笔记, js, 数据类型, 类型转换</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -276,6 +379,11 @@
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
@@ -316,7 +424,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "js类型&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

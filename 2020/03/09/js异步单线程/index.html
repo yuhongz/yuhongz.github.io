@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Yuhong Zhang">
   <meta name="keywords" content="Visual Analytics, Front End">
-  <title>归档 ~ Yuhong&#39;s blog</title>
+  <title>异步单线程 ~ Yuhong&#39;s blog</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -106,7 +106,7 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="view intro-2" id="background" false
          style="background: url('/img/default.png')no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
@@ -116,6 +116,41 @@
               
             </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期一, 三月 9日 2020, 8:49 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    289 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      1 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -127,77 +162,122 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 9 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/03/09/js%E5%BC%82%E6%AD%A5%E5%8D%95%E7%BA%BF%E7%A8%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">异步单线程</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">js作用域</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/supoolvisor/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">supoolvisor</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E7%B1%BB%E5%9E%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">js类型</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E5%8E%9F%E5%9E%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">js原型</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/08/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">二分查找、跳表和哈希</span>
-      <span style="float: right;">03-08</span>
-    </a>
-  
-    
-    <a href="/2020/03/07/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">递归与排序</span>
-      <span style="float: right;">03-07</span>
-    </a>
-  
-    
-    <a href="/2020/03/05/%E7%BA%BF%E6%80%A7%E8%A1%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">线性表</span>
-      <span style="float: right;">03-05</span>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h3 id="基本背景"><a href="#基本背景" class="headerlink" title="基本背景"></a>基本背景</h3><ul>
+<li>JS是单线程语言</li>
+<li><strong>JS和dom渲染共用同一个线程</strong>，因为js可以修改dom结构。js和dom渲染会互相阻塞</li>
+<li>单线程的背景导致耗时的事情如网络请求必须<strong>异步</strong></li>
+<li>同步异步区别：<ul>
+<li>异步通过回调来实现callback，不阻塞当前代码</li>
+<li>同步会阻塞，如alert</li>
+</ul>
+</li>
+</ul>
+<h3 id="🌟应用场景"><a href="#🌟应用场景" class="headerlink" title="🌟应用场景"></a>🌟应用场景</h3><ul>
+<li>网络请求：如ajax 图片加载</li>
+<li>定时任务：如setTimeout</li>
+</ul>
+<p>###🌟Promise</p>
+<ul>
+<li>promise的产生是为了应对callback hell：即多层回调。但他的本质也是使用了回调函数，只是把接口抛出，使得可以串联处理。</li>
+</ul>
+<img src="/2020/03/09/js%E5%BC%82%E6%AD%A5%E5%8D%95%E7%BA%BF%E7%A8%8B/zhangyuhong/Desktop/blog/bloger/source/_posts/js异步单线程/hell.png" srcset="/img/loading.gif" style="zoom:70">
 
-              </div>
-            </div>
+<ul>
+<li><p>优点：多个任务串联、管道式的编程</p>
+</li>
+<li><p>手写promise加载图片</p>
+<pre><code class="js">function loadImg(src){
+    return new Promise((res, rej) =&gt; {
+        let img = document.createElement(&#39;img&#39;);
+        img.onload = () =&gt; { res(img);}
+        img.onerror = () =&gt; { rej(new Error(`${src} 图片加载失败`));}
+        img.src = src; //非 .src()
+    })
+}
+
+//加载两个图片
+const url1 = &#39;https://www.baidu.com/img/bd_logo1.png&#39;;
+const url2 = &#39;https://www.baidu.com/img/baidu_resultlogo@2.png&#39;;
+
+loadImg(url1).then(
+    (img1)=&gt;{
+        console.log(img1.width);
+        return img1;//
+    }
+).then(
+    (img1) =&gt; {
+        console.log(img1.height);
+        return loadImg(url2)
+    }
+).then(
+    (img2)=&gt;{
+        console.log(img2.width);
+        return img2;//
+    }
+).then(
+    (img2) =&gt; {
+        console.log(img2.height);
+    }
+).catch(
+    (err) =&gt; {
+        console.err(err)
+    }
+);</code></pre>
+</li>
+</ul>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20js,%20%E5%BC%82%E6%AD%A5,%20%E5%8D%95%E7%BA%BF%E7%A8%8B,%20promise">学习笔记, js, 异步, 单线程, promise</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -276,6 +356,11 @@
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
@@ -316,7 +401,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "异步单线程&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
