@@ -4,6 +4,139 @@
   
   
   <entry>
+    <title>z安全</title>
+    <link href="/2020/03/10/z%E5%AE%89%E5%85%A8/"/>
+    <url>/2020/03/10/z%E5%AE%89%E5%85%A8/</url>
+    
+    <content type="html"><![CDATA[<h3 id="xss实例"><a href="#xss实例" class="headerlink" title="xss实例"></a>xss实例</h3><ul><li>在博客网站上，发表博客，嵌入script脚本</li><li>脚本内容获取cookie，并发送到我的服务器（服务器配合跨域）</li><li>发布博客，有人查看它，我拿到访问者的cookie</li></ul><h3 id="xss预防"><a href="#xss预防" class="headerlink" title="xss预防"></a>xss预防</h3><ul><li>替换特殊字符，&lt;变为<code>&amp;lt;</code> &gt;变为<code>&amp;gt;</code></li><li>前端和后端都进行替换</li></ul><h3 id="csrf实例"><a href="#csrf实例" class="headerlink" title="csrf实例"></a>csrf实例</h3><ul><li>某人登陆了购买网站，已经进行了身份验证（cookie），购买了id为100的东西。付费接口是xxx.com/pay?id=100</li><li>我是攻击者，想买id=200的东西</li><li>我向他发送一封邮件，邮件正文隐藏着<code>&lt;img src=&#39;xxx.com/pay?id=200&#39; /&gt;</code>//img支持跨域</li><li>他查看邮件，就帮我买了200商品</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>xss, csrf</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>加载和渲染及优化</title>
+    <link href="/2020/03/10/z%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%B8%B2%E6%9F%93%E5%8F%8A%E4%BC%98%E5%8C%96/"/>
+    <url>/2020/03/10/z%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%B8%B2%E6%9F%93%E5%8F%8A%E4%BC%98%E5%8C%96/</url>
+    
+    <content type="html"><![CDATA[<h3 id="url到页面加载过程"><a href="#url到页面加载过程" class="headerlink" title="url到页面加载过程"></a>url到页面加载过程</h3><ul><li>dns解析</li><li>浏览器根据ip地址向服务器发送请求：三次握手建立tcp连接</li><li>服务器处理http请求，并返回给浏览器</li><li>渲染过程1<ul><li>根据html生成dom树</li><li>根据css生成cssom</li><li>dom tree和cssom整合形成render tree</li></ul></li><li>渲染过程2<ul><li>根据render tree渲染页面</li><li>遇到script暂停渲染，优先加载并执行js代码，完成再继续</li><li>直至把render tree渲染完成</li></ul></li></ul><h3 id="window-onload和DOMContentLoaded"><a href="#window-onload和DOMContentLoaded" class="headerlink" title="window.onload和DOMContentLoaded"></a>window.onload和DOMContentLoaded</h3><ul><li>渲染遇到img标签不会阻塞，而是会继续向后。img加载完成后可能触发重绘。</li></ul><pre><code class="js">window.addEventListener(&#39;load&#39;, function(){    // 页面的全部资源加载完 包括图片 视频})document.addEventListener(&#39;DOMContentLoaded&#39;， function(){    // DOM渲染完即可执行，此时图片和视频可能还没加载完。很多情况使用此事件更合理})</code></pre><h3 id="🌟性能优化！🌟"><a href="#🌟性能优化！🌟" class="headerlink" title="🌟性能优化！🌟"></a>🌟性能优化！🌟</h3><ul><li>原则<ul><li>多使用内存、缓存</li><li>减少cpu计算，减少网络加载耗时</li></ul></li><li>做法<ul><li>让加载更快<ul><li>减少资源体积：压缩代码</li><li>减少访问此时：合并代码，ss服务器端渲染，缓存</li><li>更快的网络：使用cdn</li></ul></li><li>让渲染更快<ul><li>css放在head，js放在body的下部</li><li>用domcontentloaded触发而不是window.onload，更快触发js</li><li><strong>懒加载</strong></li><li>DOM查询缓存</li><li>合并DOM操作</li><li><strong>throttle 和 debounce</strong></li></ul></li></ul></li></ul><pre><code class="js">//懒加载//html&lt;img id=&#39;img1&#39; src=&#39;preview.png&#39; data-realsrc=&#39;abc.png&#39;/&gt;//jsvar img1 = document.getElementById(&#39;img1&#39;);img1.src = img1.getAttribute(&#39;data-realsrc&#39;);//防抖：停止后一段时间执行function debounce(fn, delay = 500){    //timer是闭包中的    let timer;    return function(){        if(timer) clearTimeout(timer);        timer =  setTimeout(()=&gt;{            fn.apply(this, arguments);//apply 不是 call            timer = null; //必须，timer=null与cleartimeout(timer)不一致！！后者timer仍然有值        }.delay)    }}//截流：无论触发多频繁，都是固定时间段执行一次/也会延迟！function throttle(fn, delay = 500){    let timer;    return function(){        if(timer) return;        timer =  setTimeout(()=&gt;{            fn.apply(this, arguments);//apply 不是 call            timer = null; //必须，timer=null与cleartimeout(timer)不一致！！后者timer仍然有值        }.delay)    }}</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>渲染, DOM, 优化</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>开发环境</title>
+    <link href="/2020/03/10/z%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
+    <url>/2020/03/10/z%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
+    
+    <content type="html"><![CDATA[<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><ul><li><p>clone/push：ssh/https 前者配置ssh key，后者需输入登录信息</p></li><li><p>git status</p></li><li><p>git diff [filename] //查看修改</p></li><li><p><strong>git add. or filename //提交修改 git checkout .  or [filename] 撤销修改</strong></p></li><li><p>git commit -m ‘…’ //提交到本地仓库</p></li><li><p>git push origin master 提交到master （先pull再push）</p></li><li><p><strong>git checkout -b xxx 拉取一个新的分支</strong></p></li><li><p><strong>git checkout xxx 切换分支</strong></p></li><li><p>git branch 查看分支</p></li><li><p><strong>(master) git merge feature</strong>：合并feature分支到master (拉代码本地合，合完push)</p></li><li><p><strong>git stash /git stash pop：</strong>暂存，如在错误的分支修改了代码，则可以暂存，再切换分支，再pop出修改。</p><pre><code>git clone xxxgit statusgit diff [文件名] 查看修改git add . or git add filename //提交修改git commit -m &#39;....&#39;    //</code></pre></li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>存储</title>
+    <link href="/2020/03/10/WebApi:%E5%AD%98%E5%82%A8/"/>
+    <url>/2020/03/10/WebApi:%E5%AD%98%E5%82%A8/</url>
+    
+    <content type="html"><![CDATA[<h3 id="🌟cookie"><a href="#🌟cookie" class="headerlink" title="🌟cookie"></a>🌟cookie</h3><ul><li>本身用于浏览器和server通信，是http请求的一部分</li><li>被借用来做本地存储</li><li><code>document.cookie = &#39;a=xx&#39;</code> 来追加或覆盖。形式为通过分号分割的key=value字符串。非常古老。</li><li><strong>缺点</strong>：<ul><li>存储量小：<strong>最大4kb</strong>。因为通信每次需要带上cookie，太大会影响时间效率。</li><li>会发送给服务端，<strong>增加通信量</strong></li><li>只能用document来修改，修改方法简陋不方便</li></ul></li></ul><h3 id="🌟H5存储（localStorage-sessionStorage）"><a href="#🌟H5存储（localStorage-sessionStorage）" class="headerlink" title="🌟H5存储（localStorage, sessionStorage）"></a>🌟H5存储（localStorage, sessionStorage）</h3><ul><li>最大可存储<strong>5m</strong>（每个域）</li><li>api更简易：<strong>setItem, getItem</strong>。</li><li>不会随着请求被发送</li></ul><pre><code class="js">localStorage.setItem(&#39;a&#39;, 100); //此处100会被转成字符串sessionStorage.setItem()//同上</code></pre><ul><li><strong>localStorage会永久存储，除非手动代码删除（更频繁使用）</strong></li><li><strong>sessionStorage在关闭会话后被删除</strong></li></ul><p><em>这三块存储可以在控制台的application中看到</em></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>WebApi, 存储, cookie, localStorage, sessionStorage</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Ajax</title>
+    <link href="/2020/03/10/WebApi:Ajax/"/>
+    <url>/2020/03/10/WebApi:Ajax/</url>
+    
+    <content type="html"><![CDATA[<h3 id="🌟XMLHttpRequest"><a href="#🌟XMLHttpRequest" class="headerlink" title="🌟XMLHttpRequest"></a>🌟XMLHttpRequest</h3><pre><code class="js">//手写xhrconst xhr = new XMLHttpRequest();xhr.open(&#39;GET&#39;, &#39;data.json&#39;, true) //异步用true，可支持同步false。xhr.onreadystatechange = function(){ //无参数    if(xhr.readyState === 4){        if(xhr.status === 200){            alert(JSON.parse(xhr.responseText)) //responseText!  json解析字符串        }    }}xhr.send(null); //发送数据//如post需要发送数据const postData = {};xhr.send(JSON.stringify(postData)); //转字符串</code></pre><ul><li><p>xhr.readyState：0：未调用send；1:已调用send；2:接收到全部响应；3解析响应内容；4完成解析，可在客户端调用。</p></li><li><p>Xhr.state:</p><ul><li>2xx：表示成功</li><li>3xx：重定向，浏览器直接跳转。301永久重定向；302临时重定向；304读取缓存。</li><li>4xx：客户端请求错误，404没有资源，403没有权限</li><li>5xx：服务端出错</li></ul><p><em>403缓存：在http响应头中设定，相关字段：expires, cache-control, E-tag, LastModified。cache-control优先级大于expires，e-tag大于lastmodified。cachecontrol中的maxage设置了时长，单位秒</em></p></li></ul><h3 id="🌟-同源策略"><a href="#🌟-同源策略" class="headerlink" title="🌟 同源策略"></a>🌟 同源策略</h3><ul><li>ajax请求时，<strong>浏览器</strong>要求<strong>当前页面</strong>和<strong>sever</strong>必须同源。（安全）</li><li>同源：协议、域名、端口一致。</li><li>无视同源策略的几种情况<ul><li>图片<code>&lt;img src=&#39;&#39;/&gt;</code></li><li>js<code>&lt;script src=&#39;&#39;&gt;&lt;/script&gt;</code> (<strong>JSONP</strong>的基础)</li><li>css<code>&lt;link href=&#39;&#39;/&gt;</code></li></ul></li></ul><h3 id="🌟跨域"><a href="#🌟跨域" class="headerlink" title="🌟跨域"></a>🌟跨域</h3><ul><li><p>所有的跨域都要与服务端进行配合</p></li><li><p><strong>JSONP</strong>：</p><ul><li><p><code>script</code>可以绕过同源策略</p></li><li><p>服务端可以拼接动态数据返回</p><pre><code class="js">//本地jswindow.callback = function(d){    console.log(d)}//返回的jscallback({x:&#39;xxx&#39;}) //数据可以在参数中体现</code></pre></li></ul></li><li><p><strong>CORS</strong>：服务器设置http header</p><pre><code>response.setHeader(&#39;Access-Control-Allow-Origin&#39;)...</code></pre></li></ul><h3 id="promise实现ajax"><a href="#promise实现ajax" class="headerlink" title="promise实现ajax"></a>promise实现ajax</h3><pre><code class="js">function ajax(url){    return new Promise((resolve, reject) =&gt; {        const xhr = new XMLHttpRequest();        xhr.open(&#39;GET&#39;, url, true);        xhr.onreadystatechange = function(){            if(xhr.readyState === 4){                if(xhr.status === 200){                    resolve(JSON.parse(xhr.responseText))                }                else reject(new Error(&#39;error&#39;))            }        }        xhr.send(null)    })}ajax(url).then((res)=&gt;{console.log(res)}).catch((err) =&gt; {console.error(err)});</code></pre><h3 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a>Fetch</h3><pre><code class="js">fetch(url); //返回一个promise</code></pre><ul><li>与jquery.ajax区别：<ul><li>当状态码为4xx和5xx时，也会resolve</li><li>fetch不会从服务端发送或接收cookie</li></ul></li></ul><h3 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h3><ul><li><strong>是对XHR的封装</strong></li><li>也支持promise</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>WebApi, Ajax, XMLHttpRequest, Fetch, Axios</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>事件流</title>
+    <link href="/2020/03/10/WebApi:%E4%BA%8B%E4%BB%B6%E6%B5%81/"/>
+    <url>/2020/03/10/WebApi:%E4%BA%8B%E4%BB%B6%E6%B5%81/</url>
+    
+    <content type="html"><![CDATA[<h3 id="🌟事件绑定"><a href="#🌟事件绑定" class="headerlink" title="🌟事件绑定"></a>🌟事件绑定</h3><pre><code class="js">//通用的事件绑定函数(简易)function bindEvent(elem, type, fn){    elem.addEventListener(type, fn);}const btn = document.getElementById(&#39;btn1&#39;);bindEvent(btn, &#39;click&#39;, event =&gt; {    console.log(event.target); //获取点击源元素(早期IE是srcElement)，当前元素是currentTarget    event.preventDefault(); //阻止默认行为如链接的跳转    alert(&#39;clicked!&#39;);})</code></pre><h3 id="🌟事件冒泡"><a href="#🌟事件冒泡" class="headerlink" title="🌟事件冒泡"></a>🌟事件冒泡</h3><pre><code class="js">//点击其他地方会触发body的事件，但点击p1会触发自己的事件const p1 = document.getElementById(&#39;p1&#39;);const body = document.body;bindEvent(body, &#39;click&#39;, event =&gt; {    alert(&#39;clicked&#39;);})bindEvent(p1, &#39;click&#39;, event =&gt; {    event.stopPropagation();//阻止冒泡    alert(&#39;p1 clicked&#39;)})</code></pre><h3 id="🌟事件代理"><a href="#🌟事件代理" class="headerlink" title="🌟事件代理"></a>🌟事件代理</h3><pre><code class="js">const div = document.getElementById(&#39;div3&#39;);bindEvent(div, &#39;click&#39;, e =&gt; {    e.preventDefault();    const target = e.target;    if(target.nodeName === &#39;P&#39;)        alert(&#39;...&#39;)})</code></pre><h3 id="🌟通用的绑定函数（含代理）"><a href="#🌟通用的绑定函数（含代理）" class="headerlink" title="🌟通用的绑定函数（含代理）"></a>🌟通用的绑定函数（含代理）</h3><pre><code class="js">function bindEvent(elem, type, selector, fn){    if(fn == null){        fn = selector;        selector = null;    }    elem.addEventListener(type, e =&gt; {        const target = e.target;        if(selector){ //有代理            if(target.matches(selector)){                fn.call(target, e);            }        }else{ //无代理            fn.call(target, e);        }    })}</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>WebApi, 事件绑定, 冒泡, 事件代理</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>DOM&amp;BOM</title>
+    <link href="/2020/03/09/WebApi:DOM&amp;BOM/"/>
+    <url>/2020/03/09/WebApi:DOM&amp;BOM/</url>
+    
+    <content type="html"><![CDATA[<h3 id="🌟DOM"><a href="#🌟DOM" class="headerlink" title="🌟DOM"></a>🌟DOM</h3><ul><li><p>DOM本质是从html语言解析出来的树结构</p></li><li><p>DOM操作：</p><ul><li><p><strong>获取DOM节点</strong></p><pre><code class="js">document.getElementById(&#39;&#39;) //元素document.getElementsByTagName(&#39;&#39;) //集合document.getElementsByClassName(&#39;&#39;) //集合document.querySelectorAll(&#39;p&#39;) //集合</code></pre><ul><li>节点property和节点attribute</li></ul><pre><code class="js">//propertyconst pList = document.getElementsByTagName(&#39;p&#39;);const p = pList[0];p.style.width = &#39;100px&#39;;p.className = &#39;.red&#39;consoleo.log(p.nodeName);consoleo.log(p.nodeType);//attributep.setAttribute(&#39;data-name&#39;, &#39;xxx&#39;);p.setAttribute(&#39;style&#39;, &#39;font-size:15px;&#39;);</code></pre><ul><li><strong>区别</strong>：property修改对象属性，不会体现在html结构中；attribute修改html属性，会改变html结构。</li><li><strong>相同点</strong>：两者都有可能引起DOM重新渲染。</li></ul></li><li><p><strong>DOM结构操作</strong>：</p><pre><code class="js">//新增 插入const div1 = document.getElementById(&#39;x&#39;);const p = document.createElement(&#39;p&#39;);p.innerHTML = &#39;p1&#39;;div1.appendChild(p);//移动已有节点，也可选中节点后，使用appendChild//获取父节点p.parentNode;//非函数！！！//获取子节点p.childNodes//子节点类型筛选Array.portotype.slice.call(p.childNodes).filter( child =&gt; {    if(child.nodeType === 1) return true;    else return false;})//删除子元素div1.removeChild(p);</code></pre></li></ul></li><li><p><strong>🌟DOM性能优化🌟</strong>：DOM操作非常昂贵，会消耗CPU，避免频繁操作。</p><ul><li><p>缓存DOM查询结果。</p></li><li><p>将频繁操作改为一次性操作，<strong>如创建文件片段</strong>。</p><pre><code class="js">//1.缓存查询//错误示范for(let i = 0; i &lt; document.getElementsByClassName(&#39;xx&#39;).length; i++){    ...}//应将查询保存至变量//2.一次性操作 创建文件片段const frag = document.createDocumentFragment();frag.appendChild(p1);frag.appendChild(p2);div.appendChild(frag);</code></pre></li></ul></li></ul><h3 id="🌟BOM"><a href="#🌟BOM" class="headerlink" title="🌟BOM"></a>🌟BOM</h3><ul><li><p><strong>navigator</strong> 浏览器信息</p></li><li><p>screen 屏幕</p></li><li><p><strong>location</strong> 地址</p></li><li><p>history 前进后退</p><pre><code class="js">//浏览器const ua = navigator.userAgentua.indexOf(&#39;Chrome&#39;) //判断浏览器是否为chrome//screenscreen.widthscreen.height//location 拆分urllocation.hreflocation.protocollocation.searchlocation.hashlocation.pathname//historyhistory.back();history.forward();</code></pre></li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>WebApi, DOM, BOM</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>异步单线程</title>
     <link href="/2020/03/09/js%E5%BC%82%E6%AD%A5%E5%8D%95%E7%BA%BF%E7%A8%8B/"/>
     <url>/2020/03/09/js%E5%BC%82%E6%AD%A5%E5%8D%95%E7%BA%BF%E7%A8%8B/</url>
@@ -23,11 +156,11 @@
   
   
   <entry>
-    <title>js作用域</title>
-    <link href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
-    <url>/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F/</url>
+    <title>js作用域与闭包</title>
+    <link href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/"/>
+    <url>/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/</url>
     
-    <content type="html"><![CDATA[<h3 id="🌟作用域"><a href="#🌟作用域" class="headerlink" title="🌟作用域"></a>🌟作用域</h3><ul><li><p>指<strong>变量的合法使用范围</strong>；</p><img src="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F/zyy.png" style="zoom:70"></li><li><p>全局作用域：变量没有收到函数的约束，全局使用，如window, document对象</p></li><li><p>函数作用域：只能在当前函数内使用，如上图</p></li><li><p>块级作用域：ES6新增，{}代码块如if语句</p></li><li><p>自由变量：变量被使用，当前作用域没有被定义，则向上一级作用域去找，直到找到为止，如全局也没有，则报错:xx is not defined。</p></li></ul><h3 id="🌟闭包"><a href="#🌟闭包" class="headerlink" title="🌟闭包"></a>🌟闭包</h3><ul><li><p><strong>定义</strong>：自由变量的查找，<strong>是在函数定义的地方，向上级作用域查找</strong>，不是在执行的地方。</p></li><li><p><strong>两个场景</strong>：</p><ul><li><strong>函数作为参数被传递</strong></li><li><strong>函数作为返回值被返回</strong></li></ul><pre><code class="js">//example1function g(){    const a = 100;    return function(){        console.log(a);    }}const a = 200;let fn1 = g();fn1(); //100//example2const b = 100;function fn2(){   console.log(b); }function fn3(fn){    const b = 200;    fn2(); //100}fn3();</code></pre></li></ul><p>###🌟this</p><ul><li><p>this指向的值，<strong>是函数执行的时候被确定的，不是在定义的时候被确定的</strong>。</p></li><li><p>使用场景</p><ul><li>普通函数调用</li><li>使用call/apply/bind，区别：call，参数很多项；apply：参数1项；bind：返回新的函数，不会马上执行，参数很多项。</li><li>作为对象方法被调用</li><li>class方法中调用</li><li>箭头函数的this取值：绑定this取值，为定义时上一层的this取值。</li></ul><pre><code class="js">//1普通函数function fn(){    console.log(this) }fn()//window//2apply call bindfn.call({x:100}) //{x:100}fn2 = fn.bind({x:100})fn2();// {x:100}//3对象方法被调用const zhang = {    name: &#39;zhang&#39;,    sayHi(){        console.log(this.name)    },    wait(){        setTimeout(function(){            console.log(this.name) // this === window        },2000)    }}//4箭头函数中被调用const zhang = {    name: &#39;zhang&#39;,        sayHi(){        console.log(this.name)    },    wait(){        setTimeout(()=&gt;{console.log(this.name)},2000) //this === zhang    }}//5class中class People{    constructor(name){        this.name = name;    }    sayHi(){        console.log(this)     }}const zhang = new People(&#39;zhang&#39;);zhang.sayHi() // zhang这一对象</code></pre></li></ul><p>###🌟手写一个bind函数</p><pre><code class="js">Function.prototype.newBind = function(){    const args = Array.prototype.slice.call(arguments);    //获取this    const t = args.shift();    //获取fn    const self = this;    return function(){        return self.apply(t, args);     }}</code></pre><h3 id="🌟闭包的应用"><a href="#🌟闭包的应用" class="headerlink" title="🌟闭包的应用"></a>🌟闭包的应用</h3><ul><li><p><strong>隐藏数据</strong>，只提供api</p><pre><code class="js">function creatCache(){    const data = {};    return {        set: function(key, value){            data[key] =  value;        }, //逗号！        get: function(key){            return data[key]        }    }}const c = creatCache();c.set(1,2);c.get(1);</code></pre></li><li><p>给每个列表点击事件，点到谁就alert序号</p><pre><code class="js">let a;for(let i = 0; i &lt; 10; i++){    a = document.createElement(&#39;a&#39;);    a.innerHTML = i + &#39;&lt;br&gt;&#39;    a.onclick = function(){        alert(i);    }    document.body.appendChild(a);}</code></pre></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="🌟作用域"><a href="#🌟作用域" class="headerlink" title="🌟作用域"></a>🌟作用域</h3><ul><li><p>指<strong>变量的合法使用范围</strong>；</p><img src="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/zyy.png" style="zoom:70"></li><li><p>全局作用域：变量没有收到函数的约束，全局使用，如window, document对象</p></li><li><p>函数作用域：只能在当前函数内使用，如上图</p></li><li><p>块级作用域：ES6新增，{}代码块如if语句</p></li><li><p>自由变量：变量被使用，当前作用域没有被定义，则向上一级作用域去找，直到找到为止，如全局也没有，则报错:xx is not defined。</p></li></ul><h3 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h3><pre><code class="js">//变量提升：变量声明（非定义），函数声明console.log(a); //undefinedvar a = 100;fn(&#39;zhangsan&#39;); //zhangsan 100function fn(name){    b = 100;    console.log(name, b);    var b;}</code></pre><h3 id="🌟闭包"><a href="#🌟闭包" class="headerlink" title="🌟闭包"></a>🌟闭包</h3><ul><li><p><strong>定义</strong>：自由变量的查找，<strong>是在函数定义的地方，向上级作用域查找</strong>，不是在执行的地方。</p></li><li><p><strong>两个场景</strong>：</p><ul><li><strong>函数作为参数被传递</strong></li><li><strong>函数作为返回值被返回</strong></li></ul><pre><code class="js">//example1function g(){    const a = 100;    return function(){        console.log(a);    }}const a = 200;let fn1 = g();fn1(); //100//example2const b = 100;function fn2(){   console.log(b); }function fn3(fn){    const b = 200;    fn2(); //100}fn3();</code></pre></li></ul><p>###🌟this</p><ul><li><p>this指向的值，<strong>是函数执行的时候被确定的，不是在定义的时候被确定的</strong>。</p></li><li><p>使用场景</p><ul><li>普通函数调用</li><li>使用call/apply/bind，区别：call，参数很多项；apply：参数1项；bind：返回新的函数，不会马上执行，参数很多项。</li><li>作为对象方法被调用</li><li>class方法中调用</li><li>箭头函数的this取值：绑定this取值，为定义时上一层的this取值。</li></ul><pre><code class="js">//1普通函数function fn(){    console.log(this) }fn()//window//2apply call bindfn.call({x:100}) //{x:100}fn2 = fn.bind({x:100})fn2();// {x:100}//3对象方法被调用const zhang = {    name: &#39;zhang&#39;,    sayHi(){        console.log(this.name)    },    wait(){        setTimeout(function(){            console.log(this.name) // this === window        },2000)    }}//4箭头函数中被调用const zhang = {    name: &#39;zhang&#39;,        sayHi(){        console.log(this.name)    },    wait(){        setTimeout(()=&gt;{console.log(this.name)},2000) //this === zhang    }}//5class中class People{    constructor(name){        this.name = name;    }    sayHi(){        console.log(this)     }}const zhang = new People(&#39;zhang&#39;);zhang.sayHi() // zhang这一对象</code></pre></li></ul><p>###🌟手写一个bind函数</p><pre><code class="js">Function.prototype.newBind = function(){    const args = Array.prototype.slice.call(arguments);    //获取this    const t = args.shift();    //获取fn    const self = this;    return function(){        return self.apply(t, args);     }}</code></pre><h3 id="🌟闭包的应用"><a href="#🌟闭包的应用" class="headerlink" title="🌟闭包的应用"></a>🌟闭包的应用</h3><ul><li><p><strong>隐藏数据</strong>，只提供api</p><pre><code class="js">function creatCache(){    const data = {};    return {        set: function(key, value){            data[key] =  value;        }, //逗号！        get: function(key){            return data[key]        }    }}const c = creatCache();c.set(1,2);c.get(1);</code></pre></li><li><p><strong>debounce</strong></p></li><li><p>给每个列表点击事件，点到谁就alert序号</p><pre><code class="js">let a;for(let i = 0; i &lt; 10; i++){    a = document.createElement(&#39;a&#39;);    a.innerHTML = i + &#39;&lt;br&gt;&#39;    a.onclick = function(){        alert(i);    }    document.body.appendChild(a);}</code></pre></li></ul>]]></content>
     
     
     
@@ -36,19 +169,6 @@
       <tag>学习笔记, js, 作用域, 闭包</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>supoolvisor</title>
-    <link href="/2020/03/09/supoolvisor/"/>
-    <url>/2020/03/09/supoolvisor/</url>
-    
-    <content type="html"><![CDATA[<p>###系统演示如下：</p><video>    <source src="supoolvisor/supoolvisor.mp4"></video>]]></content>
-    
-    
     
   </entry>
   

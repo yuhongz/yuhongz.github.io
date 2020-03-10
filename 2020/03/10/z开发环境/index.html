@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Yuhong Zhang">
   <meta name="keywords" content="Visual Analytics, Front End">
-  <title>js作用域 ~ Yuhong&#39;s blog</title>
+  <title>开发环境 ~ Yuhong&#39;s blog</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -121,7 +121,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期一, 三月 9日 2020, 6:19 晚上
+                  星期二, 三月 10日 2020, 5:24 下午
                 </p>
               
 
@@ -130,7 +130,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    575 字
+                    173 字
                   </span>&nbsp;
                 
 
@@ -138,7 +138,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      2 分钟
+                      1 分钟
                   </span>&nbsp;
                 
 
@@ -171,151 +171,34 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h3 id="🌟作用域"><a href="#🌟作用域" class="headerlink" title="🌟作用域"></a>🌟作用域</h3><ul>
-<li><p>指<strong>变量的合法使用范围</strong>；</p>
-<img src="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F/zyy.png" srcset="/img/loading.gif" style="zoom:70">
+            <h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><ul>
+<li><p>clone/push：ssh/https 前者配置ssh key，后者需输入登录信息</p>
 </li>
-<li><p>全局作用域：变量没有收到函数的约束，全局使用，如window, document对象</p>
+<li><p>git status</p>
 </li>
-<li><p>函数作用域：只能在当前函数内使用，如上图</p>
+<li><p>git diff [filename] //查看修改</p>
 </li>
-<li><p>块级作用域：ES6新增，{}代码块如if语句</p>
+<li><p><strong>git add. or filename //提交修改 git checkout .  or [filename] 撤销修改</strong></p>
 </li>
-<li><p>自由变量：变量被使用，当前作用域没有被定义，则向上一级作用域去找，直到找到为止，如全局也没有，则报错:xx is not defined。</p>
+<li><p>git commit -m ‘…’ //提交到本地仓库</p>
 </li>
-</ul>
-<h3 id="🌟闭包"><a href="#🌟闭包" class="headerlink" title="🌟闭包"></a>🌟闭包</h3><ul>
-<li><p><strong>定义</strong>：自由变量的查找，<strong>是在函数定义的地方，向上级作用域查找</strong>，不是在执行的地方。</p>
+<li><p>git push origin master 提交到master （先pull再push）</p>
 </li>
-<li><p><strong>两个场景</strong>：</p>
-<ul>
-<li><strong>函数作为参数被传递</strong></li>
-<li><strong>函数作为返回值被返回</strong></li>
-</ul>
-<pre><code class="js">//example1
-function g(){
-    const a = 100;
-    return function(){
-        console.log(a);
-    }
-}
-const a = 200;
-let fn1 = g();
-fn1(); //100
+<li><p><strong>git checkout -b xxx 拉取一个新的分支</strong></p>
+</li>
+<li><p><strong>git checkout xxx 切换分支</strong></p>
+</li>
+<li><p>git branch 查看分支</p>
+</li>
+<li><p><strong>(master) git merge feature</strong>：合并feature分支到master (拉代码本地合，合完push)</p>
+</li>
+<li><p><strong>git stash /git stash pop：</strong>暂存，如在错误的分支修改了代码，则可以暂存，再切换分支，再pop出修改。</p>
+<pre><code>git clone xxx
+git status
+git diff [文件名] 查看修改
 
-//example2
-const b = 100;
-function fn2(){
-   console.log(b); 
-}
-
-function fn3(fn){
-    const b = 200;
-    fn2(); //100
-}
-fn3();</code></pre>
-</li>
-</ul>
-<p>###🌟this</p>
-<ul>
-<li><p>this指向的值，<strong>是函数执行的时候被确定的，不是在定义的时候被确定的</strong>。</p>
-</li>
-<li><p>使用场景</p>
-<ul>
-<li>普通函数调用</li>
-<li>使用call/apply/bind，区别：call，参数很多项；apply：参数1项；bind：返回新的函数，不会马上执行，参数很多项。</li>
-<li>作为对象方法被调用</li>
-<li>class方法中调用</li>
-<li>箭头函数的this取值：绑定this取值，为定义时上一层的this取值。</li>
-</ul>
-<pre><code class="js">//1普通函数
-function fn(){
-    console.log(this) 
-}
-fn()//window
-
-//2apply call bind
-fn.call({x:100}) //{x:100}
-fn2 = fn.bind({x:100})
-fn2();// {x:100}
-
-//3对象方法被调用
-const zhang = {
-    name: &#39;zhang&#39;,
-    sayHi(){
-        console.log(this.name)
-    },
-    wait(){
-        setTimeout(function(){
-            console.log(this.name) // this === window
-        },2000)
-    }
-}
-
-//4箭头函数中被调用
-const zhang = {
-    name: &#39;zhang&#39;,
-        sayHi(){
-        console.log(this.name)
-    },
-    wait(){
-        setTimeout(()=&gt;{console.log(this.name)},2000) //this === zhang
-    }
-}
-
-//5class中
-class People{
-    constructor(name){
-        this.name = name;
-    }
-    sayHi(){
-        console.log(this) 
-    }
-}
-const zhang = new People(&#39;zhang&#39;);
-zhang.sayHi() // zhang这一对象</code></pre>
-</li>
-</ul>
-<p>###🌟手写一个bind函数</p>
-<pre><code class="js">Function.prototype.newBind = function(){
-    const args = Array.prototype.slice.call(arguments);
-    //获取this
-    const t = args.shift();
-    //获取fn
-    const self = this;
-    return function(){
-        return self.apply(t, args); 
-    }
-}</code></pre>
-<h3 id="🌟闭包的应用"><a href="#🌟闭包的应用" class="headerlink" title="🌟闭包的应用"></a>🌟闭包的应用</h3><ul>
-<li><p><strong>隐藏数据</strong>，只提供api</p>
-<pre><code class="js">function creatCache(){
-    const data = {};
-    return {
-        set: function(key, value){
-            data[key] =  value;
-        }, //逗号！
-        get: function(key){
-            return data[key]
-        }
-    }
-}
-
-const c = creatCache();
-c.set(1,2);
-c.get(1);</code></pre>
-</li>
-<li><p>给每个列表点击事件，点到谁就alert序号</p>
-<pre><code class="js">let a;
-for(let i = 0; i &lt; 10; i++){
-    a = document.createElement(&#39;a&#39;);
-    a.innerHTML = i + &#39;&lt;br&gt;&#39;
-    a.onclick = function(){
-        alert(i);
-    }
-    document.body.appendChild(a);
-}</code></pre>
-</li>
+git add . or git add filename //提交修改
+git commit -m &#39;....&#39;    //</code></pre></li>
 </ul>
 
             <hr>
@@ -328,7 +211,7 @@ for(let i = 0; i &lt; 10; i++){
               <span>
                 <i class="iconfont icon-tag"></i>
                 
-                  <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20js,%20%E4%BD%9C%E7%94%A8%E5%9F%9F,%20%E9%97%AD%E5%8C%85">学习笔记, js, 作用域, 闭包</a>
+                  <a class="hover-with-bg" href="/tags/git">git</a>
                 
               </span>
             
@@ -484,7 +367,7 @@ for(let i = 0; i &lt; 10; i++){
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "js作用域&nbsp;",
+        "开发环境&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

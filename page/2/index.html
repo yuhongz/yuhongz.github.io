@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="Yuhong Zhang">
+  <meta name="keywords" content="Visual Analytics, Front End">
+  <title>Yuhong&#39;s blog</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Yuhong's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/vis.jpg')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="fas fa-angle-down scroll-down-arrow"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/09/js%E5%8E%9F%E5%9E%8B/">
+        <p class="h4 index-header">js原型</p>
+      </a>
+
+      <a href="/2020/03/09/js%E5%8E%9F%E5%9E%8B/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">本次笔记主要整理js的三座大山之一：原型和原型链。
+🌟原型和原型链
+构造函数、原型和实例的关系
+
+构造函数可以是任何的首字母大写的函数，通过prototype​指针找到其原型对象。以构造函数新建的对象实例，共享原型对象里的内容，包括函数和变量，即使在实例声明后再修改原型也会同步更改，实例通过__proto__找到其原型对象。原型对象使用constructor指针找到对应构造函数。
+var a = new Array();
+a.__proto__ === Array.prototype;//true
+Array === a.__proto__.constructor;//true
+//为数组添加sort方法，使用快排实现
+Array.prototype.sort = function(){ //插件的实现 修改原型
+    quickSort_s(this, 0, this.length - 1);
+}
+
+function quickSort_s(A, i, j){
+    if(i &gt;= j) return;
+    var p = partition_s(A, i, j);
+</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-09&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20js,%20%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE,%20%E7%BB%A7%E6%89%BF">学习笔记, js, 原型和原型链, 继承</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/08/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/">
+        <p class="h4 index-header">二分查找、跳表和哈希</p>
+      </a>
+
+      <a href="/2020/03/08/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">1.二分查找
+优点：
+
+o(logn)复杂度的查找效率，非常恐怖
+节省内存，同样的查找工作虽然哈希和跳表也可以做，但他们需要额外空间
+
+
+限制：
+
+有序
+只能基于顺序表，即数组，因为要实现随机访问。
+数据量太大或太小都不合适，太小不如直接遍历，数据量大需要很多连续空间。
+
+
+代码
+
+非递归，不存在重复元素
+function binSearch(A, n, k){
+    var low = 0;
+    var high = n-1;
+    var mid;
+    while(low &lt;= high){
+        mid = Math.floor((high + low)/2);
+        if(A[mid] === k) return mid;
+        if(A[mid] &gt; k) high = mid - 1;
+        if(A[mid] &lt; k) low = mid + 1;
+    }
+    return -1;
+}
+
+以上代码三个要点：
+
+循环条件 low &lt;= high 不是&lt;
+high和low的更新，high</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-08&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%9C%BA%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE,%20%E8%B7%B3%E8%A1%A8,%20%E5%93%88%E5%B8%8C,%20hash">数据机构与算法, 学习笔记, 二分查找, 跳表, 哈希, hash</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/07/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/">
+        <p class="h4 index-header">递归与排序</p>
+      </a>
+
+      <a href="/2020/03/07/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">🌟递归递归，是一种编程技巧，可以让代码更简洁。
+
+递归的三个条件：
+一个问题可以分解成几个子问题的解
+问题与子问题除了数据规模不一样，求解思路完全一样
+存在递归终止条件: 写函数时，先考虑这个
+
+
+
+🌟排序
+
+稳定性：作用：在针对某一key进行排序的过程中，保证其他key有序
+逆序度：满有序度 - 有序度。冒泡和插入的实际交换次数都是等于逆序度 。因此其平均时间复杂度为o(n2)
+
+
+1.插入排序原地排序、稳定、最好时间复杂度o(n)，最差o(n2)，平均o(n2)。与数组的插入一致，有数据的搬移。插入排序的优化希尔排序。
+2.冒泡排序原地排序、稳定、最好时间复杂度o(n)，最差o(n2)，平均o(n2)。比插入排序要差，虽然交换次数一致，但冒泡每次需要3个赋值语句。
+3.选择排序原地排序、不稳定、最好时间复杂度o(n2)，最差o(n2)，平均o(n2)。
+
+//适合大规模的数据排序方法，快排和并归都用到了分治的思想，也用到了递归。分治是一种解决问题的处理思想，递归是一种编程技巧。
+4.并归排序function mergeSort(A, n){
+    mergeSort_c(A,</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-07&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">数据结构与算法, 学习笔记</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/05/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+        <p class="h4 index-header">线性表</p>
+      </a>
+
+      <a href="/2020/03/05/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">🌟基础线性表：数组
+特点
+连续内存空间
+随机访问（非随机查找），可根据寻址公式直接找到对应的内存空间。（a[i]_address = base_address + i * data_type_size，这个公式解释了为什么从0开始）
+申请只能固定的空间
+
+
+低效的插入和删除：插入和删除的平均时间复杂度为o(n），需迁移数据
+动态扩容：插入时，如超出数组长度时添加数据申请新的空间（如1.5倍长度），并进行数据迁移。使用平摊时间复杂度可以计算得平均时间复杂度o(1)。
+在c语言中警惕数组越界
+容器：高级编程语言中一般有高级的容器来表示数组，如js中的list，但其封装好了如动态扩容和一系列底层函数。但js中的list是连续的空间吗？
+
+🌟基础线性表：链表
+特点
+
+动态的空间分配
+不支持随机访问，需要遍历
+
+
+单链表：头节点、data+next、最后一个节点的next为null，其插入和删除的时间复杂度为o(1)，访问时间复杂度为o(n)
+
+循环链表：在单链表的基础上，最后一个极点的next也指向头节点。应用：约瑟夫问题。
+
+双向链表：头节点、pre+data+next。其插入和删除时间</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-05&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20%E6%95%B0%E7%BB%84,%20%E9%93%BE%E8%A1%A8,%20%E6%A0%88,%20%E9%98%9F%E5%88%97">数据结构与算法, 学习笔记, 数组, 链表, 栈, 队列</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/02/29/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/">
+        <p class="h4 index-header">算法复杂度分析</p>
+      </a>
+
+      <a href="/2020/02/29/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">前言本科时学习的数据结构与算法的知识日渐淡忘，恰逢春招面试需要复习，要命的是我又是个如果对什么记忆模糊就会啥也说不出来的人，毕竟没有把握的事情，没有办法信誓旦旦的说个123，因此重新温习一遍在极客时间上买的王争的课程，梳理知识体系，也为以后更轻松的复习。
+why- 为什么要复杂度分析计算机资源是宝贵的，虽然可以用事后统计法来计算精确的时间，但是缺点有：
+
+依赖硬件条件，硬件条件有优劣
+结果受数据规模影响
+
+复杂度分析：
+
+和性能测试相比，复杂度分析有不依赖执行环境、成本低、效率高、易操作、指导性强的特点。
+掌握复杂度分析，将能编写出性能更优的代码，有利于降低系统开发和维护成本。
+
+what- 什么是复杂度分析
+数据结构与算法帮助计算机使用更快的时间、更省空间来解决问题
+时间复杂度和空间复杂度分别从两个方面来估计消耗，实质是时间/空间消耗随着数据规模增长的变化趋势
+
+how- 怎么做复杂度分析1.大O表示法O()不是表示真实的代码执行时间，而是表示代码执行时间随数据规模增长的变化趋势，也称渐进时间复杂度，简称时间复杂度。
+####2.分析的三个方法
+
+只关注循环执行次数最多的一段代码
+加</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-02-29&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">数据结构与算法,  学习笔记</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+
+
+  <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
+  
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Visualization, Code and Life&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

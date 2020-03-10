@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Yuhong Zhang">
   <meta name="keywords" content="Visual Analytics, Front End">
-  <title>归档 ~ Yuhong&#39;s blog</title>
+  <title>加载和渲染及优化 ~ Yuhong&#39;s blog</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -106,7 +106,7 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="view intro-2" id="background" false
          style="background: url('/img/default.png')no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
@@ -116,6 +116,41 @@
               
             </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期二, 三月 10日 2020, 8:22 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    491 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      2 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -127,101 +162,141 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 15 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/03/10/z%E5%AE%89%E5%85%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">z安全</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/10/z%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%B8%B2%E6%9F%93%E5%8F%8A%E4%BC%98%E5%8C%96/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">加载和渲染及优化</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/10/z%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">开发环境</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/10/WebApi:%E5%AD%98%E5%82%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">存储</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/10/WebApi:Ajax/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Ajax</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/10/WebApi:%E4%BA%8B%E4%BB%B6%E6%B5%81/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">事件流</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/WebApi:DOM&BOM/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">DOM&amp;BOM</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E5%BC%82%E6%AD%A5%E5%8D%95%E7%BA%BF%E7%A8%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">异步单线程</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">js作用域与闭包</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E7%B1%BB%E5%9E%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">js类型</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-</div>
 
-  <nav aria-label="index posts navigation">
-    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/page/2/"><i class="fas fa-angle-double-right"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
-      ele.href += '#board';
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h3 id="url到页面加载过程"><a href="#url到页面加载过程" class="headerlink" title="url到页面加载过程"></a>url到页面加载过程</h3><ul>
+<li>dns解析</li>
+<li>浏览器根据ip地址向服务器发送请求：三次握手建立tcp连接</li>
+<li>服务器处理http请求，并返回给浏览器</li>
+<li>渲染过程1<ul>
+<li>根据html生成dom树</li>
+<li>根据css生成cssom</li>
+<li>dom tree和cssom整合形成render tree</li>
+</ul>
+</li>
+<li>渲染过程2<ul>
+<li>根据render tree渲染页面</li>
+<li>遇到script暂停渲染，优先加载并执行js代码，完成再继续</li>
+<li>直至把render tree渲染完成</li>
+</ul>
+</li>
+</ul>
+<h3 id="window-onload和DOMContentLoaded"><a href="#window-onload和DOMContentLoaded" class="headerlink" title="window.onload和DOMContentLoaded"></a>window.onload和DOMContentLoaded</h3><ul>
+<li>渲染遇到img标签不会阻塞，而是会继续向后。img加载完成后可能触发重绘。</li>
+</ul>
+<pre><code class="js">window.addEventListener(&#39;load&#39;, function(){
+    // 页面的全部资源加载完 包括图片 视频
+})
+document.addEventListener(&#39;DOMContentLoaded&#39;， function(){
+    // DOM渲染完即可执行，此时图片和视频可能还没加载完。很多情况使用此事件更合理
+})</code></pre>
+<h3 id="🌟性能优化！🌟"><a href="#🌟性能优化！🌟" class="headerlink" title="🌟性能优化！🌟"></a>🌟性能优化！🌟</h3><ul>
+<li>原则<ul>
+<li>多使用内存、缓存</li>
+<li>减少cpu计算，减少网络加载耗时</li>
+</ul>
+</li>
+<li>做法<ul>
+<li>让加载更快<ul>
+<li>减少资源体积：压缩代码</li>
+<li>减少访问此时：合并代码，ss服务器端渲染，缓存</li>
+<li>更快的网络：使用cdn</li>
+</ul>
+</li>
+<li>让渲染更快<ul>
+<li>css放在head，js放在body的下部</li>
+<li>用domcontentloaded触发而不是window.onload，更快触发js</li>
+<li><strong>懒加载</strong></li>
+<li>DOM查询缓存</li>
+<li>合并DOM操作</li>
+<li><strong>throttle 和 debounce</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="js">//懒加载
+//html
+&lt;img id=&#39;img1&#39; src=&#39;preview.png&#39; data-realsrc=&#39;abc.png&#39;/&gt;
+//js
+var img1 = document.getElementById(&#39;img1&#39;);
+img1.src = img1.getAttribute(&#39;data-realsrc&#39;);
+
+//防抖：停止后一段时间执行
+function debounce(fn, delay = 500){
+    //timer是闭包中的
+    let timer;
+    return function(){
+        if(timer) clearTimeout(timer);
+        timer =  setTimeout(()=&gt;{
+            fn.apply(this, arguments);//apply 不是 call
+            timer = null; //必须，timer=null与cleartimeout(timer)不一致！！后者timer仍然有值
+        }.delay)
     }
-  </script>
+}
 
+//截流：无论触发多频繁，都是固定时间段执行一次/也会延迟！
+function throttle(fn, delay = 500){
+    let timer;
+    return function(){
+        if(timer) return;
+        timer =  setTimeout(()=&gt;{
+            fn.apply(this, arguments);//apply 不是 call
+            timer = null; //必须，timer=null与cleartimeout(timer)不一致！！后者timer仍然有值
+        }.delay)
+    }
+}</code></pre>
 
-              </div>
-            </div>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E6%B8%B2%E6%9F%93,%20DOM,%20%E4%BC%98%E5%8C%96">渲染, DOM, 优化</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -300,6 +375,11 @@
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
@@ -340,7 +420,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "加载和渲染及优化&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

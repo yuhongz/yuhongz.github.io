@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Yuhong Zhang">
   <meta name="keywords" content="Visual Analytics, Front End">
-  <title>归档 ~ Yuhong&#39;s blog</title>
+  <title>Ajax ~ Yuhong&#39;s blog</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -106,7 +106,7 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="view intro-2" id="background" false
          style="background: url('/img/default.png')no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
@@ -116,6 +116,41 @@
               
             </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期二, 三月 10日 2020, 3:26 下午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    489 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      2 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -127,101 +162,145 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 15 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/03/10/z%E5%AE%89%E5%85%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">z安全</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/10/z%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%B8%B2%E6%9F%93%E5%8F%8A%E4%BC%98%E5%8C%96/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">加载和渲染及优化</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/10/z%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">开发环境</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/10/WebApi:%E5%AD%98%E5%82%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">存储</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/10/WebApi:Ajax/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Ajax</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/10/WebApi:%E4%BA%8B%E4%BB%B6%E6%B5%81/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">事件流</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/WebApi:DOM&BOM/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">DOM&amp;BOM</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E5%BC%82%E6%AD%A5%E5%8D%95%E7%BA%BF%E7%A8%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">异步单线程</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">js作用域与闭包</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/js%E7%B1%BB%E5%9E%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">js类型</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-</div>
 
-  <nav aria-label="index posts navigation">
-    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/page/2/"><i class="fas fa-angle-double-right"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
-      ele.href += '#board';
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h3 id="🌟XMLHttpRequest"><a href="#🌟XMLHttpRequest" class="headerlink" title="🌟XMLHttpRequest"></a>🌟XMLHttpRequest</h3><pre><code class="js">//手写xhr
+const xhr = new XMLHttpRequest();
+xhr.open(&#39;GET&#39;, &#39;data.json&#39;, true) //异步用true，可支持同步false。
+xhr.onreadystatechange = function(){ //无参数
+    if(xhr.readyState === 4){
+        if(xhr.status === 200){
+            alert(JSON.parse(xhr.responseText)) //responseText!  json解析字符串
+        }
     }
-  </script>
+}
+xhr.send(null); //发送数据
 
+//如post需要发送数据
+const postData = {};
+xhr.send(JSON.stringify(postData)); //转字符串</code></pre>
+<ul>
+<li><p>xhr.readyState：0：未调用send；1:已调用send；2:接收到全部响应；3解析响应内容；4完成解析，可在客户端调用。</p>
+</li>
+<li><p>Xhr.state:</p>
+<ul>
+<li>2xx：表示成功</li>
+<li>3xx：重定向，浏览器直接跳转。301永久重定向；302临时重定向；304读取缓存。</li>
+<li>4xx：客户端请求错误，404没有资源，403没有权限</li>
+<li>5xx：服务端出错</li>
+</ul>
+<p><em>403缓存：在http响应头中设定，相关字段：expires, cache-control, E-tag, LastModified。cache-control优先级大于expires，e-tag大于lastmodified。cachecontrol中的maxage设置了时长，单位秒</em></p>
+</li>
+</ul>
+<h3 id="🌟-同源策略"><a href="#🌟-同源策略" class="headerlink" title="🌟 同源策略"></a>🌟 同源策略</h3><ul>
+<li>ajax请求时，<strong>浏览器</strong>要求<strong>当前页面</strong>和<strong>sever</strong>必须同源。（安全）</li>
+<li>同源：协议、域名、端口一致。</li>
+<li>无视同源策略的几种情况<ul>
+<li>图片<code>&lt;img src=&#39;&#39;/&gt;</code></li>
+<li>js<code>&lt;script src=&#39;&#39;&gt;&lt;/script&gt;</code> (<strong>JSONP</strong>的基础)</li>
+<li>css<code>&lt;link href=&#39;&#39;/&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="🌟跨域"><a href="#🌟跨域" class="headerlink" title="🌟跨域"></a>🌟跨域</h3><ul>
+<li><p>所有的跨域都要与服务端进行配合</p>
+</li>
+<li><p><strong>JSONP</strong>：</p>
+<ul>
+<li><p><code>script</code>可以绕过同源策略</p>
+</li>
+<li><p>服务端可以拼接动态数据返回</p>
+<pre><code class="js">//本地js
+window.callback = function(d){
+    console.log(d)
+}
+//返回的js
+callback({x:&#39;xxx&#39;}) //数据可以在参数中体现</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>CORS</strong>：服务器设置http header</p>
+<pre><code>response.setHeader(&#39;Access-Control-Allow-Origin&#39;)...</code></pre></li>
+</ul>
+<h3 id="promise实现ajax"><a href="#promise实现ajax" class="headerlink" title="promise实现ajax"></a>promise实现ajax</h3><pre><code class="js">function ajax(url){
+    return new Promise((resolve, reject) =&gt; {
+        const xhr = new XMLHttpRequest();
+        xhr.open(&#39;GET&#39;, url, true);
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                if(xhr.status === 200){
+                    resolve(JSON.parse(xhr.responseText))
+                }
+                else reject(new Error(&#39;error&#39;))
+            }
+        }
+        xhr.send(null)
+    })
+}
+ajax(url).then((res)=&gt;{console.log(res)}).catch((err) =&gt; {console.error(err)});</code></pre>
+<h3 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a>Fetch</h3><pre><code class="js">fetch(url); //返回一个promise</code></pre>
+<ul>
+<li>与jquery.ajax区别：<ul>
+<li>当状态码为4xx和5xx时，也会resolve</li>
+<li>fetch不会从服务端发送或接收cookie</li>
+</ul>
+</li>
+</ul>
+<h3 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h3><ul>
+<li><strong>是对XHR的封装</strong></li>
+<li>也支持promise</li>
+</ul>
 
-              </div>
-            </div>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/WebApi,%20Ajax,%20XMLHttpRequest,%20Fetch,%20Axios">WebApi, Ajax, XMLHttpRequest, Fetch, Axios</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -300,6 +379,11 @@
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
@@ -340,7 +424,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "Ajax&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

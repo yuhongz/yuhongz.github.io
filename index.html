@@ -144,6 +144,382 @@
     
     
     <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/10/z%E5%AE%89%E5%85%A8/">
+        <p class="h4 index-header">z安全</p>
+      </a>
+
+      <a href="/2020/03/10/z%E5%AE%89%E5%85%A8/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">xss实例
+在博客网站上，发表博客，嵌入script脚本
+脚本内容获取cookie，并发送到我的服务器（服务器配合跨域）
+发布博客，有人查看它，我拿到访问者的cookie
+
+xss预防
+替换特殊字符，&lt;变为&amp;lt; &gt;变为&amp;gt;
+前端和后端都进行替换
+
+csrf实例
+某人登陆了购买网站，已经进行了身份验证（cookie），购买了id为100的东西。付费接口是xxx.com/pay?id=100
+我是攻击者，想买id=200的东西
+我向他发送一封邮件，邮件正文隐藏着&lt;img src=&#39;xxx.com/pay?id=200&#39; /&gt;//img支持跨域
+他查看邮件，就帮我买了200商品
+
+</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-10&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/xss,%20csrf">xss, csrf</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/10/z%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%B8%B2%E6%9F%93%E5%8F%8A%E4%BC%98%E5%8C%96/">
+        <p class="h4 index-header">加载和渲染及优化</p>
+      </a>
+
+      <a href="/2020/03/10/z%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%B8%B2%E6%9F%93%E5%8F%8A%E4%BC%98%E5%8C%96/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">url到页面加载过程
+dns解析
+浏览器根据ip地址向服务器发送请求：三次握手建立tcp连接
+服务器处理http请求，并返回给浏览器
+渲染过程1
+根据html生成dom树
+根据css生成cssom
+dom tree和cssom整合形成render tree
+
+
+渲染过程2
+根据render tree渲染页面
+遇到script暂停渲染，优先加载并执行js代码，完成再继续
+直至把render tree渲染完成
+
+
+
+window.onload和DOMContentLoaded
+渲染遇到img标签不会阻塞，而是会继续向后。img加载完成后可能触发重绘。
+
+window.addEventListener(&#39;load&#39;, function(){
+    // 页面的全部资源加载完 包括图片 视频
+})
+document.addEventListener(&#39;DOMContentLoaded&#39;， function(){
+    // DOM渲染完即可执行，此时图片和视频可能还没加载完。很多情况使用此事件更合理
+})
+🌟性能优化！🌟
+原则
+多使用内存、缓存
+减少cp</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-10&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%B8%B2%E6%9F%93,%20DOM,%20%E4%BC%98%E5%8C%96">渲染, DOM, 优化</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/10/z%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+        <p class="h4 index-header">开发环境</p>
+      </a>
+
+      <a href="/2020/03/10/z%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">git
+clone/push：ssh/https 前者配置ssh key，后者需输入登录信息
+
+git status
+
+git diff [filename] //查看修改
+
+git add. or filename //提交修改 git checkout .  or [filename] 撤销修改
+
+git commit -m ‘…’ //提交到本地仓库
+
+git push origin master 提交到master （先pull再push）
+
+git checkout -b xxx 拉取一个新的分支
+
+git checkout xxx 切换分支
+
+git branch 查看分支
+
+(master) git merge feature：合并feature分支到master (拉代码本地合，合完push)
+
+git stash /git stash pop：暂存，如在错误的分支修改了代码，则可以暂存，再切换分支，再pop出修改。
+git clone xxx
+git status
+git diff [文件名] 查看修改
+
+git add . or git add filename /</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-10&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/git">git</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/10/WebApi:%E5%AD%98%E5%82%A8/">
+        <p class="h4 index-header">存储</p>
+      </a>
+
+      <a href="/2020/03/10/WebApi:%E5%AD%98%E5%82%A8/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">🌟cookie
+本身用于浏览器和server通信，是http请求的一部分
+被借用来做本地存储
+document.cookie = &#39;a=xx&#39; 来追加或覆盖。形式为通过分号分割的key=value字符串。非常古老。
+缺点：
+存储量小：最大4kb。因为通信每次需要带上cookie，太大会影响时间效率。
+会发送给服务端，增加通信量
+只能用document来修改，修改方法简陋不方便
+
+
+
+🌟H5存储（localStorage, sessionStorage）
+最大可存储5m（每个域）
+api更简易：setItem, getItem。
+不会随着请求被发送
+
+localStorage.setItem(&#39;a&#39;, 100); //此处100会被转成字符串
+sessionStorage.setItem()//同上
+
+localStorage会永久存储，除非手动代码删除（更频繁使用）
+sessionStorage在关闭会话后被删除
+
+这三块存储可以在控制台的application中看到
+</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-10&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/WebApi,%20%E5%AD%98%E5%82%A8,%20cookie,%20localStorage,%20sessionStorage">WebApi, 存储, cookie, localStorage, sessionStorage</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/10/WebApi:Ajax/">
+        <p class="h4 index-header">Ajax</p>
+      </a>
+
+      <a href="/2020/03/10/WebApi:Ajax/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">🌟XMLHttpRequest//手写xhr
+const xhr = new XMLHttpRequest();
+xhr.open(&#39;GET&#39;, &#39;data.json&#39;, true) //异步用true，可支持同步false。
+xhr.onreadystatechange = function(){ //无参数
+    if(xhr.readyState === 4){
+        if(xhr.status === 200){
+            alert(JSON.parse(xhr.responseText)) //responseText!  json解析字符串
+        }
+    }
+}
+xhr.send(null); //发送数据
+
+//如post需要发送数据
+const postData = {};
+xhr.send(JSON.stringify(postData)); //转字符串
+
+xhr.readyState：0：未调用send；1:已调用send；2:接收到全部响应；3解析响应内容；4完成解析，可在客户端调用。
+</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-10&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/WebApi,%20Ajax,%20XMLHttpRequest,%20Fetch,%20Axios">WebApi, Ajax, XMLHttpRequest, Fetch, Axios</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/10/WebApi:%E4%BA%8B%E4%BB%B6%E6%B5%81/">
+        <p class="h4 index-header">事件流</p>
+      </a>
+
+      <a href="/2020/03/10/WebApi:%E4%BA%8B%E4%BB%B6%E6%B5%81/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">🌟事件绑定//通用的事件绑定函数(简易)
+function bindEvent(elem, type, fn){
+    elem.addEventListener(type, fn);
+}
+const btn = document.getElementById(&#39;btn1&#39;);
+bindEvent(btn, &#39;click&#39;, event =&gt; {
+    console.log(event.target); //获取点击源元素(早期IE是srcElement)，当前元素是currentTarget
+    event.preventDefault(); //阻止默认行为如链接的跳转
+    alert(&#39;clicked!&#39;);
+})
+
+🌟事件冒泡//点击其他地方会触发body的事件，但点击p1会触发自己的事件
+const p1 = document.getElementById(&#39;p1&#39;);
+const body = document.body;
+bindEvent(body, &#39;click&#39;,</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-10&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/WebApi,%20%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A,%20%E5%86%92%E6%B3%A1,%20%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86">WebApi, 事件绑定, 冒泡, 事件代理</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/09/WebApi:DOM&BOM/">
+        <p class="h4 index-header">DOM&amp;BOM</p>
+      </a>
+
+      <a href="/2020/03/09/WebApi:DOM&BOM/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">🌟DOM
+DOM本质是从html语言解析出来的树结构
+
+DOM操作：
+
+获取DOM节点
+document.getElementById(&#39;&#39;) //元素
+document.getElementsByTagName(&#39;&#39;) //集合
+document.getElementsByClassName(&#39;&#39;) //集合
+document.querySelectorAll(&#39;p&#39;) //集合
+
+节点property和节点attribute
+
+//property
+const pList = document.getElementsByTagName(&#39;p&#39;);
+const p = pList[0];
+p.style.width = &#39;100px&#39;;
+p.className = &#39;.red&#39;
+consoleo.log(p.nodeName);
+consoleo.log(p.nodeType);
+//attribute
+p.setAttribute(&#39;data-name&#39;</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-09&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/WebApi,%20DOM,%20BOM">WebApi, DOM, BOM</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
       <a href="/2020/03/09/js%E5%BC%82%E6%AD%A5%E5%8D%95%E7%BA%BF%E7%A8%8B/">
         <p class="h4 index-header">异步单线程</p>
       </a>
@@ -205,11 +581,11 @@ function loadImg(src){
     
     
     <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F/">
-        <p class="h4 index-header">js作用域</p>
+      <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/">
+        <p class="h4 index-header">js作用域与闭包</p>
       </a>
 
-      <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+      <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/">
         
         
           
@@ -228,6 +604,15 @@ function loadImg(src){
 自由变量：变量被使用，当前作用域没有被定义，则向上一级作用域去找，直到找到为止，如全局也没有，则报错:xx is not defined。
 
 
+执行上下文//变量提升：变量声明（非定义），函数声明
+console.log(a); //undefined
+var a = 100;
+fn(&#39;zhangsan&#39;); //zhangsan 100
+function fn(name){
+    b = 100;
+    console.log(name, b);
+    var b;
+}
 🌟闭包
 定义：自由变量的查找，是在函数定义的地方，向上级作用域查找，不是在执行的地方。
 
@@ -239,22 +624,7 @@ function loadImg(src){
 //example1
 function g(){
     const a = 100;
-    return function(){
-        console.log(a);
-    }
-}
-const a = 200;
-let fn1 = g();
-fn1(); //100
-
-//example2
-const b = 100;
-function fn2(){
-   console.log(b); 
-}
-
-function fn3(fn){
-    const b = 200</div>
+    return function()</div>
         </div>
       </a>
 
@@ -268,39 +638,6 @@ function fn3(fn){
           
             <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20js,%20%E4%BD%9C%E7%94%A8%E5%9F%9F,%20%E9%97%AD%E5%8C%85">学习笔记, js, 作用域, 闭包</a>&nbsp;
           
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/09/supoolvisor/">
-        <p class="h4 index-header">supoolvisor</p>
-      </a>
-
-      <a href="/2020/03/09/supoolvisor/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">###系统演示如下：
-
-    
-
-
-</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-09&nbsp;&nbsp;
-        
-        
         
       </div>
     </div>
@@ -360,284 +697,19 @@ typeof：识别所有的值类型，能识别函数，能判断是否是</div>
     </div>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/09/js%E5%8E%9F%E5%9E%8B/">
-        <p class="h4 index-header">js原型</p>
-      </a>
-
-      <a href="/2020/03/09/js%E5%8E%9F%E5%9E%8B/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">本次笔记主要整理js的三座大山之一：原型和原型链。
-🌟原型和原型链
-构造函数、原型和实例的关系
-
-构造函数可以是任何的首字母大写的函数，通过prototype​指针找到其原型对象。以构造函数新建的对象实例，共享原型对象里的内容，包括函数和变量，即使在实例声明后再修改原型也会同步更改，实例通过__proto__找到其原型对象。原型对象使用constructor指针找到对应构造函数。
-var a = new Array();
-a.__proto__ === Array.prototype;//true
-Array === a.__proto__.constructor;//true
-//为数组添加sort方法，使用快排实现
-Array.prototype.sort = function(){ //插件的实现 修改原型
-    quickSort_s(this, 0, this.length - 1);
-}
-
-function quickSort_s(A, i, j){
-    if(i &gt;= j) return;
-    var p = partition_s(A, i, j);
-</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-09&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20js,%20%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE,%20%E7%BB%A7%E6%89%BF">学习笔记, js, 原型和原型链, 继承</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/08/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/">
-        <p class="h4 index-header">二分查找、跳表和哈希</p>
-      </a>
-
-      <a href="/2020/03/08/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">1.二分查找
-优点：
-
-o(logn)复杂度的查找效率，非常恐怖
-节省内存，同样的查找工作虽然哈希和跳表也可以做，但他们需要额外空间
 
 
-限制：
-
-有序
-只能基于顺序表，即数组，因为要实现随机访问。
-数据量太大或太小都不合适，太小不如直接遍历，数据量大需要很多连续空间。
-
-
-代码
-
-非递归，不存在重复元素
-function binSearch(A, n, k){
-    var low = 0;
-    var high = n-1;
-    var mid;
-    while(low &lt;= high){
-        mid = Math.floor((high + low)/2);
-        if(A[mid] === k) return mid;
-        if(A[mid] &gt; k) high = mid - 1;
-        if(A[mid] &lt; k) low = mid + 1;
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-double-right"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
     }
-    return -1;
-}
-
-以上代码三个要点：
-
-循环条件 low &lt;= high 不是&lt;
-high和low的更新，high</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-08&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%9C%BA%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE,%20%E8%B7%B3%E8%A1%A8,%20%E5%93%88%E5%B8%8C,%20hash">数据机构与算法, 学习笔记, 二分查找, 跳表, 哈希, hash</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/07/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/">
-        <p class="h4 index-header">递归与排序</p>
-      </a>
-
-      <a href="/2020/03/07/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">🌟递归递归，是一种编程技巧，可以让代码更简洁。
-
-递归的三个条件：
-一个问题可以分解成几个子问题的解
-问题与子问题除了数据规模不一样，求解思路完全一样
-存在递归终止条件: 写函数时，先考虑这个
-
-
-
-🌟排序
-
-稳定性：作用：在针对某一key进行排序的过程中，保证其他key有序
-逆序度：满有序度 - 有序度。冒泡和插入的实际交换次数都是等于逆序度 。因此其平均时间复杂度为o(n2)
-
-
-1.插入排序原地排序、稳定、最好时间复杂度o(n)，最差o(n2)，平均o(n2)。与数组的插入一致，有数据的搬移。插入排序的优化希尔排序。
-2.冒泡排序原地排序、稳定、最好时间复杂度o(n)，最差o(n2)，平均o(n2)。比插入排序要差，虽然交换次数一致，但冒泡每次需要3个赋值语句。
-3.选择排序原地排序、不稳定、最好时间复杂度o(n2)，最差o(n2)，平均o(n2)。
-
-//适合大规模的数据排序方法，快排和并归都用到了分治的思想，也用到了递归。分治是一种解决问题的处理思想，递归是一种编程技巧。
-4.并归排序function mergeSort(A, n){
-    mergeSort_c(A,</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-07&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">数据结构与算法, 学习笔记</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/05/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
-        <p class="h4 index-header">线性表</p>
-      </a>
-
-      <a href="/2020/03/05/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">🌟基础线性表：数组
-特点
-连续内存空间
-随机访问（非随机查找），可根据寻址公式直接找到对应的内存空间。（a[i]_address = base_address + i * data_type_size，这个公式解释了为什么从0开始）
-申请只能固定的空间
-
-
-低效的插入和删除：插入和删除的平均时间复杂度为o(n），需迁移数据
-动态扩容：插入时，如超出数组长度时添加数据申请新的空间（如1.5倍长度），并进行数据迁移。使用平摊时间复杂度可以计算得平均时间复杂度o(1)。
-在c语言中警惕数组越界
-容器：高级编程语言中一般有高级的容器来表示数组，如js中的list，但其封装好了如动态扩容和一系列底层函数。但js中的list是连续的空间吗？
-
-🌟基础线性表：链表
-特点
-
-动态的空间分配
-不支持随机访问，需要遍历
-
-
-单链表：头节点、data+next、最后一个节点的next为null，其插入和删除的时间复杂度为o(1)，访问时间复杂度为o(n)
-
-循环链表：在单链表的基础上，最后一个极点的next也指向头节点。应用：约瑟夫问题。
-
-双向链表：头节点、pre+data+next。其插入和删除时间</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-05&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0,%20%E6%95%B0%E7%BB%84,%20%E9%93%BE%E8%A1%A8,%20%E6%A0%88,%20%E9%98%9F%E5%88%97">数据结构与算法, 学习笔记, 数组, 链表, 栈, 队列</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/02/29/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/">
-        <p class="h4 index-header">算法复杂度分析</p>
-      </a>
-
-      <a href="/2020/02/29/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">前言本科时学习的数据结构与算法的知识日渐淡忘，恰逢春招面试需要复习，要命的是我又是个如果对什么记忆模糊就会啥也说不出来的人，毕竟没有把握的事情，没有办法信誓旦旦的说个123，因此重新温习一遍在极客时间上买的王争的课程，梳理知识体系，也为以后更轻松的复习。
-why- 为什么要复杂度分析计算机资源是宝贵的，虽然可以用事后统计法来计算精确的时间，但是缺点有：
-
-依赖硬件条件，硬件条件有优劣
-结果受数据规模影响
-
-复杂度分析：
-
-和性能测试相比，复杂度分析有不依赖执行环境、成本低、效率高、易操作、指导性强的特点。
-掌握复杂度分析，将能编写出性能更优的代码，有利于降低系统开发和维护成本。
-
-what- 什么是复杂度分析
-数据结构与算法帮助计算机使用更快的时间、更省空间来解决问题
-时间复杂度和空间复杂度分别从两个方面来估计消耗，实质是时间/空间消耗随着数据规模增长的变化趋势
-
-how- 怎么做复杂度分析1.大O表示法O()不是表示真实的代码执行时间，而是表示代码执行时间随数据规模增长的变化趋势，也称渐进时间复杂度，简称时间复杂度。
-####2.分析的三个方法
-
-只关注循环执行次数最多的一段代码
-加</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-02-29&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95,%20%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">数据结构与算法,  学习笔记</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-
+  </script>
 
 
 
