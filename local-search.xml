@@ -4,17 +4,17 @@
   
   
   <entry>
-    <title>z安全</title>
+    <title>安全</title>
     <link href="/2020/03/10/z%E5%AE%89%E5%85%A8/"/>
     <url>/2020/03/10/z%E5%AE%89%E5%85%A8/</url>
     
-    <content type="html"><![CDATA[<h3 id="xss实例"><a href="#xss实例" class="headerlink" title="xss实例"></a>xss实例</h3><ul><li>在博客网站上，发表博客，嵌入script脚本</li><li>脚本内容获取cookie，并发送到我的服务器（服务器配合跨域）</li><li>发布博客，有人查看它，我拿到访问者的cookie</li></ul><h3 id="xss预防"><a href="#xss预防" class="headerlink" title="xss预防"></a>xss预防</h3><ul><li>替换特殊字符，&lt;变为<code>&amp;lt;</code> &gt;变为<code>&amp;gt;</code></li><li>前端和后端都进行替换</li></ul><h3 id="csrf实例"><a href="#csrf实例" class="headerlink" title="csrf实例"></a>csrf实例</h3><ul><li>某人登陆了购买网站，已经进行了身份验证（cookie），购买了id为100的东西。付费接口是xxx.com/pay?id=100</li><li>我是攻击者，想买id=200的东西</li><li>我向他发送一封邮件，邮件正文隐藏着<code>&lt;img src=&#39;xxx.com/pay?id=200&#39; /&gt;</code>//img支持跨域</li><li>他查看邮件，就帮我买了200商品</li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="xss实例"><a href="#xss实例" class="headerlink" title="xss实例"></a>xss实例</h3><ul><li>在博客网站上，发表博客，嵌入script脚本</li><li>脚本内容获取cookie，并发送到我的服务器（服务器配合跨域）</li><li>发布博客，有人查看它，我拿到访问者的cookie</li></ul><h3 id="xss预防"><a href="#xss预防" class="headerlink" title="xss预防"></a>xss预防</h3><ul><li>替换特殊字符，&lt;变为<code>&amp;lt;</code> &gt;变为<code>&amp;gt;</code></li><li>前端和后端都进行替换</li></ul><h3 id="csrf实例"><a href="#csrf实例" class="headerlink" title="csrf实例"></a>csrf实例</h3><ul><li>某人登陆了购买网站，已经进行了身份验证（cookie），购买了id为100的东西。付费接口是xxx.com/pay?id=100</li><li>我是攻击者，想买id=200的东西</li><li>我向他发送一封邮件，邮件正文隐藏着<code>&lt;img src=&#39;xxx.com/pay?id=200&#39; /&gt;</code>//img支持跨域</li><li>他查看邮件，就帮我买了200商品</li></ul><h3 id="csrf"><a href="#csrf" class="headerlink" title="csrf"></a>csrf</h3><ul><li>使用post</li><li>添加二次验证</li></ul>]]></content>
     
     
     
     <tags>
       
-      <tag>xss, csrf</tag>
+      <tag>xss; csrf</tag>
       
     </tags>
     
@@ -33,7 +33,7 @@
     
     <tags>
       
-      <tag>渲染, DOM, 优化</tag>
+      <tag>渲染; DOM; 优化</tag>
       
     </tags>
     
@@ -71,7 +71,7 @@
     
     <tags>
       
-      <tag>WebApi, 存储, cookie, localStorage, sessionStorage</tag>
+      <tag>WebApi; 存储; cookie; localStorage; sessionStorage</tag>
       
     </tags>
     
@@ -90,7 +90,7 @@
     
     <tags>
       
-      <tag>WebApi, Ajax, XMLHttpRequest, Fetch, Axios</tag>
+      <tag>WebApi; Ajax; XMLHttpRequest; Fetch; Axios</tag>
       
     </tags>
     
@@ -109,7 +109,7 @@
     
     <tags>
       
-      <tag>WebApi, 事件绑定, 冒泡, 事件代理</tag>
+      <tag>WebApi; 事件绑定; 冒泡; 事件代理</tag>
       
     </tags>
     
@@ -128,7 +128,7 @@
     
     <tags>
       
-      <tag>WebApi, DOM, BOM</tag>
+      <tag>WebApi; DOM; BOM</tag>
       
     </tags>
     
@@ -147,7 +147,7 @@
     
     <tags>
       
-      <tag>学习笔记, js, 异步, 单线程, promise</tag>
+      <tag>学习笔记; js; 异步; 单线程; promise</tag>
       
     </tags>
     
@@ -166,7 +166,7 @@
     
     <tags>
       
-      <tag>学习笔记, js, 作用域, 闭包</tag>
+      <tag>学习笔记; js; 作用域; 闭包</tag>
       
     </tags>
     
@@ -185,7 +185,7 @@
     
     <tags>
       
-      <tag>学习笔记, js, 数据类型, 类型转换</tag>
+      <tag>学习笔记; js; 数据类型; 类型转换</tag>
       
     </tags>
     
@@ -204,7 +204,7 @@
     
     <tags>
       
-      <tag>学习笔记, js, 原型和原型链, 继承</tag>
+      <tag>学习笔记; js; 原型和原型链; 继承</tag>
       
     </tags>
     
@@ -223,7 +223,7 @@
     
     <tags>
       
-      <tag>数据机构与算法, 学习笔记, 二分查找, 跳表, 哈希, hash</tag>
+      <tag>数据机构与算法; 学习笔记; 二分查找; 跳表; 哈希; hash</tag>
       
     </tags>
     
@@ -242,7 +242,7 @@
     
     <tags>
       
-      <tag>数据结构与算法, 学习笔记</tag>
+      <tag>数据结构与算法; 学习笔记</tag>
       
     </tags>
     
@@ -261,7 +261,7 @@
     
     <tags>
       
-      <tag>数据结构与算法, 学习笔记, 数组, 链表, 栈, 队列</tag>
+      <tag>数据结构与算法; 学习笔记; 数组; 链表; 栈; 队;</tag>
       
     </tags>
     
@@ -280,7 +280,7 @@
     
     <tags>
       
-      <tag>数据结构与算法,  学习笔记</tag>
+      <tag>数据结构与算法; 学习笔记</tag>
       
     </tags>
     
