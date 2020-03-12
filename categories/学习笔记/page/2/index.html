@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Yuhong Zhang">
   <meta name="keywords" content="Visual Analytics, Front End">
-  <title>事件流 ~ Yuhong&#39;s blog</title>
+  <title>分类 - 学习笔记 ~ Yuhong&#39;s blog</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -106,7 +106,7 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" false
+    <div class="view intro-2" id="background" parallax=true
          style="background: url('/img/default.png')no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
@@ -116,41 +116,6 @@
               
             </span>
 
-            
-              <br>
-              
-                <p class="mt-3">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期二, 三月 10日 2020, 1:59 下午
-                </p>
-              
-
-              <p>
-                
-                  
-                  &nbsp;<i class="far fa-chart-bar"></i>
-                  <span class="post-count">
-                    232 字
-                  </span>&nbsp;
-                
-
-                
-                  
-                  &nbsp;<i class="far fa-clock"></i>
-                  <span class="post-count">
-                      1 分钟
-                  </span>&nbsp;
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
-                  <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv"></span> 次
-                  </span>&nbsp;
-                
-              </p>
             
           </div>
 
@@ -162,117 +127,84 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+<!--  <p class="h4">共计 7 篇文章</p>-->
+  <hr>
+  
+    
       
+      <p class="h5">2020</p>
+    
+    <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">js作用域与闭包</span>
+      <span style="float: right;">03-09</span>
+    </a>
+  
+    
+    <a href="/2020/03/09/js%E7%B1%BB%E5%9E%8B/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">js类型</span>
+      <span style="float: right;">03-09</span>
+    </a>
+  
+    
+    <a href="/2020/03/09/js%E5%8E%9F%E5%9E%8B/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">js原型</span>
+      <span style="float: right;">03-09</span>
+    </a>
+  
+    
+    <a href="/2020/03/08/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">二分查找、跳表和哈希</span>
+      <span style="float: right;">03-08</span>
+    </a>
+  
+    
+    <a href="/2020/03/07/%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">递归与排序</span>
+      <span style="float: right;">03-07</span>
+    </a>
+  
+    
+    <a href="/2020/03/05/%E7%AE%97%E6%B3%95-%E7%BA%BF%E6%80%A7%E8%A1%A8/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">线性表</span>
+      <span style="float: right;">03-05</span>
+    </a>
+  
+    
+    <a href="/2020/02/29/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">算法复杂度分析</span>
+      <span style="float: right;">02-29</span>
+    </a>
+  
+</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="py-5 z-depth-3" id="board">
-        <div class="post-content mx-auto" id="post">
-          <div class="markdown-body">
-            <h3 id="🌟事件绑定"><a href="#🌟事件绑定" class="headerlink" title="🌟事件绑定"></a>🌟事件绑定</h3><pre><code class="js">//通用的事件绑定函数(简易)
-function bindEvent(elem, type, fn){
-    elem.addEventListener(type, fn);
-}
-const btn = document.getElementById(&#39;btn1&#39;);
-bindEvent(btn, &#39;click&#39;, event =&gt; {
-    console.log(event.target); //获取点击源元素(早期IE是srcElement)，当前元素是currentTarget
-    event.preventDefault(); //阻止默认行为如链接的跳转
-    alert(&#39;clicked!&#39;);
-})
-</code></pre>
-<h3 id="🌟事件冒泡"><a href="#🌟事件冒泡" class="headerlink" title="🌟事件冒泡"></a>🌟事件冒泡</h3><pre><code class="js">//点击其他地方会触发body的事件，但点击p1会触发自己的事件
-const p1 = document.getElementById(&#39;p1&#39;);
-const body = document.body;
-bindEvent(body, &#39;click&#39;, event =&gt; {
-    alert(&#39;clicked&#39;);
-})
-bindEvent(p1, &#39;click&#39;, event =&gt; {
-    event.stopPropagation();//阻止冒泡
-    alert(&#39;p1 clicked&#39;)
-})</code></pre>
-<h3 id="🌟事件代理"><a href="#🌟事件代理" class="headerlink" title="🌟事件代理"></a>🌟事件代理</h3><pre><code class="js">const div = document.getElementById(&#39;div3&#39;);
-bindEvent(div, &#39;click&#39;, e =&gt; {
-    e.preventDefault();
-    const target = e.target;
-    if(target.nodeName === &#39;P&#39;)
-        alert(&#39;...&#39;)
-})</code></pre>
-<h3 id="🌟通用的绑定函数（含代理）"><a href="#🌟通用的绑定函数（含代理）" class="headerlink" title="🌟通用的绑定函数（含代理）"></a>🌟通用的绑定函数（含代理）</h3><pre><code class="js">function bindEvent(elem, type, selector, fn){
-    if(fn == null){
-        fn = selector;
-        selector = null;
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <a class="extend prev" rel="prev" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
     }
-    elem.addEventListener(type, e =&gt; {
-        const target = e.target;
-        if(selector){ //有代理
-            if(target.matches(selector)){
-                fn.call(target, e);
-            }
-        }else{ //无代理
-            fn.call(target, e);
-        }
-    })
-}</code></pre>
+  </script>
 
-            <hr>
-          </div>
-          <br>
-          <div>
-            <p>
-            
-              <span>
-                <i class="iconfont icon-inbox"></i>
-                
-                  <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">学习笔记</a>
-                  &nbsp;
-                
-              </span>&nbsp;&nbsp;
-            
-            
-              <span>
-                <i class="iconfont icon-tag"></i>
-                
-                  <a class="hover-with-bg" href="/tags/WebApi">WebApi</a>
-                
-                  <a class="hover-with-bg" href="/tags/%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A">事件绑定</a>
-                
-                  <a class="hover-with-bg" href="/tags/%E5%86%92%E6%B3%A1">冒泡</a>
-                
-                  <a class="hover-with-bg" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86">事件代理</a>
-                
-              </span>
-            
-            </p>
-            
-              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
-            
+
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
-    <div id="tocbot"></div>
-  </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- custom -->
-
-
-<!-- Comments -->
-<div class="col-lg-7 mx-auto nopadding-md">
-  <div class="container comments mx-auto" id="comments">
-    
-  </div>
-</div>
-
     
   </main>
 
@@ -351,11 +283,6 @@ bindEvent(div, &#39;click&#39;, e =&gt; {
 
 
 
-  
-    <script src="/lib/tocbot/tocbot.min.js" ></script>
-  
-  <script src="/js/post.js" ></script>
-
 
 
   <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
@@ -396,7 +323,7 @@ bindEvent(div, &#39;click&#39;, e =&gt; {
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "事件流&nbsp;",
+        "分类 - 学习笔记&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

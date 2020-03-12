@@ -11,6 +11,22 @@
     <content type="html"><![CDATA[<h3 id="订阅与发布模式"><a href="#订阅与发布模式" class="headerlink" title="订阅与发布模式"></a>订阅与发布模式</h3><p>解藕</p><pre><code class="js">const subpub = (()=&gt;{    let topics = {};    function subscribe(topic, fn){        if(!topics[topic]) topics[topic] = [];        topics[topic].push(fn);    }    function publish(topic, ...msg){        if(!topics[topic]) return;        for(let fn of topics[topic]){            fn(...msg);        }    }    return {        subscribe,        publish    }})();//订阅subpub.subscribe(&#39;test&#39;, function(a,b){    console.log(a, b);})//发布subpub.publish(&#39;test&#39;, &#39;a&#39;, &#39;b&#39;);</code></pre><h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><p>是一种高度耦合的发布订阅</p><pre><code class="js">class Subject{    constructor(){        this.obs = [];    }    addObs(ob){        this.obs.push(ob);    }    notify(){        this.obs.forEach((ob)=&gt;{            ob.update();        })    }}class Observer{    constructor(){    }    update(){        console.log(&#39;...&#39;)    }}</code></pre>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>设计模式</tag>
+      
+      <tag>订阅与发布</tag>
+      
+      <tag>观察者模式</tag>
+      
+    </tags>
     
   </entry>
   
@@ -23,6 +39,12 @@
     
     <content type="html"><![CDATA[<h3 id="🌟HTTPS"><a href="#🌟HTTPS" class="headerlink" title="🌟HTTPS"></a>🌟HTTPS</h3><p>http有以下的缺点：</p><ul><li>明文传输，易被窃听</li><li>不验证通信方的身份，可能遭遇伪装</li><li>无法验证完整性，可能被篡改</li></ul><p>Https是以安全为目标的HTTP通道，即在HTTP下加入了SSL层和TLS。<strong>SSL:安全套接层</strong>。让http先和ssl通信，再由SSL和TCP通信，即使用了隧道。因此，具有了<strong>加密、认证和完整性保护</strong>。此外，http的端口号是80，https默认是443。</p><h4 id="加密方法"><a href="#加密方法" class="headerlink" title="加密方法"></a>加密方法</h4><ul><li><p>对称加密：使用同一密钥加密解密，运算速度快，密钥容易被获取。</p></li><li><p>非对称加密（也称公开密钥加密）：加解密不是用的同一个，发送方收到接收方给他的公共密钥后，加密信息发送给接收方，接收方使用自己的私钥解密。</p></li><li><p><strong>https使用了混合加密</strong>：使用非对称加密方法加密对称密钥（为了安全），再用对称密钥加密通信（为了效率）。</p><img src="z计算机网络/https1.png" style="zoom:80"></li></ul><h4 id="https性能问题"><a href="#https性能问题" class="headerlink" title="https性能问题"></a>https性能问题</h4><ul><li>降低了访问速度</li><li>加解密算法消耗了服务器的cpu资源</li></ul><h3 id="🌟HTTP2-0"><a href="#🌟HTTP2-0" class="headerlink" title="🌟HTTP2.0"></a>🌟HTTP2.0</h3><p>特性：</p><ul><li>新的2进制形式</li><li>多路复用</li><li>header压缩</li><li>服务端推送</li></ul>]]></content>
     
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
     
     
     <tags>
@@ -47,6 +69,12 @@
     <content type="html"><![CDATA[<h3 id="xss实例"><a href="#xss实例" class="headerlink" title="xss实例"></a>xss实例</h3><ul><li>在博客网站上，发表博客，嵌入script脚本</li><li>脚本内容获取cookie，并发送到我的服务器（服务器配合跨域）</li><li>发布博客，有人查看它，我拿到访问者的cookie</li></ul><h3 id="xss预防"><a href="#xss预防" class="headerlink" title="xss预防"></a>xss预防</h3><ul><li>替换特殊字符，&lt;变为<code>&amp;lt;</code> &gt;变为<code>&amp;gt;</code></li><li>前端和后端都进行替换</li></ul><h3 id="csrf实例"><a href="#csrf实例" class="headerlink" title="csrf实例"></a>csrf实例</h3><ul><li>某人登陆了购买网站，已经进行了身份验证（cookie），购买了id为100的东西。付费接口是xxx.com/pay?id=100</li><li>我是攻击者，想买id=200的东西</li><li>我向他发送一封邮件，邮件正文隐藏着<code>&lt;img src=&#39;xxx.com/pay?id=200&#39; /&gt;</code>//img支持跨域</li><li>他查看邮件，就帮我买了200商品</li></ul><h3 id="csrf"><a href="#csrf" class="headerlink" title="csrf"></a>csrf</h3><ul><li>使用post</li><li>添加二次验证</li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -67,6 +95,12 @@
     
     <content type="html"><![CDATA[<h3 id="url到页面加载过程"><a href="#url到页面加载过程" class="headerlink" title="url到页面加载过程"></a>url到页面加载过程</h3><ul><li>dns解析</li><li>浏览器根据ip地址向服务器发送请求：三次握手建立tcp连接</li><li>服务器处理http请求，并返回给浏览器</li><li>渲染过程1<ul><li>根据html生成dom树</li><li>根据css生成cssom</li><li>dom tree和cssom整合形成render tree</li></ul></li><li>渲染过程2<ul><li>根据render tree渲染页面</li><li>遇到script暂停渲染，优先加载并执行js代码，完成再继续</li><li>直至把render tree渲染完成</li></ul></li></ul><h3 id="window-onload和DOMContentLoaded"><a href="#window-onload和DOMContentLoaded" class="headerlink" title="window.onload和DOMContentLoaded"></a>window.onload和DOMContentLoaded</h3><ul><li>渲染遇到img标签不会阻塞，而是会继续向后。img加载完成后可能触发重绘。</li></ul><pre><code class="js">window.addEventListener(&#39;load&#39;, function(){    // 页面的全部资源加载完 包括图片 视频})document.addEventListener(&#39;DOMContentLoaded&#39;， function(){    // DOM渲染完即可执行，此时图片和视频可能还没加载完。很多情况使用此事件更合理})</code></pre><h3 id="🌟性能优化！🌟"><a href="#🌟性能优化！🌟" class="headerlink" title="🌟性能优化！🌟"></a>🌟性能优化！🌟</h3><ul><li>原则<ul><li>多使用内存、缓存</li><li>减少cpu计算，减少网络加载耗时</li></ul></li><li>做法<ul><li>让加载更快<ul><li>减少资源体积：压缩代码</li><li>减少访问此时：合并代码，ss服务器端渲染，缓存</li><li>更快的网络：使用cdn</li></ul></li><li>让渲染更快<ul><li>css放在head，js放在body的下部</li><li>用domcontentloaded触发而不是window.onload，更快触发js</li><li><strong>懒加载</strong></li><li>DOM查询缓存</li><li>合并DOM操作</li><li><strong>throttle 和 debounce</strong></li></ul></li></ul></li></ul><pre><code class="js">//懒加载//html&lt;img id=&#39;img1&#39; src=&#39;preview.png&#39; data-realsrc=&#39;abc.png&#39;/&gt;//jsvar img1 = document.getElementById(&#39;img1&#39;);img1.src = img1.getAttribute(&#39;data-realsrc&#39;);//防抖：停止后一段时间执行function debounce(fn, delay = 500){    //timer是闭包中的    let timer;    return function(){        if(timer) clearTimeout(timer);        timer =  setTimeout(()=&gt;{            fn.apply(this, arguments);//apply 不是 call            timer = null; //必须，timer=null与cleartimeout(timer)不一致！！后者timer仍然有值        }.delay)    }}//截流：无论触发多频繁，都是固定时间段执行一次/也会延迟！function throttle(fn, delay = 500){    let timer;    return function(){        if(timer) return;        timer =  setTimeout(()=&gt;{            fn.apply(this, arguments);//apply 不是 call            timer = null; //必须，timer=null与cleartimeout(timer)不一致！！后者timer仍然有值        }.delay)    }}</code></pre>]]></content>
     
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
     
     
     <tags>
@@ -91,6 +125,12 @@
     <content type="html"><![CDATA[<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><ul><li><p>clone/push：ssh/https 前者配置ssh key，后者需输入登录信息</p></li><li><p>git status</p></li><li><p>git diff [filename] //查看修改</p></li><li><p><strong>git add. or filename //提交修改 git checkout .  or [filename] 撤销修改</strong></p></li><li><p>git commit -m ‘…’ //提交到本地仓库</p></li><li><p>git push origin master 提交到master （先pull再push）</p></li><li><p><strong>git checkout -b xxx 拉取一个新的分支</strong></p></li><li><p><strong>git checkout xxx 切换分支</strong></p></li><li><p>git branch 查看分支</p></li><li><p><strong>(master) git merge feature</strong>：合并feature分支到master (拉代码本地合，合完push)</p></li><li><p><strong>git stash /git stash pop：</strong>暂存，如在错误的分支修改了代码，则可以暂存，再切换分支，再pop出修改。</p><pre><code>git clone xxxgit statusgit diff [文件名] 查看修改git add . or git add filename //提交修改git commit -m &#39;....&#39;    //</code></pre></li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -109,6 +149,12 @@
     
     <content type="html"><![CDATA[<h3 id="🌟cookie"><a href="#🌟cookie" class="headerlink" title="🌟cookie"></a>🌟cookie</h3><ul><li>本身用于浏览器和server通信，是http请求的一部分</li><li>被借用来做本地存储</li><li><code>document.cookie = &#39;a=xx&#39;</code> 来追加或覆盖。形式为通过分号分割的key=value字符串。非常古老。</li><li><strong>缺点</strong>：<ul><li>存储量小：<strong>最大4kb</strong>。因为通信每次需要带上cookie，太大会影响时间效率。</li><li>会发送给服务端，<strong>增加通信量</strong></li><li>只能用document来修改，修改方法简陋不方便</li></ul></li></ul><h3 id="🌟H5存储（localStorage-sessionStorage）"><a href="#🌟H5存储（localStorage-sessionStorage）" class="headerlink" title="🌟H5存储（localStorage, sessionStorage）"></a>🌟H5存储（localStorage, sessionStorage）</h3><ul><li>最大可存储<strong>5m</strong>（每个域）</li><li>api更简易：<strong>setItem, getItem</strong>。</li><li>不会随着请求被发送</li></ul><pre><code class="js">localStorage.setItem(&#39;a&#39;, 100); //此处100会被转成字符串sessionStorage.setItem()//同上</code></pre><ul><li><strong>localStorage会永久存储，除非手动代码删除（更频繁使用）</strong></li><li><strong>sessionStorage在关闭会话后被删除</strong></li></ul><p><em>这三块存储可以在控制台的application中看到</em></p>]]></content>
     
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
     
     
     <tags>
@@ -137,6 +183,12 @@
     <content type="html"><![CDATA[<h3 id="🌟XMLHttpRequest"><a href="#🌟XMLHttpRequest" class="headerlink" title="🌟XMLHttpRequest"></a>🌟XMLHttpRequest</h3><pre><code class="js">//手写xhrconst xhr = new XMLHttpRequest();xhr.open(&#39;GET&#39;, &#39;data.json&#39;, true) //异步用true，可支持同步false。xhr.onreadystatechange = function(){ //无参数    if(xhr.readyState === 4){        if(xhr.status === 200){            alert(JSON.parse(xhr.responseText)) //responseText!  json解析字符串        }    }}xhr.send(null); //发送数据//如post需要发送数据const postData = {};xhr.send(JSON.stringify(postData)); //转字符串</code></pre><ul><li><p>xhr.readyState：0：未调用send；1:已调用send；2:接收到全部响应；3解析响应内容；4完成解析，可在客户端调用。</p></li><li><p>Xhr.state:</p><ul><li>2xx：表示成功</li><li>3xx：重定向，浏览器直接跳转。301永久重定向；302临时重定向；304读取缓存。</li><li>4xx：客户端请求错误，404没有资源，403没有权限</li><li>5xx：服务端出错</li></ul><p><em>403缓存：在http响应头中设定，相关字段：expires, cache-control, E-tag, LastModified。cache-control优先级大于expires，e-tag大于lastmodified。cachecontrol中的maxage设置了时长，单位秒</em></p></li></ul><h3 id="🌟-同源策略"><a href="#🌟-同源策略" class="headerlink" title="🌟 同源策略"></a>🌟 同源策略</h3><ul><li>ajax请求时，<strong>浏览器</strong>要求<strong>当前页面</strong>和<strong>sever</strong>必须同源。（安全）</li><li>同源：协议、域名、端口一致。</li><li>无视同源策略的几种情况<ul><li>图片<code>&lt;img src=&#39;&#39;/&gt;</code></li><li>js<code>&lt;script src=&#39;&#39;&gt;&lt;/script&gt;</code> (<strong>JSONP</strong>的基础)</li><li>css<code>&lt;link href=&#39;&#39;/&gt;</code></li></ul></li></ul><h3 id="🌟跨域"><a href="#🌟跨域" class="headerlink" title="🌟跨域"></a>🌟跨域</h3><ul><li><p>所有的跨域都要与服务端进行配合</p></li><li><p><strong>JSONP</strong>：</p><ul><li><p><code>script</code>可以绕过同源策略</p></li><li><p>服务端可以拼接动态数据返回</p><pre><code class="js">//本地jswindow.callback = function(d){    console.log(d)}//返回的jscallback({x:&#39;xxx&#39;}) //数据可以在参数中体现</code></pre></li></ul></li><li><p><strong>CORS</strong>：服务器设置http header</p><pre><code>response.setHeader(&#39;Access-Control-Allow-Origin&#39;)...</code></pre></li></ul><h3 id="promise实现ajax"><a href="#promise实现ajax" class="headerlink" title="promise实现ajax"></a>promise实现ajax</h3><pre><code class="js">function ajax(url){    return new Promise((resolve, reject) =&gt; {        const xhr = new XMLHttpRequest();        xhr.open(&#39;GET&#39;, url, true);        xhr.onreadystatechange = function(){            if(xhr.readyState === 4){                if(xhr.status === 200){                    resolve(JSON.parse(xhr.responseText))                }                else reject(new Error(&#39;error&#39;))            }        }        xhr.send(null)    })}ajax(url).then((res)=&gt;{console.log(res)}).catch((err) =&gt; {console.error(err)});</code></pre><h3 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a>Fetch</h3><pre><code class="js">fetch(url); //返回一个promise</code></pre><ul><li>与jquery.ajax区别：<ul><li>当状态码为4xx和5xx时，也会resolve</li><li>fetch不会从服务端发送或接收cookie</li></ul></li></ul><h3 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h3><ul><li><strong>是对XHR的封装</strong></li><li>也支持promise</li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -164,6 +216,12 @@
     <content type="html"><![CDATA[<h3 id="🌟事件绑定"><a href="#🌟事件绑定" class="headerlink" title="🌟事件绑定"></a>🌟事件绑定</h3><pre><code class="js">//通用的事件绑定函数(简易)function bindEvent(elem, type, fn){    elem.addEventListener(type, fn);}const btn = document.getElementById(&#39;btn1&#39;);bindEvent(btn, &#39;click&#39;, event =&gt; {    console.log(event.target); //获取点击源元素(早期IE是srcElement)，当前元素是currentTarget    event.preventDefault(); //阻止默认行为如链接的跳转    alert(&#39;clicked!&#39;);})</code></pre><h3 id="🌟事件冒泡"><a href="#🌟事件冒泡" class="headerlink" title="🌟事件冒泡"></a>🌟事件冒泡</h3><pre><code class="js">//点击其他地方会触发body的事件，但点击p1会触发自己的事件const p1 = document.getElementById(&#39;p1&#39;);const body = document.body;bindEvent(body, &#39;click&#39;, event =&gt; {    alert(&#39;clicked&#39;);})bindEvent(p1, &#39;click&#39;, event =&gt; {    event.stopPropagation();//阻止冒泡    alert(&#39;p1 clicked&#39;)})</code></pre><h3 id="🌟事件代理"><a href="#🌟事件代理" class="headerlink" title="🌟事件代理"></a>🌟事件代理</h3><pre><code class="js">const div = document.getElementById(&#39;div3&#39;);bindEvent(div, &#39;click&#39;, e =&gt; {    e.preventDefault();    const target = e.target;    if(target.nodeName === &#39;P&#39;)        alert(&#39;...&#39;)})</code></pre><h3 id="🌟通用的绑定函数（含代理）"><a href="#🌟通用的绑定函数（含代理）" class="headerlink" title="🌟通用的绑定函数（含代理）"></a>🌟通用的绑定函数（含代理）</h3><pre><code class="js">function bindEvent(elem, type, selector, fn){    if(fn == null){        fn = selector;        selector = null;    }    elem.addEventListener(type, e =&gt; {        const target = e.target;        if(selector){ //有代理            if(target.matches(selector)){                fn.call(target, e);            }        }else{ //无代理            fn.call(target, e);        }    })}</code></pre>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -189,6 +247,12 @@
     <content type="html"><![CDATA[<h3 id="🌟DOM"><a href="#🌟DOM" class="headerlink" title="🌟DOM"></a>🌟DOM</h3><ul><li><p>DOM本质是从html语言解析出来的树结构</p></li><li><p>DOM操作：</p><ul><li><p><strong>获取DOM节点</strong></p><pre><code class="js">document.getElementById(&#39;&#39;) //元素document.getElementsByTagName(&#39;&#39;) //集合document.getElementsByClassName(&#39;&#39;) //集合document.querySelectorAll(&#39;p&#39;) //集合</code></pre><ul><li>节点property和节点attribute</li></ul><pre><code class="js">//propertyconst pList = document.getElementsByTagName(&#39;p&#39;);const p = pList[0];p.style.width = &#39;100px&#39;;p.className = &#39;.red&#39;consoleo.log(p.nodeName);consoleo.log(p.nodeType);//attributep.setAttribute(&#39;data-name&#39;, &#39;xxx&#39;);p.setAttribute(&#39;style&#39;, &#39;font-size:15px;&#39;);</code></pre><ul><li><strong>区别</strong>：property修改对象属性，不会体现在html结构中；attribute修改html属性，会改变html结构。</li><li><strong>相同点</strong>：两者都有可能引起DOM重新渲染。</li></ul></li><li><p><strong>DOM结构操作</strong>：</p><pre><code class="js">//新增 插入const div1 = document.getElementById(&#39;x&#39;);const p = document.createElement(&#39;p&#39;);p.innerHTML = &#39;p1&#39;;div1.appendChild(p);//移动已有节点，也可选中节点后，使用appendChild//获取父节点p.parentNode;//非函数！！！//获取子节点p.childNodes//子节点类型筛选Array.portotype.slice.call(p.childNodes).filter( child =&gt; {    if(child.nodeType === 1) return true;    else return false;})//删除子元素div1.removeChild(p);</code></pre></li></ul></li><li><p><strong>🌟DOM性能优化🌟</strong>：DOM操作非常昂贵，会消耗CPU，避免频繁操作。</p><ul><li><p>缓存DOM查询结果。</p></li><li><p>将频繁操作改为一次性操作，<strong>如创建文件片段</strong>。</p><pre><code class="js">//1.缓存查询//错误示范for(let i = 0; i &lt; document.getElementsByClassName(&#39;xx&#39;).length; i++){    ...}//应将查询保存至变量//2.一次性操作 创建文件片段const frag = document.createDocumentFragment();frag.appendChild(p1);frag.appendChild(p2);div.appendChild(frag);</code></pre></li></ul></li></ul><h3 id="🌟BOM"><a href="#🌟BOM" class="headerlink" title="🌟BOM"></a>🌟BOM</h3><ul><li><p><strong>navigator</strong> 浏览器信息</p></li><li><p>screen 屏幕</p></li><li><p><strong>location</strong> 地址</p></li><li><p>history 前进后退</p><pre><code class="js">//浏览器const ua = navigator.userAgentua.indexOf(&#39;Chrome&#39;) //判断浏览器是否为chrome//screenscreen.widthscreen.height//location 拆分urllocation.hreflocation.protocollocation.searchlocation.hashlocation.pathname//historyhistory.back();history.forward();</code></pre></li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -212,10 +276,14 @@
     <content type="html"><![CDATA[<h3 id="基本背景"><a href="#基本背景" class="headerlink" title="基本背景"></a>基本背景</h3><ul><li>JS是单线程语言</li><li><strong>JS和dom渲染共用同一个线程</strong>，因为js可以修改dom结构。js和dom渲染会互相阻塞</li><li>单线程的背景导致耗时的事情如网络请求必须<strong>异步</strong></li><li>同步异步区别：<ul><li>异步通过回调来实现callback，不阻塞当前代码</li><li>同步会阻塞，如alert</li></ul></li></ul><h3 id="🌟应用场景"><a href="#🌟应用场景" class="headerlink" title="🌟应用场景"></a>🌟应用场景</h3><ul><li>网络请求：如ajax 图片加载</li><li>定时任务：如setTimeout</li></ul><p>###🌟Promise</p><ul><li>promise的产生是为了应对callback hell：即多层回调。但他的本质也是使用了回调函数，只是把接口抛出，使得可以串联处理。</li></ul><img src="/2020/03/09/js%E5%BC%82%E6%AD%A5%E5%8D%95%E7%BA%BF%E7%A8%8B/hell.png" style="zoom:70"><ul><li><p>优点：多个任务串联、管道式的编程</p></li><li><p>手写promise加载图片</p><pre><code class="js">function loadImg(src){    return new Promise((res, rej) =&gt; {        let img = document.createElement(&#39;img&#39;);        img.onload = () =&gt; { res(img);}        img.onerror = () =&gt; { rej(new Error(`${src} 图片加载失败`));}        img.src = src; //非 .src()    })}//加载两个图片const url1 = &#39;https://www.baidu.com/img/bd_logo1.png&#39;;const url2 = &#39;https://www.baidu.com/img/baidu_resultlogo@2.png&#39;;loadImg(url1).then(    (img1)=&gt;{        console.log(img1.width);        return img1;//    }).then(    (img1) =&gt; {        console.log(img1.height);        return loadImg(url2)    }).then(    (img2)=&gt;{        console.log(img2.width);        return img2;//    }).then(    (img2) =&gt; {        console.log(img2.height);    }).catch(    (err) =&gt; {        console.err(err)    });</code></pre></li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
     
     <tags>
-      
-      <tag>学习笔记</tag>
       
       <tag>js</tag>
       
@@ -239,10 +307,14 @@
     <content type="html"><![CDATA[<h3 id="🌟作用域"><a href="#🌟作用域" class="headerlink" title="🌟作用域"></a>🌟作用域</h3><ul><li><p>指<strong>变量的合法使用范围</strong>；</p><img src="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/zyy.png" style="zoom:70"></li><li><p>全局作用域：变量没有收到函数的约束，全局使用，如window, document对象</p></li><li><p>函数作用域：只能在当前函数内使用，如上图</p></li><li><p>块级作用域：ES6新增，{}代码块如if语句</p></li><li><p>自由变量：变量被使用，当前作用域没有被定义，则向上一级作用域去找，直到找到为止，如全局也没有，则报错:xx is not defined。</p></li></ul><h3 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h3><pre><code class="js">//变量提升：变量声明（非定义），函数声明console.log(a); //undefinedvar a = 100;fn(&#39;zhangsan&#39;); //zhangsan 100function fn(name){    b = 100;    console.log(name, b);    var b;}</code></pre><h3 id="🌟闭包"><a href="#🌟闭包" class="headerlink" title="🌟闭包"></a>🌟闭包</h3><ul><li><p><strong>定义</strong>：自由变量的查找，<strong>是在函数定义的地方，向上级作用域查找</strong>，不是在执行的地方。</p></li><li><p><strong>两个场景</strong>：</p><ul><li><strong>函数作为参数被传递</strong></li><li><strong>函数作为返回值被返回</strong></li></ul><pre><code class="js">//example1function g(){    const a = 100;    return function(){        console.log(a);    }}const a = 200;let fn1 = g();fn1(); //100//example2const b = 100;function fn2(){   console.log(b); }function fn3(fn){    const b = 200;    fn2(); //100}fn3();</code></pre></li></ul><p>###🌟this</p><ul><li><p>this指向的值，<strong>是函数执行的时候被确定的，不是在定义的时候被确定的</strong>。</p></li><li><p>使用场景</p><ul><li>普通函数调用</li><li>使用call/apply/bind，区别：call，参数很多项；apply：参数1项；bind：返回新的函数，不会马上执行，参数很多项。</li><li>作为对象方法被调用</li><li>class方法中调用</li><li>箭头函数的this取值：绑定this取值，为定义时上一层的this取值。</li></ul><pre><code class="js">//1普通函数function fn(){    console.log(this) }fn()//window//2apply call bindfn.call({x:100}) //{x:100}fn2 = fn.bind({x:100})fn2();// {x:100}//3对象方法被调用const zhang = {    name: &#39;zhang&#39;,    sayHi(){        console.log(this.name)    },    wait(){        setTimeout(function(){            console.log(this.name) // this === window        },2000)    }}//4箭头函数中被调用const zhang = {    name: &#39;zhang&#39;,        sayHi(){        console.log(this.name)    },    wait(){        setTimeout(()=&gt;{console.log(this.name)},2000) //this === zhang    }}//5class中class People{    constructor(name){        this.name = name;    }    sayHi(){        console.log(this)     }}const zhang = new People(&#39;zhang&#39;);zhang.sayHi() // zhang这一对象</code></pre></li></ul><p>###🌟手写一个bind函数</p><pre><code class="js">Function.prototype.newBind = function(){    const args = Array.prototype.slice.call(arguments);    //获取this    const t = args.shift();    //获取fn    const self = this;    return function(){        return self.apply(t, args);     }}</code></pre><h3 id="🌟闭包的应用"><a href="#🌟闭包的应用" class="headerlink" title="🌟闭包的应用"></a>🌟闭包的应用</h3><ul><li><p><strong>隐藏数据</strong>，只提供api</p><pre><code class="js">function creatCache(){    const data = {};    return {        set: function(key, value){            data[key] =  value;        }, //逗号！        get: function(key){            return data[key]        }    }}const c = creatCache();c.set(1,2);c.get(1);</code></pre></li><li><p><strong>debounce/throttle</strong></p></li><li><p><strong>实现单例</strong></p><pre><code class="js">function Singleton(){    this.data = &#39;&#39;;}Singleton.getSingleton = (function(){    let single;    return function(){    if(!single){        single = new Singleton();    }    return single;    }})();let a = Singleton.getSingleton();let b = Singleton.getSingleton();console.log(a === b);//true</code></pre></li></ul><ul><li><p>给每个列表点击事件，点到谁就alert序号</p><pre><code class="js">let a;for(let i = 0; i &lt; 10; i++){ //主要是let i不能放在上一行 否则都是出现10    a = document.createElement(&#39;a&#39;);    a.innerHTML = i + &#39;&lt;br&gt;&#39;    a.onclick = function(){        alert(i);    }    document.body.appendChild(a);}</code></pre></li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
     
     <tags>
-      
-      <tag>学习笔记</tag>
       
       <tag>js</tag>
       
@@ -264,10 +336,14 @@
     <content type="html"><![CDATA[<h3 id="数据类型："><a href="#数据类型：" class="headerlink" title="数据类型："></a>数据类型：</h3><ul><li><p>值类型：Number, String, Boolean, <strong>Undefined</strong>, symbol</p></li><li><p>引用类型：Object, <strong>null</strong>,[ array, function]</p></li><li><p>区别：值类型数据存在栈内存里，引用类型存在堆里（栈里只存了堆内存的地址），所以引用类型复制会共用同一块内存的对象。</p><pre><code class="js">let a; //undefined 不可用const const必须初始化一个值const b = 100; //Numberconst c = &#39;100&#39;; //Stringconst d = true; //boolconst e = Symbol(&#39;100&#39;); //symbol es6中const f = {x:100};const g = null; // 特殊引用类型，指向一个空地址const h = [1,2,3,4];const i = function(){}//特殊引用类型，但不储存数据，所以没有拷贝一说。也可以不算引用类型单独算一类</code></pre></li></ul><p>###<strong>🌟类型判断</strong>：</p><ul><li><p><strong>typeof</strong>：识别所有的值类型，能识别函数，能判断是否是引用类型。也即不能区分object，array，null。</p><ul><li><p>深拷贝问题：仅需要拷贝object和array</p><pre><code class="js">function deepClone(obj = {}){    if(typeof obj !== &#39;object&#39; || obj == null)        return obj;    let res;    if(obj instanceof Array) res = [];    else res = {};    for(let i in obj){        //判断是否是自己的属性，for in会拿到对象的原型里的属性        if(obj.hasOwnProperty(i)){            //递归            res[i] = deepClone(obj[i])        }    }    return res;}</code></pre></li></ul></li></ul><p>###<strong>🌟类型转换</strong>：</p><ul><li><p><strong>字符串拼接</strong></p><pre><code class="js">100 + &#39;10&#39; = &#39;10010&#39;;100 + 10 = 110;true + &#39;10&#39; = &#39;true10&#39;</code></pre></li><li><p><strong>==</strong> 两等于 会强制类型转换尽量相等。<strong>除了null == undefined（jquery源码，可用于判断两种情况），其他最好都使用===</strong></p><pre><code class="js">//双等的情况true == 1;true == &#39;1&#39;false == &#39;&#39;;false == &#39;0&#39;;false == 0;false != 2,3,4... or &#39;2&#39;;true != 2,3,4... or &#39;2&#39;;100 == &#39;100&#39;;0 == &#39;&#39;;</code></pre></li><li><p>truely变量和falsely变量：if语句基于此判断判断</p><ul><li>truely : !!a === true / falsely: !!a === false </li></ul><pre><code class="js">//所有的falsely变量：!!0 === false;!!NaN === false;!!&#39;&#39; === false;!!undefined === false;!!false === false;!!null === false;//与强制转换的区别:判断一个变量是否满足if，不是直接强制转换，而是判断其是否是truely变量&#39;0&#39; == false;!!&#39;0&#39; === true;</code></pre><ul><li>逻辑判断：</li></ul><pre><code class="js">console.log(10 &amp;&amp; 0)  //0console.log(&#39;&#39; || &#39;abc&#39;) //abc</code></pre></li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
     
     <tags>
-      
-      <tag>学习笔记</tag>
       
       <tag>js</tag>
       
@@ -289,10 +365,14 @@
     <content type="html"><![CDATA[<p>本次笔记主要整理js的三座大山之一：<strong>原型和原型链</strong>。</p><h3 id="🌟原型和原型链"><a href="#🌟原型和原型链" class="headerlink" title="🌟原型和原型链"></a>🌟原型和原型链</h3><ul><li><p>构造函数、原型和实例的关系</p><ul><li><p><strong>构造函数</strong>可以是任何的首字母大写的函数，通过<strong>prototype​</strong>指针找到其<strong>原型对象</strong>。以构造函数新建的对象<strong>实例</strong>，共享原型对象里的内容，包括函数和变量，即使在实例声明后再修改原型也会同步更改，实例通过<strong>__proto__</strong>找到其原型对象。原型对象使用<strong>constructor</strong>指针找到对应构造函数。</p><pre><code class="js">var a = new Array();a.__proto__ === Array.prototype;//trueArray === a.__proto__.constructor;//true</code></pre><pre><code class="javascript">//为数组添加sort方法，使用快排实现Array.prototype.sort = function(){ //插件的实现 修改原型    quickSort_s(this, 0, this.length - 1);}function quickSort_s(A, i, j){    if(i &gt;= j) return;    var p = partition_s(A, i, j);    quickSort_s(A, i, p-1);    quickSort_s(A, p+1, j)}function partition_s(A, i, j){    var pivot = A[j];    var p = i,        temp;    for(let q = i; q &lt; j; q++){        if(A[q] &lt; pivot){            temp = A[q];            A[q] = A[p];            A[p] = temp;            p +=1;        }    }    A[j] = A[p];    A[p] = pivot;    return p;}</code></pre></li></ul></li><li><p><strong>原型链与instanceof</strong>：</p><ul><li>Student的原型是People的一个实例，People的原型是Object的一个实例，Object的prototype为null；</li><li>使用对象属性和方法会现在本对象中找，找不到再去</li></ul><pre><code class="js">//instanceof 原理function newInstanceof(obj, Cons){    let p = obj.__proto__;    while(p){ //终止条件 null        if(Cons.prototype === p) return true;        p = p.__proto__;    }    return false;}</code></pre></li><li><p><strong>class继承</strong> 【ES6 v8引擎】语法糖</p><pre><code class="js">class People{    constructor(name){        this.name = name;    }    eat(){        console.log(`${this.name} is eating`);    }}class Student extends People{    constructor(name, id){        super(name);        this.id = id;    } //无逗号    sayHi(){        console.log(`${this.name} ${this.id} is here`)    }}class Teacher extends People{    constructor(name, major){        super(name);        this.major = major;    }    teach(){        console.log(`${this.name} is teaching`)    }}Student.prototype.__proto__ === People.prototype;</code></pre></li><li><p><strong>ES5继承</strong>：</p><pre><code class="js">//借用构造函数，缺点，parent1原型链上的东西并未被继承function Parent1(){    this.name = &#39;parent1&#39;}function Child1()){    Parent1.call(this)    this.type = &quot;child1&quot;}//借助原型链继承，缺点，两个child2实例会互相改变function Parent2(){    this.play = [1,2,3]    this.name = &#39;parent1&#39;}function Child2()){    this.type = &quot;child1&quot;}Child2.prototype = new Parent2();//组合继承,function Parent3(){    this.play = [1,2,3]    this.name = &#39;parent3&#39;}function Child3(){    Parent1.call(this)    this.type = &quot;child3&quot;}Child3.prototype = new Parent3();//组合优化1 不能知道父类类型Child.prototype = Parent.prototype；//组合优化2Child.prototype = Object.creat(Parent.prototype); //object.creat()使用现有对象来提供新创建对象的__proto__Child.prototype.constructor === Child;//为原型添加c指针</code></pre></li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
     
     <tags>
-      
-      <tag>学习笔记</tag>
       
       <tag>js</tag>
       
@@ -313,6 +393,12 @@
     
     <content type="html"><![CDATA[<h3 id="1-二分查找"><a href="#1-二分查找" class="headerlink" title="1.二分查找"></a>1.二分查找</h3><ul><li><p><strong>优点</strong>：</p><ul><li>o(logn)复杂度的查找效率，非常恐怖</li><li>节省内存，同样的查找工作虽然哈希和跳表也可以做，但他们需要额外空间</li></ul></li><li><p><strong>限制</strong>：</p><ul><li>有序</li><li>只能基于顺序表，即数组，因为要实现随机访问。</li><li>数据量太大或太小都不合适，太小不如直接遍历，数据量大需要很多<strong>连续</strong>空间。</li></ul></li><li><p>代码</p><ul><li><p><strong>非递归，不存在重复元素</strong></p><pre><code class="js">function binSearch(A, n, k){    var low = 0;    var high = n-1;    var mid;    while(low &lt;= high){        mid = Math.floor((high + low)/2);        if(A[mid] === k) return mid;        if(A[mid] &gt; k) high = mid - 1;        if(A[mid] &lt; k) low = mid + 1;    }    return -1;}</code></pre></li><li><p>以上代码三个要点：</p><ul><li>循环条件 low &lt;= high 不是&lt;</li><li>high和low的更新，high=mid-1而不是mid，否则会死循环</li><li>mid = (high + low) / 2 可能会溢出，可以写成low + (high-low)/2</li></ul></li><li><p><strong>递归实现</strong></p><pre><code class="js">function binSearch(A, n, k){    binSearch_c(A, 0, n-1, k);}function binSearch_c(A, low, high, k){    if(low &gt; high) return -1;    var mid = Math.floor((high+low)/2);    if(A[mid] === k) return mid;    if(A[mid] &gt; k) return binSearch_c(A, low, mid-1, k); //需要返回    if(A[mid] &lt; k) return binSearch_c(A, mid+1, high, k);}</code></pre></li></ul></li></ul>]]></content>
     
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
     
     
     <tags>
@@ -341,12 +427,20 @@
     <content type="html"><![CDATA[<h3 id="🌟递归"><a href="#🌟递归" class="headerlink" title="🌟递归"></a>🌟递归</h3><p>递归，是一种编程技巧，可以让代码更简洁。</p><ul><li>递归的三个条件：<ul><li>一个问题可以分解成几个子问题的解</li><li>问题与子问题除了数据规模不一样，求解思路完全一样</li><li><strong>存在递归终止条件</strong>: 写函数时，先考虑这个</li></ul></li></ul><h3 id="🌟排序"><a href="#🌟排序" class="headerlink" title="🌟排序"></a>🌟排序</h3><p><img src="/2020/03/07/%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/overview.jpg" srcset="/img/loading.gif" alt="overview"></p><ul><li><strong>稳定性</strong>：作用：在针对某一key进行排序的过程中，保证其他key有序</li><li><strong>逆序度</strong>：<strong>满有序度 - 有序度</strong>。冒泡和插入的实际交换次数都是等于逆序度 。因此其平均时间复杂度为o(n2)</li></ul><hr><h4 id="1-插入排序"><a href="#1-插入排序" class="headerlink" title="1.插入排序"></a>1.插入排序</h4><p>原地排序、稳定、最好时间复杂度o(n)，最差o(n2)，平均o(n2)。与数组的插入一致，有数据的搬移。插入排序的优化<strong>希尔排序</strong>。</p><h4 id="2-冒泡排序"><a href="#2-冒泡排序" class="headerlink" title="2.冒泡排序"></a>2.冒泡排序</h4><p>原地排序、稳定、最好时间复杂度o(n)，最差o(n2)，平均o(n2)。<strong>比插入排序要差</strong>，虽然交换次数一致，但冒泡每次需要3个赋值语句。</p><h4 id="3-选择排序"><a href="#3-选择排序" class="headerlink" title="3.选择排序"></a>3.选择排序</h4><p>原地排序、<strong>不稳定</strong>、最好时间复杂度o(n2)，最差o(n2)，平均o(n2)。</p><hr><p>//适合大规模的数据排序方法，快排和并归都用到了分治的思想，也用到了递归。<strong>分治是一种解决问题的处理思想，递归是一种编程技巧</strong>。</p><h4 id="4-并归排序"><a href="#4-并归排序" class="headerlink" title="4.并归排序"></a>4.并归排序</h4><pre><code class="js">function mergeSort(A, n){    mergeSort_c(A, 0, n-1);}function mergeSort_c(A, i, j){    if(i &gt;= j) return;    var mid = Math.floor((i + j)/2);    mergeSort_c(A, i, mid);    mergeSort_c(A, mid+1, j);    merge(A, i, mid, j);}function merge(A, i, mid, j){    var temp = [];    var p = i,        q = mid+1;    while(p &lt;= mid &amp;&amp; q &lt;= j){        if(A[p] &gt; A[q]){            temp.push(A[p]);            p += 1;        }        if(A[p] &lt;= A[q]){            temp.push(A[q]);            q += 1;        }    }    if(p &gt; mid){        for(; q&lt;=j; q++) temp.push(A[q])    }    if(q &gt; j){        for(; p&lt;=mid; p++) temp.push(A[p])    }    for(var t = i; t &lt;= j; t ++){        A[t] = temp.shift();    }}</code></pre><p><strong>优点：时间复杂度</strong>：最好，最坏，平均都是o(nlgn)。每次合并有序数组的平均时间复杂度为o(n)，所以可以<strong>利用递归的递推公式</strong>将时间复杂度也分解：</p><pre><code>T(n) = 2*T(n/2) + n     = 2*(2*T(n/4) + n/2) + n = 4*T(n/4) + 2*n     = 4*(2*T(n/8) + n/4) + 2*n = 8*T(n/8) + 3*n     = 8*(2*T(n/16) + n/8) + 3*n = 16*T(n/16) + 4*n     ......     = 2^k * T(n/2^k) + k * n     ......</code></pre><p>当n/2^k=1时，T(n) = Cn+nlog2n。</p><p>我理解的是，分层后每层的合并的时间复杂度为o(n)，分了logn层。</p><p><strong>缺点：空间复杂度</strong>：o(n)，非o(nlogn)，空间会释放，cpu一次只执行一个函数，最大就是n。<strong>由于merge函数无法原地执行。</strong></p><h4 id="5-快排"><a href="#5-快排" class="headerlink" title="5.快排"></a>5.快排</h4><ul><li><strong>特点</strong>：不稳定，原地排序，最好和平均复杂度为o(nlogn)，<strong>递推公式与并归一致</strong>，大部分情况下能做到平均情况，<strong>极端情况下退化到</strong>o(n2)。</li><li>原地排序实现：</li></ul><pre><code class="js">function quickSort(A, n){    quickSort_c(A, 0, n-1);}function quickSort_c(A, i, j){        if(i &gt;= j) return;        var p = partition(A, i, j);        quickSort_c(A, i, p-1);// p-1非p        quickSort_c(A, p+1, j);}function partition(A, i, j){    var pivot = A[j];    var q = i; //var q, p = i 这种写法是错误的。    var temp;    for(var p = i; p &lt;= j-1; p++){         if(A[p] &lt; pivot){            temp = A[p];            A[p] = A[q];            A[q] = temp;            q+=1;        }    }    A[j] = A[q];    A[q] = pivot;    return q;}</code></pre><ul><li><p>🌟<strong>快排应用：o(n)复杂度寻找数组內第k大的数据</strong>：每次划分找到pivot，判断pivot是否等于k+1，等于则返回找到，否则，继续在可能的区间划分。时间复杂度 n + n/2 + n/4+ … 1 = 2n -1 </p></li><li><p><strong>🌟快排优化</strong>：合理选择分区点pivot，避免最差情况。</p><ul><li>1）三数取中，在第一个、中点、最后一个选中间值作为pivot。</li><li>2）随机法。</li></ul></li><li><p>快排避免堆栈溢出：主要是递归的问题，可以手写堆栈，模拟入栈和出栈，摆脱系统栈的限制。或限制递归深度。</p></li></ul><h4 id="6-线性排序"><a href="#6-线性排序" class="headerlink" title="6.线性排序"></a>6.线性排序</h4><ul><li><strong>特点：o(n)</strong></li><li><strong>桶排序bucket sort</strong>：将数据先放进桶里，在桶内再进行排序（一般是快排）。<ul><li>条件：容易划分、桶天然有序、分布均匀</li><li>时间复杂度：分成m个桶，每个桶k个，时间复杂度时m<em>(k\</em>logk) = n *logn/m = o(n)</li><li><strong>🌟场景</strong>：比较适合在‘<strong>外部排序</strong>’中，也即数据存储在磁盘。内存百兆，排序几G的数据，可以先扫描一遍数据，获得最大值和最小值，然后划分成不同的区间的文件（桶），依次将数据存入对应的文件，再依次对每一文件中的数据使用快排。如单个文件內的数据不理想，仍过大，则可再此分桶。</li></ul></li><li><strong>计数排序counting sort</strong>：一种特殊的桶排序，只是桶内无须再排。<strong>如年龄</strong>、<strong>成绩</strong>。</li><li><strong>基数排序radix sort</strong>：基于其他稳定的排序算法，由后位向前位依次排序，我的理解是越前面的位数是拥有越高权重的key，先排序低权重key，再依次排序高权重的key。这样假如数据有10位，则只需排10遍稳定排序。场景有电话号码、字典等。</li></ul><h4 id="7-高级语言中的排序"><a href="#7-高级语言中的排序" class="headerlink" title="7.高级语言中的排序"></a>7.高级语言中的排序</h4><p>高级语言中的排序方法往往是综合使用了多种排序方法。</p><ul><li>小数据量优先使用归并排序</li><li>数据量大则改用快速排序（三数取中）</li><li>元素个数极小时，使用插入排序，此时O(n2) 时间复杂度的算法并不一定比 O(nlogn) 的算法执行时间长</li><li>**</li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
     
     <tags>
       
       <tag>数据结构与算法</tag>
       
-      <tag>学习笔记</tag>
+      <tag>排序</tag>
+      
+      <tag>递归</tag>
       
     </tags>
     
@@ -362,12 +456,16 @@
     <content type="html"><![CDATA[<h3 id="🌟基础线性表：数组"><a href="#🌟基础线性表：数组" class="headerlink" title="🌟基础线性表：数组"></a>🌟基础线性表：数组</h3><ul><li><strong>特点</strong><ul><li>连续内存空间</li><li>随机访问（非随机查找），可根据寻址公式直接找到对应的内存空间。（a[i]_address = base_address + i * data_type_size，这个公式解释了为什么从0开始）</li><li>申请只能固定的空间</li></ul></li><li>低效的插入和删除：插入和删除的平均时间复杂度为o(n），需迁移数据</li><li><strong>动态扩容</strong>：插入时，如超出数组长度时添加数据申请新的空间（如1.5倍长度），并进行数据迁移。使用平摊时间复杂度可以计算得平均时间复杂度o(1)。</li><li>在c语言中警惕数组越界</li><li><strong>容器</strong>：高级编程语言中一般有高级的容器来表示数组，如js中的list，但其封装好了如动态扩容和一系列底层函数。但js中的list是连续的空间吗？</li></ul><h3 id="🌟基础线性表：链表"><a href="#🌟基础线性表：链表" class="headerlink" title="🌟基础线性表：链表"></a>🌟基础线性表：链表</h3><ul><li><p><strong>特点</strong></p><ul><li>动态的空间分配</li><li>不支持随机访问，需要遍历</li></ul></li><li><p><strong>单链表</strong>：头节点、data+next、最后一个节点的next为null，其插入和删除的时间复杂度为o(1)，访问时间复杂度为o(n)</p></li><li><p><strong>循环链表</strong>：在单链表的基础上，最后一个极点的next也指向头节点。应用：约瑟夫问题。</p></li><li><p><strong>双向链表</strong>：头节点、pre+data+next。其插入和删除时间复杂度为o(1)，虽然单链表也是o(1)，但是对于特定的删除和插入，如删除给定指针指向的节点，需要找到其前面的节点，双向链表更优。更大的空间消耗，更小的时间损失，空间换时间。</p></li><li><p><strong>双向循环链表</strong></p></li><li><p>基于单链表实现LRU算法：</p><ul><li>维持一个有序的单链表，越久访问的节点在越尾部</li><li>当有新节点加入时，从头遍历链表，如存在，则删除，并插入到头部</li><li>如不存在：<ul><li>如有空间，插入到头部</li><li>如无空间，删除尾节点后插入到头部</li></ul></li></ul></li><li><p>基本链表操作：</p><pre><code class="js">class Node(n){    this.data = n;    this.next = null;}\\链表反转function reverse(head){    var p = head;    var res = null;    var temp;    while(p){        temp = p.next;        p.next = res;        res = p;        p = temp;    }    return res;}\\链表的环的检测 \\1 快慢指针function ringCheck(head){    var fast, slow = head;    while(fast.next &amp;&amp; fast.next.next &amp;&amp; slow.next){        fast = fast.next.next;        slow = slow.next;        if(fast == slow) return true;    }    return false;}\\2 创建哈希表function ringCheck(head){    var hash = new Set();    while(head){        if(hash.has(head)){            return true;        }        else{            hash.add(head);            head = head.next;        }    }    return false;}\\3 添加访问标记function ringCheck(head){    while(head){        if(head.isVisit) return true;        else{            head.isVisit = 1;            head = head.next;        }    }}\\两个有序链表的合并\\删除链表倒数第n个：快慢指针\\求链表的中点：快慢指针</code></pre></li></ul><h3 id="🌟受限线性表：栈"><a href="#🌟受限线性表：栈" class="headerlink" title="🌟受限线性表：栈"></a>🌟受限线性表：栈</h3><ul><li>基于数组实现：顺序栈。入栈可能涉及到数组迁移，最坏时间复杂度o(n)，平摊还是o(1)</li><li>基于链表实现：链式栈。出入栈都为o(1)</li><li>栈的使用场景：<ul><li>函数调用栈</li><li>表达式求值：<ul><li>创立数字栈和运算符栈</li><li>遍历表达式，分别入两个栈</li><li>运算符入栈时需要和栈顶的运算符比较，如更高，则入栈，等于或低则出栈，取数字栈两个数字计算，结果压入数字栈</li><li>继续比较</li></ul></li><li>浏览器前进和回退，使用两个栈</li></ul></li></ul><h3 id="🌟受限线性表：队列"><a href="#🌟受限线性表：队列" class="headerlink" title="🌟受限线性表：队列"></a>🌟受限线性表：队列</h3><ul><li>基于数组实现：顺序队列</li><li>基于链表实现：链式队列</li><li>两个指针：head指针和tail指针，入队列和出队列，head和tail都向后移动。在顺序队列中也涉及到数据迁移。head指向头，tail指向最后一个元素后一位。<strong>队列空</strong>：head == tail。</li><li><strong>循环队列</strong>：一种特殊的顺序队列，队空条件为head == tail，队满条件为：(tail+1)%n == head。</li><li></li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
     
     <tags>
       
       <tag>数据结构与算法</tag>
-      
-      <tag>学习笔记</tag>
       
       <tag>数组</tag>
       
@@ -391,12 +489,16 @@
     <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本科时学习的数据结构与算法的知识日渐淡忘，恰逢春招面试需要复习，要命的是我又是个如果对什么记忆模糊就会啥也说不出来的人，毕竟没有把握的事情，没有办法信誓旦旦的说个123，因此重新温习一遍在极客时间上买的王争的课程，梳理知识体系，也为以后更轻松的复习。</p><h3 id="why-为什么要复杂度分析"><a href="#why-为什么要复杂度分析" class="headerlink" title="why- 为什么要复杂度分析"></a>why- 为什么要复杂度分析</h3><p>计算机资源是宝贵的，虽然可以用事后统计法来计算精确的时间，但是缺点有：</p><ul><li>依赖硬件条件，硬件条件有优劣</li><li>结果受数据规模影响</li></ul><p>复杂度分析：</p><ul><li>和性能测试相比，复杂度分析有不依赖执行环境、成本低、效率高、易操作、指导性强的特点。</li><li>掌握复杂度分析，将能编写出性能更优的代码，有利于降低系统开发和维护成本。</li></ul><h3 id="what-什么是复杂度分析"><a href="#what-什么是复杂度分析" class="headerlink" title="what- 什么是复杂度分析"></a>what- 什么是复杂度分析</h3><ul><li>数据结构与算法帮助计算机使用更快的时间、更省空间来解决问题</li><li>时间复杂度和空间复杂度分别从两个方面来估计消耗，实质是时间/空间消耗随着数据规模增长的变化趋势</li></ul><h3 id="how-怎么做复杂度分析"><a href="#how-怎么做复杂度分析" class="headerlink" title="how- 怎么做复杂度分析"></a>how- 怎么做复杂度分析</h3><h4 id="1-大O表示法"><a href="#1-大O表示法" class="headerlink" title="1.大O表示法"></a>1.大O表示法</h4><p>O()不是表示真实的代码执行时间，而是表示代码执行时间随数据规模增长的变化趋势，也称<strong>渐进时间复杂度</strong>，简称<strong>时间复杂度</strong>。</p><p>####2.分析的三个方法</p><ul><li>只关注循环执行次数最多的一段代码</li><li>加法：几段代码组合中取最高量级的复杂度</li><li>乘法：嵌套代码的复杂度等于嵌套内外代码复杂度的乘积</li></ul><h4 id="3-常见的复杂度"><a href="#3-常见的复杂度" class="headerlink" title="3.常见的复杂度"></a>3.常见的复杂度</h4><ul><li>多项式阶，呈多项式比例增长: o(1), o(logn), o(n), o(nlogn), o(n^x)</li><li>非多项式阶，随数据暴增，性能极差：o(2^n)，o(n!)</li><li>常见的空间复杂度：O(1)、O(n)、O(n2)。</li></ul><h4 id="4-最好、最差和平均复杂度"><a href="#4-最好、最差和平均复杂度" class="headerlink" title="4.最好、最差和平均复杂度"></a>4.最好、最差和平均复杂度</h4><ul><li>最好最差顾名思义</li><li>平均复杂度可用加权平均数求量级，也可以使用均摊的方式快速求。如一次o(n)的操作紧跟着n-1次o(1)操作，平均还是o(1)。</li></ul><p>//关于空间复杂度，是指额外需要使用的空间，数据结构本身带的空间不纳入计算</p>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
     
     <tags>
       
       <tag>数据结构与算法</tag>
-      
-      <tag>学习笔记</tag>
       
     </tags>
     
