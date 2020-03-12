@@ -4,13 +4,31 @@
   
   
   <entry>
-    <title>supoolvisor</title>
-    <link href="/2020/03/12/supoolvisor/"/>
-    <url>/2020/03/12/supoolvisor/</url>
+    <title>可视分析系统&lt;SuPoolVisor&gt;项目介绍</title>
+    <link href="/2020/03/12/zzsupoolvisor/"/>
+    <url>/2020/03/12/zzsupoolvisor/</url>
     
-    <content type="html"><![CDATA[<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><p>no url specified, no dplayer _(:3」∠)_</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="一、SuPoolVisor项目概览"><a href="#一、SuPoolVisor项目概览" class="headerlink" title="一、SuPoolVisor项目概览"></a>一、SuPoolVisor项目概览</h2><p><em>本项目源自实验室的科研课题，旨在对数字货币（<strong>Bitcoin</strong>）的交易进行<strong>可视化监管</strong>，项目的可视化部分全部是基于<strong>D3.js</strong>实现。我是这个项目的负责人（基本上是光杆司令hh），目前这个项目的论文发表在<strong>FITEE</strong>（中科院院刊），应该是大陆第一篇关于区块链可视化监管的SCI论文，并且也是我毕业论文的主要内容。SuPoolVisor = Supervisor + Pool。</em></p><h3 id="1-系统使用视频"><a href="#1-系统使用视频" class="headerlink" title="1.系统使用视频"></a>1.系统使用视频</h3><p>先直接上视频看效果。视频上传到<a href="https://streamja.com/0PP3j" target="_blank" rel="noopener">https://streamja.com/0PP3j</a>，下面是引用该地址的<code>iframe</code>链接，可以放大至全屏，为了压缩文件大小做了2倍速，Bandicam是录制软件的名字。</p><iframe height="600" width="750" src="https://streamja.com/0PP3j" frameborder="0" allowfullscreen="allowfullscreen"></iframe><h3 id="2-项目背景与主要方法"><a href="#2-项目背景与主要方法" class="headerlink" title="2. 项目背景与主要方法"></a>2. 项目背景与主要方法</h3><h4 id="1）背景"><a href="#1）背景" class="headerlink" title="1）背景"></a><em>1）背景</em></h4><p>​    比特币交易都被记录在<strong>区块链</strong>上，后者可以被认为是<strong>一个公开但是匿名的账本</strong>。我的数据是来自于<a href="http://www.block.info" target="_blank" rel="noopener">www.block.info</a> 。这个网站提供了api来获得json格式的交易数据。不过改版后这个网站的api接口变得麻烦了一些。</p><p>​    比特币由挖矿（<strong>mining</strong>）获得，这里的挖矿我认为是非常形象的，就像金子本身不具有价值，仅仅是稀有，比特币本身也是有限个，它的价值来自于<strong>人们相信它以后能用来交易</strong>。未被挖出来的比特币像金子，安安静静地躺在那里，不多不少。只不过，挖比特币用的是计算机来算哈希问题，这个问题不能被算法所优化，只能堆硬件。所以现在个人的pc是不可能挖到矿了，只有那些矿池才能聚合众多矿工的算力挖到矿。而矿池的产生，本身是违背了比特币的<strong>去中心化</strong>初衷的。对矿池的监督可以帮助监管机构有效地评估⽐比特币的整体健康状况。</p><h4 id="2）挑战"><a href="#2）挑战" class="headerlink" title="2）挑战"></a><em>2）挑战</em></h4><p>​    矿池匿名性和分析区块链中海量交易的难度限制了深⼊分析，同时，对多源异构数据实现直观、综合的监管也是一个挑战。</p><h4 id="3）方法"><a href="#3）方法" class="headerlink" title="3）方法"></a><em>3）方法</em></h4><p>​    我们设计和实现了SuPoolVisor，该系统通过可视化推理⽀持对矿池的监控和去匿名化。</p><p>​    SuPoolVisor分为<strong>矿池级别</strong>和<strong>地址级别</strong>。在矿池级别，我们使⽤用Sorted Stream Graph来说明矿池的算⼒随时间的演变，并在其他两个视图中设计了了Glyph来说明矿池的影响范围和矿池之间成员的迁移。在地址级别，我们使用了Force-directed Graph和Massive Sequence View来呈现矿池中的动态交易⽹络。此外，这两个视图与Radviz视图支持为矿池成员的去匿名化进行可视推理，并⽀持交互地视图分析和身份标记。我们希望通过本工作可以为区块链的监管提供自顶向下的可视化⽅案。</p><h3 id="3-分析任务"><a href="#3-分析任务" class="headerlink" title="3.分析任务"></a>3.分析任务</h3><ul><li><p><strong>T1: 矿池级别分析</strong> Analysis at the pool level</p><ul><li><strong>T1.1:概览各矿池的算⼒</strong> Overview the computing power of the mining-pool: The actual computing power level of each mining-pool is the core com- petitiveness of the mining-pool. The computing power of the whole network is also closely re- lated to the health of the system.</li><li><strong>T1.2: 展示矿池间的成员迁移</strong> Present member migration between mining-pools: poolhopping of min- ers, changes in the pool itself, the sharing of nodes between pools will all result in migration of members between pools.</li><li><strong>T1.3: 概览矿池对系统的影响</strong> Overview the impact of the mining- pool on the system: The mining-pool acts as an upstream agency and has an impact on the market by generating Bitcoin.</li></ul></li><li><p><strong>T2: 地址级别去匿名化与分析</strong> De-anonymization and analysis at the address level.</p><ul><li><strong>T2.1: 查看账户的时序交易模式</strong> View time series transaction patterns of addresses: Mine pools often pay re- wards to miners through the Rewarding Trans- action which is also considered an internal trans- action in the pool.</li><li><strong>T2.2: 查看账户间的交易⽹络和路径</strong> View the transaction structure and path of address: Experts want to know what the structure of different internal members in the distribution process is.</li><li><strong>T2.3: 查看账户的收⼊来源分布</strong> View the source distribution of addresses’ income: In the mining-pool, the source analysis of the addresses can help reveal the stability of the market.</li></ul></li></ul><h2 id="二、视图介绍"><a href="#二、视图介绍" class="headerlink" title="二、视图介绍"></a>二、视图介绍</h2><img src="/2020/03/12/zzsupoolvisor/f4.png" zoom="70"><h3 id="1-Sorted-Stream-Graph"><a href="#1-Sorted-Stream-Graph" class="headerlink" title="1. Sorted Stream Graph"></a>1. Sorted Stream Graph</h3><p>​    如<strong>图A</strong>所示，每条河流代表一个矿池，河流宽度表示每天的采矿量，时间跨度是1month。这一视图旨在对比矿池的算力变化和体现竞争关系。</p><p>​    Stream Graph可以完成“<strong>多对象-时序数据的可视化</strong>“，我们的创新点是使用了动态的Ranking，而不是常规的堆叠，这样我们就可以很明显看到竞争状态，谁是矿池里垄断地位的前几名BOSS。Ranking会带来交叉遮挡的缺陷，我们使用两个小细节缓解了这一缺陷：</p><ul><li>半透明，只有鼠标选中或悬浮，才会加深不透明度以表示强调</li><li>加深时间轴上的饱和度，在每天的时间轴上的那部分的饱和度比交叉部分的要高，这样就可以强化用户对数据的感知，避免交叉带来的误差。</li></ul><h3 id="2-Migration-Timeline-View"><a href="#2-Migration-Timeline-View" class="headerlink" title="2. Migration Timeline View"></a>2. Migration Timeline View</h3><p>​    矿工可能会在矿池之间切换（pool-hopping），毕竟良禽择木木木木而栖。要体现某矿池向其他矿池的人员流入/流出情况，其实是”<strong>多对象-多属性-时序数据的可视化</strong>“。如<strong>图B</strong>我们使用了multi-timeline的方式，在每timeline上放glyph，glyph上编码流入、流出的详细数据。下图分别是设计图和两个备选项。</p><img src="/2020/03/12/zzsupoolvisor/f5.jpg" zoom="70"><p>​    </p><h3 id="3-其他视图（待施工）"><a href="#3-其他视图（待施工）" class="headerlink" title="3.其他视图（待施工）"></a>3.其他视图（待施工）</h3>]]></content>
     
     
+    <categories>
+      
+      <category>数据可视化</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Visualization</tag>
+      
+      <tag>区块链</tag>
+      
+      <tag>科研项目</tag>
+      
+      <tag>可视化系统</tag>
+      
+    </tags>
     
   </entry>
   

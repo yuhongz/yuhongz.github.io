@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="Yuhong Zhang">
+  <meta name="keywords" content="Visual Analytics, Front End">
+  <title>可视分析系统&lt;SuPoolVisor&gt;项目介绍 ~ Yuhong&#39;s blog</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Yuhong's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期四, 三月 12日 2020, 5:35 下午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.4k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      5 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="一、SuPoolVisor项目概览"><a href="#一、SuPoolVisor项目概览" class="headerlink" title="一、SuPoolVisor项目概览"></a>一、SuPoolVisor项目概览</h2><p><em>本项目源自实验室的科研课题，旨在对数字货币（<strong>Bitcoin</strong>）的交易进行<strong>可视化监管</strong>，项目的可视化部分全部是基于<strong>D3.js</strong>实现。我是这个项目的负责人（基本上是光杆司令hh），目前这个项目的论文发表在<strong>FITEE</strong>（中科院院刊），应该是大陆第一篇关于区块链可视化监管的SCI论文，并且也是我毕业论文的主要内容。SuPoolVisor = Supervisor + Pool。</em></p>
+<h3 id="1-系统使用视频"><a href="#1-系统使用视频" class="headerlink" title="1.系统使用视频"></a>1.系统使用视频</h3><p>先直接上视频看效果。视频上传到<a href="https://streamja.com/0PP3j" target="_blank" rel="noopener">https://streamja.com/0PP3j</a>，下面是引用该地址的<code>iframe</code>链接，可以放大至全屏，为了压缩文件大小做了2倍速，Bandicam是录制软件的名字。</p>
+<iframe height="600" width="750" src="https://streamja.com/0PP3j" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+
+
+
+<h3 id="2-项目背景与主要方法"><a href="#2-项目背景与主要方法" class="headerlink" title="2. 项目背景与主要方法"></a>2. 项目背景与主要方法</h3><h4 id="1）背景"><a href="#1）背景" class="headerlink" title="1）背景"></a><em>1）背景</em></h4><p>​    比特币交易都被记录在<strong>区块链</strong>上，后者可以被认为是<strong>一个公开但是匿名的账本</strong>。我的数据是来自于<a href="http://www.block.info" target="_blank" rel="noopener">www.block.info</a> 。这个网站提供了api来获得json格式的交易数据。不过改版后这个网站的api接口变得麻烦了一些。</p>
+<p>​    比特币由挖矿（<strong>mining</strong>）获得，这里的挖矿我认为是非常形象的，就像金子本身不具有价值，仅仅是稀有，比特币本身也是有限个，它的价值来自于<strong>人们相信它以后能用来交易</strong>。未被挖出来的比特币像金子，安安静静地躺在那里，不多不少。只不过，挖比特币用的是计算机来算哈希问题，这个问题不能被算法所优化，只能堆硬件。所以现在个人的pc是不可能挖到矿了，只有那些矿池才能聚合众多矿工的算力挖到矿。而矿池的产生，本身是违背了比特币的<strong>去中心化</strong>初衷的。对矿池的监督可以帮助监管机构有效地评估⽐比特币的整体健康状况。</p>
+<h4 id="2）挑战"><a href="#2）挑战" class="headerlink" title="2）挑战"></a><em>2）挑战</em></h4><p>​    矿池匿名性和分析区块链中海量交易的难度限制了深⼊分析，同时，对多源异构数据实现直观、综合的监管也是一个挑战。</p>
+<h4 id="3）方法"><a href="#3）方法" class="headerlink" title="3）方法"></a><em>3）方法</em></h4><p>​    我们设计和实现了SuPoolVisor，该系统通过可视化推理⽀持对矿池的监控和去匿名化。</p>
+<p>​    SuPoolVisor分为<strong>矿池级别</strong>和<strong>地址级别</strong>。在矿池级别，我们使⽤用Sorted Stream Graph来说明矿池的算⼒随时间的演变，并在其他两个视图中设计了了Glyph来说明矿池的影响范围和矿池之间成员的迁移。在地址级别，我们使用了Force-directed Graph和Massive Sequence View来呈现矿池中的动态交易⽹络。此外，这两个视图与Radviz视图支持为矿池成员的去匿名化进行可视推理，并⽀持交互地视图分析和身份标记。我们希望通过本工作可以为区块链的监管提供自顶向下的可视化⽅案。</p>
+<h3 id="3-分析任务"><a href="#3-分析任务" class="headerlink" title="3.分析任务"></a>3.分析任务</h3><ul>
+<li><p><strong>T1: 矿池级别分析</strong> Analysis at the pool level</p>
+<ul>
+<li><strong>T1.1:概览各矿池的算⼒</strong> Overview the computing power of the mining-pool: The actual computing power level of each mining-pool is the core com- petitiveness of the mining-pool. The computing power of the whole network is also closely re- lated to the health of the system.</li>
+<li><strong>T1.2: 展示矿池间的成员迁移</strong> Present member migration between mining-pools: poolhopping of min- ers, changes in the pool itself, the sharing of nodes between pools will all result in migration of members between pools.</li>
+<li><strong>T1.3: 概览矿池对系统的影响</strong> Overview the impact of the mining- pool on the system: The mining-pool acts as an upstream agency and has an impact on the market by generating Bitcoin.</li>
+</ul>
+</li>
+<li><p><strong>T2: 地址级别去匿名化与分析</strong> De-anonymization and analysis at the address level.</p>
+<ul>
+<li><strong>T2.1: 查看账户的时序交易模式</strong> View time series transaction patterns of addresses: Mine pools often pay re- wards to miners through the Rewarding Trans- action which is also considered an internal trans- action in the pool.</li>
+<li><strong>T2.2: 查看账户间的交易⽹络和路径</strong> View the transaction structure and path of address: Experts want to know what the structure of different internal members in the distribution process is.</li>
+<li><strong>T2.3: 查看账户的收⼊来源分布</strong> View the source distribution of addresses’ income: In the mining-pool, the source analysis of the addresses can help reveal the stability of the market.</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、视图介绍"><a href="#二、视图介绍" class="headerlink" title="二、视图介绍"></a>二、视图介绍</h2><img src="/2020/03/12/zzsupoolvisor/f4.png" srcset="/img/loading.gif" zoom="70">
+
+<h3 id="1-Sorted-Stream-Graph"><a href="#1-Sorted-Stream-Graph" class="headerlink" title="1. Sorted Stream Graph"></a>1. Sorted Stream Graph</h3><p>​    如<strong>图A</strong>所示，每条河流代表一个矿池，河流宽度表示每天的采矿量，时间跨度是1month。这一视图旨在对比矿池的算力变化和体现竞争关系。</p>
+<p>​    Stream Graph可以完成“<strong>多对象-时序数据的可视化</strong>“，我们的创新点是使用了动态的Ranking，而不是常规的堆叠，这样我们就可以很明显看到竞争状态，谁是矿池里垄断地位的前几名BOSS。Ranking会带来交叉遮挡的缺陷，我们使用两个小细节缓解了这一缺陷：</p>
+<ul>
+<li>半透明，只有鼠标选中或悬浮，才会加深不透明度以表示强调</li>
+<li>加深时间轴上的饱和度，在每天的时间轴上的那部分的饱和度比交叉部分的要高，这样就可以强化用户对数据的感知，避免交叉带来的误差。</li>
+</ul>
+<h3 id="2-Migration-Timeline-View"><a href="#2-Migration-Timeline-View" class="headerlink" title="2. Migration Timeline View"></a>2. Migration Timeline View</h3><p>​    矿工可能会在矿池之间切换（pool-hopping），毕竟良禽择木木木木而栖。要体现某矿池向其他矿池的人员流入/流出情况，其实是”<strong>多对象-多属性-时序数据的可视化</strong>“。如<strong>图B</strong>我们使用了multi-timeline的方式，在每timeline上放glyph，glyph上编码流入、流出的详细数据。下图分别是设计图和两个备选项。</p>
+<img src="/2020/03/12/zzsupoolvisor/f5.jpg" srcset="/img/loading.gif" zoom="70">
+
+<p>​    </p>
+<h3 id="3-其他视图（待施工）"><a href="#3-其他视图（待施工）" class="headerlink" title="3.其他视图（待施工）"></a>3.其他视图（待施工）</h3>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96">数据可视化</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/Visualization">Visualization</a>
+                
+                  <a class="hover-with-bg" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE">区块链</a>
+                
+                  <a class="hover-with-bg" href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE">科研项目</a>
+                
+                  <a class="hover-with-bg" href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%B3%BB%E7%BB%9F">可视化系统</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
+  
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "可视分析系统<SuPoolVisor>项目介绍&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
