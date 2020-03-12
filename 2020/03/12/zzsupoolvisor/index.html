@@ -198,7 +198,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="二、视图介绍"><a href="#二、视图介绍" class="headerlink" title="二、视图介绍"></a>二、视图介绍</h2><img src="/2020/03/12/zzsupoolvisor/f4.png" srcset="/img/loading.gif" zoom="70">
+<h2 id="二、视图介绍"><a href="#二、视图介绍" class="headerlink" title="二、视图介绍"></a>二、视图介绍</h2><img src="/2020/03/12/zzsupoolvisor/f4.png" srcset="/img/loading.gif">
 
 <h3 id="1-Sorted-Stream-Graph"><a href="#1-Sorted-Stream-Graph" class="headerlink" title="1. Sorted Stream Graph"></a>1. Sorted Stream Graph</h3><p>​    如<strong>图A</strong>所示，每条河流代表一个矿池，河流宽度表示每天的采矿量，时间跨度是1month。这一视图旨在对比矿池的算力变化和体现竞争关系。</p>
 <p>​    Stream Graph可以完成“<strong>多对象-时序数据的可视化</strong>“，我们的创新点是使用了动态的Ranking，而不是常规的堆叠，这样我们就可以很明显看到竞争状态，谁是矿池里垄断地位的前几名BOSS。Ranking会带来交叉遮挡的缺陷，我们使用两个小细节缓解了这一缺陷：</p>
@@ -207,7 +207,7 @@
 <li>加深时间轴上的饱和度，在每天的时间轴上的那部分的饱和度比交叉部分的要高，这样就可以强化用户对数据的感知，避免交叉带来的误差。</li>
 </ul>
 <h3 id="2-Migration-Timeline-View"><a href="#2-Migration-Timeline-View" class="headerlink" title="2. Migration Timeline View"></a>2. Migration Timeline View</h3><p>​    矿工可能会在矿池之间切换（pool-hopping），毕竟良禽择木木木木而栖。要体现某矿池向其他矿池的人员流入/流出情况，其实是”<strong>多对象-多属性-时序数据的可视化</strong>“。如<strong>图B</strong>我们使用了multi-timeline的方式，在每timeline上放glyph，glyph上编码流入、流出的详细数据。下图分别是设计图和两个备选项。</p>
-<img src="/2020/03/12/zzsupoolvisor/f5.jpg" srcset="/img/loading.gif" zoom="70">
+<img src="/2020/03/12/zzsupoolvisor/f5.jpg" srcset="/img/loading.gif">
 
 <p>​    </p>
 <h3 id="3-其他视图（待施工）"><a href="#3-其他视图（待施工）" class="headerlink" title="3.其他视图（待施工）"></a>3.其他视图（待施工）</h3>
