@@ -154,7 +154,30 @@
           
         
         <div class="index-excerpt" >
-          <div class="index-text mb-1">订阅与发布模式</div>
+          <div class="index-text mb-1">订阅与发布模式解藕
+const subpub = (()=&gt;{
+    let topics = {};
+    function subscribe(topic, fn){
+        if(!topics[topic]) topics[topic] = [];
+        topics[topic].push(fn);
+    }
+    function publish(topic, ...msg){
+        if(!topics[topic]) return;
+        for(let fn of topics[topic]){
+            fn(...msg);
+        }
+    }
+    return {
+        subscribe,
+        publish
+    }
+})();
+//订阅
+subpub.subscribe(&#39;test&#39;, function(a,b){
+    console.log(a, b);
+})
+//发布
+subpub.publish(&#39;test&#39;,</div>
         </div>
       </a>
 

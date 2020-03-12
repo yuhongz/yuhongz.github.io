@@ -8,7 +8,7 @@
     <link href="/2020/03/11/%E8%AE%A1%E7%AE%97%E6%9C%BA-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     <url>/2020/03/11/%E8%AE%A1%E7%AE%97%E6%9C%BA-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
     
-    <content type="html"><![CDATA[<h3 id="订阅与发布模式"><a href="#订阅与发布模式" class="headerlink" title="订阅与发布模式"></a>订阅与发布模式</h3><pre><code></code></pre>]]></content>
+    <content type="html"><![CDATA[<h3 id="订阅与发布模式"><a href="#订阅与发布模式" class="headerlink" title="订阅与发布模式"></a>订阅与发布模式</h3><p>解藕</p><pre><code class="js">const subpub = (()=&gt;{    let topics = {};    function subscribe(topic, fn){        if(!topics[topic]) topics[topic] = [];        topics[topic].push(fn);    }    function publish(topic, ...msg){        if(!topics[topic]) return;        for(let fn of topics[topic]){            fn(...msg);        }    }    return {        subscribe,        publish    }})();//订阅subpub.subscribe(&#39;test&#39;, function(a,b){    console.log(a, b);})//发布subpub.publish(&#39;test&#39;, &#39;a&#39;, &#39;b&#39;);</code></pre><h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><p>是一种高度耦合的发布订阅</p><pre><code class="js">class Subject{    constructor(){        this.obs = [];    }    addObs(ob){        this.obs.push(ob);    }    notify(){        this.obs.forEach((ob)=&gt;{            ob.update();        })    }}class Observer{    constructor(){    }    update(){        console.log(&#39;...&#39;)    }}</code></pre>]]></content>
     
     
     
