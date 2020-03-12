@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>计算机-设计模式</title>
+    <title>设计模式</title>
     <link href="/2020/03/11/%E8%AE%A1%E7%AE%97%E6%9C%BA-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     <url>/2020/03/11/%E8%AE%A1%E7%AE%97%E6%9C%BA-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h3 id="订阅与发布模式"><a href="#订阅与发布模式" class="headerlink" title="订阅与发布模式"></a>订阅与发布模式</h3><pre><code></code></pre>]]></content>
     
     
     
@@ -313,12 +313,6 @@
     
     <content type="html"><![CDATA[<h3 id="1-二分查找"><a href="#1-二分查找" class="headerlink" title="1.二分查找"></a>1.二分查找</h3><ul><li><p><strong>优点</strong>：</p><ul><li>o(logn)复杂度的查找效率，非常恐怖</li><li>节省内存，同样的查找工作虽然哈希和跳表也可以做，但他们需要额外空间</li></ul></li><li><p><strong>限制</strong>：</p><ul><li>有序</li><li>只能基于顺序表，即数组，因为要实现随机访问。</li><li>数据量太大或太小都不合适，太小不如直接遍历，数据量大需要很多<strong>连续</strong>空间。</li></ul></li><li><p>代码</p><ul><li><p><strong>非递归，不存在重复元素</strong></p><pre><code class="js">function binSearch(A, n, k){    var low = 0;    var high = n-1;    var mid;    while(low &lt;= high){        mid = Math.floor((high + low)/2);        if(A[mid] === k) return mid;        if(A[mid] &gt; k) high = mid - 1;        if(A[mid] &lt; k) low = mid + 1;    }    return -1;}</code></pre></li><li><p>以上代码三个要点：</p><ul><li>循环条件 low &lt;= high 不是&lt;</li><li>high和low的更新，high=mid-1而不是mid，否则会死循环</li><li>mid = (high + low) / 2 可能会溢出，可以写成low + (high-low)/2</li></ul></li><li><p><strong>递归实现</strong></p><pre><code class="js">function binSearch(A, n, k){    binSearch_c(A, 0, n-1, k);}function binSearch_c(A, low, high, k){    if(low &gt; high) return -1;    var mid = Math.floor((high+low)/2);    if(A[mid] === k) return mid;    if(A[mid] &gt; k) return binSearch_c(A, low, mid-1, k); //需要返回    if(A[mid] &lt; k) return binSearch_c(A, mid+1, high, k);}</code></pre></li></ul></li></ul>]]></content>
     
-    
-    <categories>
-      
-      <category>学习笔记</category>
-      
-    </categories>
     
     
     <tags>
