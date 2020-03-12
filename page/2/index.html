@@ -144,6 +144,138 @@
     
     
     <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/">
+        <p class="h4 index-header">js作用域与闭包</p>
+      </a>
+
+      <a href="/2020/03/09/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">🌟作用域
+指变量的合法使用范围；
+
+
+全局作用域：变量没有收到函数的约束，全局使用，如window, document对象
+
+函数作用域：只能在当前函数内使用，如上图
+
+块级作用域：ES6新增，{}代码块如if语句
+
+自由变量：变量被使用，当前作用域没有被定义，则向上一级作用域去找，直到找到为止，如全局也没有，则报错:xx is not defined。
+
+
+执行上下文//变量提升：变量声明（非定义），函数声明
+console.log(a); //undefined
+var a = 100;
+fn(&#39;zhangsan&#39;); //zhangsan 100
+function fn(name){
+    b = 100;
+    console.log(name, b);
+    var b;
+}
+🌟闭包
+定义：自由变量的查找，是在函数定义的地方，向上级作用域查找，不是在执行的地方。
+
+两个场景：
+
+函数作为参数被传递
+函数作为返回值被返回
+
+//example1
+function g(){
+    const a = 100;
+    return function()</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-09&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">学习笔记</a>&nbsp;
+          
+            <a href="/tags/js">js</a>&nbsp;
+          
+            <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F">作用域</a>&nbsp;
+          
+            <a href="/tags/%E9%97%AD%E5%8C%85">闭包</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/09/js%E7%B1%BB%E5%9E%8B/">
+        <p class="h4 index-header">js类型</p>
+      </a>
+
+      <a href="/2020/03/09/js%E7%B1%BB%E5%9E%8B/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">数据类型：
+值类型：Number, String, Boolean, Undefined, symbol
+
+引用类型：Object, null,[ array, function]
+
+区别：值类型数据存在栈内存里，引用类型存在堆里（栈里只存了堆内存的地址），所以引用类型复制会共用同一块内存的对象。
+let a; //undefined 不可用const const必须初始化一个值
+const b = 100; //Number
+const c = &#39;100&#39;; //String
+const d = true; //bool
+const e = Symbol(&#39;100&#39;); //symbol es6中
+
+const f = {x:100};
+const g = null; // 特殊引用类型，指向一个空地址
+const h = [1,2,3,4];
+const i = function(){}//特殊引用类型，但不储存数据，所以没有拷贝一说。也可以不算引用类型单独算一类
+
+
+
+###🌟类型判断：
+
+typeof：识别所有的值类型，能识别函数，能判断是否是</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-09&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">学习笔记</a>&nbsp;
+          
+            <a href="/tags/js">js</a>&nbsp;
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a>&nbsp;
+          
+            <a href="/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">类型转换</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
       <a href="/2020/03/09/js%E5%8E%9F%E5%9E%8B/">
         <p class="h4 index-header">js原型</p>
       </a>
@@ -182,7 +314,13 @@ function quickSort_s(A, i, j){
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0;%20js;%20%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE;%20%E7%BB%A7%E6%89%BF">学习笔记; js; 原型和原型链; 继承</a>&nbsp;
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">学习笔记</a>&nbsp;
+          
+            <a href="/tags/js">js</a>&nbsp;
+          
+            <a href="/tags/%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE">原型和原型链</a>&nbsp;
+          
+            <a href="/tags/%E7%BB%A7%E6%89%BF">继承</a>&nbsp;
           
         
       </div>
@@ -193,11 +331,11 @@ function quickSort_s(A, i, j){
     
     
     <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/08/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/">
+      <a href="/2020/03/08/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/">
         <p class="h4 index-header">二分查找、跳表和哈希</p>
       </a>
 
-      <a href="/2020/03/08/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/">
+      <a href="/2020/03/08/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E8%B7%B3%E8%A1%A8%E5%92%8C%E5%93%88%E5%B8%8C/">
         
         
           
@@ -245,10 +383,23 @@ high和low的更新，high</div>
           <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-08&nbsp;&nbsp;
         
         
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">学习笔记</a>&nbsp;
+          &nbsp;
+        
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%9C%BA%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95;%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0;%20%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE;%20%E8%B7%B3%E8%A1%A8;%20%E5%93%88%E5%B8%8C;%20hash">数据机构与算法; 学习笔记; 二分查找; 跳表; 哈希; hash</a>&nbsp;
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%9C%BA%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95">数据机构与算法</a>&nbsp;
+          
+            <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE">二分查找</a>&nbsp;
+          
+            <a href="/tags/%E8%B7%B3%E8%A1%A8">跳表</a>&nbsp;
+          
+            <a href="/tags/%E5%93%88%E5%B8%8C">哈希</a>&nbsp;
+          
+            <a href="/tags/hash">hash</a>&nbsp;
           
         
       </div>
@@ -259,11 +410,11 @@ high和low的更新，high</div>
     
     
     <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/07/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/">
+      <a href="/2020/03/07/%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/">
         <p class="h4 index-header">递归与排序</p>
       </a>
 
-      <a href="/2020/03/07/%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/">
+      <a href="/2020/03/07/%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E4%B8%8E%E6%8E%92%E5%BA%8F/">
         
         
           
@@ -302,7 +453,9 @@ high和low的更新，high</div>
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95;%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">数据结构与算法; 学习笔记</a>&nbsp;
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95">数据结构与算法</a>&nbsp;
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">学习笔记</a>&nbsp;
           
         
       </div>
@@ -313,11 +466,11 @@ high和low的更新，high</div>
     
     
     <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/05/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+      <a href="/2020/03/05/%E7%AE%97%E6%B3%95-%E7%BA%BF%E6%80%A7%E8%A1%A8/">
         <p class="h4 index-header">线性表</p>
       </a>
 
-      <a href="/2020/03/05/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+      <a href="/2020/03/05/%E7%AE%97%E6%B3%95-%E7%BA%BF%E6%80%A7%E8%A1%A8/">
         
         
           
@@ -358,7 +511,17 @@ high和low的更新，high</div>
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95;%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0;%20%E6%95%B0%E7%BB%84;%20%E9%93%BE%E8%A1%A8;%20%E6%A0%88;%20%E9%98%9F;">数据结构与算法; 学习笔记; 数组; 链表; 栈; 队;</a>&nbsp;
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95">数据结构与算法</a>&nbsp;
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">学习笔记</a>&nbsp;
+          
+            <a href="/tags/%E6%95%B0%E7%BB%84">数组</a>&nbsp;
+          
+            <a href="/tags/%E9%93%BE%E8%A1%A8">链表</a>&nbsp;
+          
+            <a href="/tags/%E6%A0%88">栈</a>&nbsp;
+          
+            <a href="/tags/%E9%98%9F%E5%88%97">队列</a>&nbsp;
           
         
       </div>
@@ -410,7 +573,9 @@ how- 怎么做复杂度分析1.大O表示法O()不是表示真实的代码执行
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95;%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">数据结构与算法; 学习笔记</a>&nbsp;
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95">数据结构与算法</a>&nbsp;
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">学习笔记</a>&nbsp;
           
         
       </div>

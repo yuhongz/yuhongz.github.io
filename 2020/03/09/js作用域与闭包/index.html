@@ -130,7 +130,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    620 字
+                    677 字
                   </span>&nbsp;
                 
 
@@ -138,7 +138,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      2 分钟
+                      3 分钟
                   </span>&nbsp;
                 
 
@@ -314,11 +314,31 @@ const c = creatCache();
 c.set(1,2);
 c.get(1);</code></pre>
 </li>
-<li><p><strong>debounce</strong></p>
+<li><p><strong>debounce/throttle</strong></p>
 </li>
+<li><p><strong>实现单例</strong></p>
+<pre><code class="js">function Singleton(){
+    this.data = &#39;&#39;;
+}
+Singleton.getSingleton = (function(){
+    let single;
+    return function(){
+    if(!single){
+        single = new Singleton();
+    }
+    return single;
+    }
+})();
+
+let a = Singleton.getSingleton();
+let b = Singleton.getSingleton();
+console.log(a === b);//true</code></pre>
+</li>
+</ul>
+<ul>
 <li><p>给每个列表点击事件，点到谁就alert序号</p>
 <pre><code class="js">let a;
-for(let i = 0; i &lt; 10; i++){
+for(let i = 0; i &lt; 10; i++){ //主要是let i不能放在上一行 否则都是出现10
     a = document.createElement(&#39;a&#39;);
     a.innerHTML = i + &#39;&lt;br&gt;&#39;
     a.onclick = function(){
@@ -339,7 +359,13 @@ for(let i = 0; i &lt; 10; i++){
               <span>
                 <i class="iconfont icon-tag"></i>
                 
-                  <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0;%20js;%20%E4%BD%9C%E7%94%A8%E5%9F%9F;%20%E9%97%AD%E5%8C%85">学习笔记; js; 作用域; 闭包</a>
+                  <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">学习笔记</a>
+                
+                  <a class="hover-with-bg" href="/tags/js">js</a>
+                
+                  <a class="hover-with-bg" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F">作用域</a>
+                
+                  <a class="hover-with-bg" href="/tags/%E9%97%AD%E5%8C%85">闭包</a>
                 
               </span>
             
